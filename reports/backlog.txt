@@ -1,0 +1,28 @@
+First sprint:
+create models of users, sentences, sentence groupings, and lists
+create registration, login, logout, pages
+create email authentication for registration
+
+create navbar
+choose and implement a CSS framework (Bootstrap?)
+
+---
+create the “sentence view”
+create the all-sentences/search view
+create the list view
+enable deletion of sentences & audio files
+enable editing of sentences
+enable editing of lists
+figure out how we’ll do audio recording
+implement audio recording
+enable creation of a mp3s
+enable bulk download of individual mp3s
+implement upvotes/downvotes
+implement tagging
+implement search
+implement priority/urgency level of untranslated sentences
+create email system to email translators when a sentence needs translation. (Allow opt-in at registration.)
+create profile pages (separate for teachers and translators)
+create home views (separate for teachers and translators)
+find a discussion forum package
+install discussion forum package
