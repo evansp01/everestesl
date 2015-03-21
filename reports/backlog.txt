@@ -4,7 +4,7 @@ create registration, login, logout, pages
 create email authentication for registration
 
 create navbar
-choose and implement a CSS framework (Bootstrap?)
+choose a CSS framework (Bootstrap?)
 
 ---
 create the “sentence view”
