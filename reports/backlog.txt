@@ -1,32 +1,33 @@
-Owner for first sprint: Marjorie
-Owner for second sprint: Evan
+Owner for first sprint: Marjorie Carlson, marjorie@
+Owner for second sprint: Evan Palmer, esp@
 
-First sprint:
-come up with name for webapp
-create models of users, sentences, sentence groupings, and lists
-create registration, login, logout, pages
-create email authentication for registration
-create navbar
-choose a CSS framework (Bootstrap?)
-create the “sentence view”
-create the all-sentences/search view
-create the list view
+First sprint (Marjorie Carlson, marjorie@):
+Register: Marjorie
+Authenticate by email: Marjorie
+Log in: Marjorie
+Log out: Marjorie
+View a sentence
+Create a sentence
+View all sentences
+Create a list of sentences
+View a list of sentences
 
-Second sprint:
-enable deletion of sentences & audio files
-enable editing of sentences
-enable editing of lists
-figure out how we’ll do audio recording
-implement audio recording
-enable creation of a mp3s
-enable bulk download of individual mp3s
-implement upvotes/downvotes
-implement tagging
-implement search
-implement priority/urgency level of untranslated sentences
-implement/store userpics
-create email system to email translators when a sentence needs translation. (Allow opt-in at registration.)
-create profile pages (separate for teachers and translators)
-create home views (separate for teachers and translators)
-find a discussion forum package
-install discussion forum package
+Other to-do list items: create models; come up with name; choose a CSS framework; figure out how we'll do audio recording
+
+Second sprint (Evan Palmer, esp@):
+Delete a sentence
+Record audio
+Create an mp3
+Bulk download audio recordings
+View a user's profile
+Upload a userpic
+Search for sentences
+Search for lists
+Search for users
+Receive an email when a sentence needs translation
+
+Stretch goals:
+Tag sentences by topic
+Tag sentences by priority/urgency
+Upvote/downvote translations
+Participate in a discussion forum
