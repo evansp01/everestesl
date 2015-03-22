@@ -1,15 +1,18 @@
+Owner for first sprint: Marjorie
+Owner for second sprint: Evan
+
 First sprint:
+come up with name for webapp
 create models of users, sentences, sentence groupings, and lists
 create registration, login, logout, pages
 create email authentication for registration
-
 create navbar
-choose and implement a CSS framework (Bootstrap?)
-
----
+choose a CSS framework (Bootstrap?)
 create the “sentence view”
 create the all-sentences/search view
 create the list view
+
+Second sprint:
 enable deletion of sentences & audio files
 enable editing of sentences
 enable editing of lists
@@ -21,6 +24,7 @@ implement upvotes/downvotes
 implement tagging
 implement search
 implement priority/urgency level of untranslated sentences
+implement/store userpics
 create email system to email translators when a sentence needs translation. (Allow opt-in at registration.)
 create profile pages (separate for teachers and translators)
 create home views (separate for teachers and translators)
