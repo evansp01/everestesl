@@ -1,20 +1,18 @@
-Owner for first sprint: Marjorie Carlson, marjorie@
-Owner for second sprint: Evan Palmer, esp@
+Backlog for EVEREST, a site to help ESL teachers and Bhutanese translators collaboratively produce audio lessons for Bhutanese Nepali refugees
 
+BACKLOG: FIRST SPRINT (Owner: Marjorie Carlson, marjorie@)
 First sprint (Marjorie Carlson, marjorie@):
 Register: Marjorie
 Authenticate by email: Marjorie
 Log in: Marjorie
 Log out: Marjorie
-View a sentence
-Create a sentence
-View all sentences
-Create a list of sentences
-View a list of sentences
+View a sentence: Marjorie
+Create a sentence: Marjorie
+View all sentences: Evan
+Create a list of sentences: Evan
+View a list of sentences: Evan
 
-Other to-do list items: create models; come up with name; choose a CSS framework; figure out how we'll do audio recording
-
-Second sprint (Evan Palmer, esp@):
+BACKLOG: SECOND SPRINT (Owner: Evan Palmer, esp@)
 Delete a sentence
 Record audio
 Create an mp3
@@ -26,7 +24,7 @@ Search for lists
 Search for users
 Receive an email when a sentence needs translation
 
-Stretch goals:
+STRETCH BACKLOG
 Tag sentences by topic
 Tag sentences by priority/urgency
 Upvote/downvote translations
