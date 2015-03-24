@@ -1,1 +1,1 @@
-web: gunicorn everest.wsgi --log-file -
+web: gunicorn webapps.wsgi --log-file -
