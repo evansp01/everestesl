@@ -1,1 +1,0 @@
-web: gunicorn everest.wsgi --log-file -
