@@ -87,6 +87,7 @@ ALLOWED_HOSTS = ['aqueous-river-8897.herokuapp.com', 'localhost']
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
