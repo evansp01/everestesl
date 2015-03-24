@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load active %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +52,7 @@
             <li><a href="#">Login</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#">Find a Sentence</a></li>
+            <li class="{% active request 'everest.views.main.home' %}"><a href="{% url 'everest.views.main.home'%}">Find a Sentence</a></li>
             <li><a href="#">Find a List</a></li>
             <li><a href="#">Find a User</a></li>
             <li class="dropdown">
