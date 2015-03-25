@@ -1,4 +1,8 @@
 venv
+env
+*~
+*#*
 *.pyc
 staticfiles
 *.sqlite3
+*.pdf

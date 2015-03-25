@@ -14,9 +14,14 @@ class Sentence(models.Model):
 
 class UserProfile(models.Model):
     userkey = models.OneToOneField(User)
-    age = models.PositiveIntegerField(null=True)
     bio = models.CharField(max_length=430, blank=True)
     image = models.ImageField(upload_to="pictures", blank=True)
+    ESLTEACHER = 'ESL'
+    TRANSLATOR = 'TRANS'
+    USER_TYPE_CHOICE = (
+        (ESLTEACHER, 'ESL Teacher'),
+        (TRANSLATOR, 'Translator'),
+    )
 
 class List(models.Model):
     sentences = models.ManyToManyField(Sentence, related_name='lists', symmetrical=True)
