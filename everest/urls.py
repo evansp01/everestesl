@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('everest.views',
-    url(r'^$', 'main.home'),
+    url(r'^$', 'general.home',name=''),
     # Route for built-in authentication with our own custom login page
 #    url(r'^register$', 'register'),
 #    url(r'^confirm/(?P<username>[a-zA-Z0-9_\-\.]*)/(?P<token>[a-z0-9\-]+)$','confirm'),
