@@ -3,22 +3,16 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Everest - Learn English!</title>
-
     <link rel="shortcut icon" type="image/png" href="{% static 'everest/img/everest-icon.png' %}"/>
-
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'everest/css/bootstrap.min.css' %}" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="{% static 'everest/css/logo-nav.css' %}" rel="stylesheet">
 
@@ -28,79 +22,23 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-</head>
-
-<body>
-
-<!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">
-            <img src="{% static 'everest/img/everest-logo.png' %}" alt="everest">
-          </a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#">Login</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="{% active request 'everest.views.main.home' %}"><a href="{% url 'everest.views.main.home'%}">Find a Sentence</a></li>
-            <li><a href="#">Find a List</a></li>
-            <li><a href="#">Find a User</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Teacher Tools <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">Lists</li>
-                <li><a href="#">Add New Lists</a></li>
-                <li><a href="#">View My Lists</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Profile</li>
-                <li><a href="#">My Profile</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Translator Tools <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">Sentences</li>
-                <li><a href="#">Sentences Needing Translation</a></li>
-                <li><a href="#">Sentences Needing Audio</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Profile</li>
-                <li><a href="#">My Profile</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-
-
+  </head>
+  <body>
+   {% include "everest/nav.html" %}
     <!-- Page Content -->
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>Everest Website</h1>
-                <p>Content goes here.</p>
-            </div>
-        </div>
+      {% block content %}
+
+      I'm so cool
+
+      {% endblock %}
     </div>
     <!-- /.container -->
-
     <!-- jQuery -->
     <script src="{% static 'everest/js/jquery.js' %}"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'everest/js/bootstrap.min.js' %}"></script>
-
-</body>
-
+    {% block scripts %}
+    {% endblock %}
+  </body>
 </html>

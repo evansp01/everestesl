@@ -7,21 +7,3 @@
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
 }
-
-.navbar-fixed-top .nav {
-    padding: 5px 0;
-}
-
-.navbar-fixed-top .navbar-brand {
-    padding: 0 5px;
-}
-
-@media(min-width:768px) {
-    body {
-        padding-top: 80px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
-    }
-
-    .navbar-fixed-top .navbar-brand {
-        padding: 5px 0;
-    }
-}
