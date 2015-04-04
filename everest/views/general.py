@@ -29,7 +29,7 @@ def home(request):
     return render(request, 'everest/index.html', {})
 
 def find_list(request):
-    return render(request, 'everest/index.html', {})
+    return render(request, 'everest/list.html', {})
 
 def find_user(request):
     return render(request, 'everest/index.html', {})
@@ -38,7 +38,7 @@ def find_sentence(request):
     return render(request, 'everest/index.html', {})
 
 def manage_account(request):
-    return render(request, 'everest/index.html', {})
+    return render(request, 'everest/account.html', {})
 
 @transaction.atomic
 def register(request):
