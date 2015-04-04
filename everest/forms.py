@@ -72,14 +72,5 @@ class ProfileForm(forms.Form):
     last_name  = forms.CharField(max_length = 20)
     bio = forms.CharField(max_length = 430, required=False)
 
-class AddPost(forms.Form):
-    post = forms.CharField(max_length = 160)
-
-class AddComment(forms.Form):
-    comment = forms.CharField(max_length = 160, required=False)
-
-    def clean(self):
-        cleaned_data = super(AddComment, self).clean()
-        comment = cleaned_data.get('comment')
-        post = cleaned_data.get('hidden')
-        return cleaned_data
+class AddSentence(forms.Form):
+    sentence = forms.CharField(max_length = 200)

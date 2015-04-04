@@ -1,0 +1,31 @@
+{% extends "everest/base.html" %}
+
+{% block title %}Everest Lesson {% endblock %}
+{% block pageheader %} The Joy of Rutabagas {% endblock %}
+
+{% block content %}
+<h3>Sentences</h3>
+      <ul class="list-unstyled">
+	<li><button type="button" class="btn btn-danger btn-xs"><span
+	class="glyphicon glyphicon-remove"
+	aria-hidden="true"></span></button>  <a href="find_sentence">The quick brown fox jumps over the
+	lazy dog.</a></li></ul>
+            <form action="/add-sentence" method="post">
+	      <div class="input-group">
+		<span class="input-group-addon">Add sentence</span>
+		  <input type="text" class="form-control" name="post" maxlength="200" autofocus>
+		  <span class="input-group-btn">
+		  <button class="btn btn-default" type="submit">Submit</button>
+		</span>
+	      </div>
+	      {% csrf_token %}
+	      </form>
+
+	      <br/><br/>
+
+      <p><button type="button" class="btn btn-primary"
+         aria-label="Create audio lesson">
+         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+      <b>Create this audio lesson!</b></button></p>
+      
+      {% endblock %}
