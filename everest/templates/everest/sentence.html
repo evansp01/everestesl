@@ -1,24 +1,40 @@
 {% extends "everest/base.html" %}
 
 {% block content %}
+
+<h1>The quick fox jumped over the lazy brown dog </h1>
+
 <div class="row">
-  <div class="col-lg-9">
-      <h1>The quick fox jumped over the lazy brown dog </h1>
-      <h2>Bhutanese Translations </h2>
+  <div class="col-md-3"><h3>In Nepali</h3>
       <ul class="list-unstyled">
-        <li> adsfasdf aklsdjfalghrbg lkasdjfalkjsdf </li>
-        <li> ahalkj ajhsdkfhasd ajhah  akjsdhksh ff </li>
+        <li>द्रुत खैरो फक्स अल्छी कुकुर भन्दा जान्छ।</li>
+	<li>फास्ट खैरो फक्स नींद कुकुर भन्दा जान्छ।</li>
+	<li><a href="">Add your own translation</a></li>
       </ul>
-      <h4>English Audio</h4>
-      <h4>Nepali Audio></h4>
-  </div>
-  <div class="col-lg-3">
+    </div>
+    <div class="col-md-3"><h3>Audio</h3>
+      <p><button type="button" class="btn btn-default" aria-label="Play">
+         <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+      </button> English (by Sherry)</p
+      <p><button type="button" class="btn btn-default" aria-label="Play">
+         <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+      </button>
+      Nepali (by Devi)</p
+    <p><button type="button" class="btn btn-default" aria-label="Play">
+         <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+      </button>
+       Nepali (by Kul)</p>
+      <a href="">Add your own recording</a>
+    </div>
+  <div class="col-md-3">
+    <h3>Lessons that use this sentence:</h3>
     <ul class="list-unstyled">
-      <li> Sherry's List </>
-      <li> Rhonda's List </>
-      <li> Harold's List </>
-      <li> Diggory's List </>
+      <li> <a href=""> Sherry's Lesson </a> </>
+      <li> <a href=""> Rhonda's Lesson </a> </>
+      <li> <a href=""> Harold's Lesson </a> </>
+      <li> <a href=""> Diggory's Lesson </a> </>
     </ul>
+    <a href=""> Add to your own lesson </a> </>
   </div>
 </div>
 {% endblock %}
