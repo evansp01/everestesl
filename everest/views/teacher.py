@@ -6,7 +6,7 @@ def home(request):
     return render(request, 'everest/index.html', {})
 
 def add_list(request):
-    return render(request, 'everest/index.html', {})
+    return render(request, 'everest/add_list.html', {})
 
 def user_lists(request):
     return render(request, 'everest/index.html', {})
