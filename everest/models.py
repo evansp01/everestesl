@@ -15,13 +15,14 @@ class Sentence(models.Model):
 class UserProfile(models.Model):
     userkey = models.OneToOneField(User)
     bio = models.CharField(max_length=430, blank=True)
-    image = models.ImageField(upload_to="pictures", blank=True)
-    ESLTEACHER = 'ESL'
-    TRANSLATOR = 'TRANS'
-    USER_TYPE_CHOICE = (
-        (ESLTEACHER, 'ESL Teacher'),
+    image = models.ImageField(upload_to="pictures", blank=True, null=True)
+    ESLTEACHER = 'E'
+    TRANSLATOR = 'T'
+    USER_TYPES = (
+        (ESLTEACHER, 'ESL_Teacher'),
         (TRANSLATOR, 'Translator'),
     )
+    user_type = models.CharField(max_length=1, choices=USER_TYPES)
 
 class List(models.Model):
     sentences = models.ManyToManyField(Sentence, related_name='lists', symmetrical=True)

@@ -54,6 +54,8 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 )
 
 ROOT_URLCONF = 'webapps.urls'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login' 
 
 WSGI_APPLICATION = 'webapps.wsgi.application'
 

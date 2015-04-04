@@ -3,16 +3,16 @@ from django.contrib.auth.models import User
 from everest.models import UserProfile
 from models import *
 
-class RegistrationForm(forms.Form):
+class RegisterForm(forms.Form):
     username   = forms.CharField(max_length = 20, label='Username')
     first_name = forms.CharField(max_length = 120, label='First name')
     last_name  = forms.CharField(max_length = 120, label='Last name')
     email      = forms.CharField(max_length = 30, label='Email')
-    password1  = forms.CharField(max_length = 25, 
-                                 label='Password', 
+    password1  = forms.CharField(max_length = 25,
+                                 label='Password',
                                  widget = forms.PasswordInput())
-    password2  = forms.CharField(max_length = 25, 
-                                 label='Confirm password',  
+    password2  = forms.CharField(max_length = 25,
+                                 label='Confirm password',
                                  widget = forms.PasswordInput())
 
     # Customizes form validation for properties that apply to more
@@ -20,14 +20,12 @@ class RegistrationForm(forms.Form):
     def clean(self):
         # Calls our parent (forms.Form) .clean function, gets a dictionary
         # of cleaned data as a result
-        cleaned_data = super(RegistrationForm, self).clean()
-
+        cleaned_data = super(RegisterForm, self).clean()
         # Confirms that the two password fields match
         password1 = cleaned_data.get('password1')
         password2 = cleaned_data.get('password2')
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords did not match.")
-
         # We must return the cleaned data we got from our parent.
         return cleaned_data
 

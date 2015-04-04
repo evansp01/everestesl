@@ -1,34 +1,10 @@
 from django.shortcuts import render
-
-# Create your views here.
-
-
-def home(request):
-    return render(request, 'everest/index.html', {})
-
-
-
-def find_list(request):
-    return render(request, 'everest/index.html', {})
-
-def find_user(request):
-    return render(request, 'everest/index.html', {})
-
-def find_sentence(request):
-    return render(request, 'everest/index.html', {})
-
-def manage_account(request):
-    return render(request, 'everest/index.html', {})
-
-
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.template.loader import render_to_string
 from django.middleware.csrf import get_token
 import json
 from django.core.urlresolvers import reverse
-
 
 # Decorator to use built-in authentication system
 from django.contrib.auth.decorators import login_required
@@ -45,9 +21,24 @@ from django.contrib.auth.tokens import default_token_generator
 # Django transaction system so we can use @transaction.atomic
 from django.db import transaction
 from django.core.mail import send_mail
-
 from everest.models import *
 from everest.forms import *
+
+
+def home(request):
+    return render(request, 'everest/index.html', {})
+
+def find_list(request):
+    return render(request, 'everest/index.html', {})
+
+def find_user(request):
+    return render(request, 'everest/index.html', {})
+
+def find_sentence(request):
+    return render(request, 'everest/index.html', {})
+
+def manage_account(request):
+    return render(request, 'everest/index.html', {})
 
 @transaction.atomic
 def register(request):
@@ -56,7 +47,7 @@ def register(request):
     if request.method == 'GET':
         context['form'] = RegisterForm()
         return render(request, 'everest/register.html', context)
-    form = RegistrationForm(request.POST.copy())
+    form = RegisterForm(request.POST.copy())
     if not form.is_valid():
         form.data['password'] = None
         form.data['password2'] = None
@@ -64,15 +55,15 @@ def register(request):
         return render(request, 'everest/register.html', context)
     #everything is okay, register
     username = form.cleaned_data['username']
-    password = form.cleaned_data['password']
+    password = form.cleaned_data['password1']
     new_user = User.objects.create_user(
-        username=username, 
+        username=username,
         password=password,
         first_name=form.cleaned_data['first_name'],
         last_name=form.cleaned_data['last_name'],
         email=form.cleaned_data['email'],
     )
-#    new_user.is_active = False
+    #new_user.is_active = False
     new_user.save()
 
     UserProfile.objects.create(
@@ -82,6 +73,6 @@ def register(request):
 
     # Logs in the new user and redirects to main page
     new_user = authenticate(username=request.POST['username'],
-                            password=request.POST['password'])
+                            password=request.POST['password1'])
     login(request, new_user)
-    return redirect('/everest/home')
+    return redirect(reverse('home'))
