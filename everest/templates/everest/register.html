@@ -1,10 +1,10 @@
 {% extends "everest/login_template.html" %}
 {% load static %}
 
-{% block title %}Register for The Social Network{% endblock %}
+{% block title %}Register for Everest{% endblock %}
+{% block pageheader %} <div align="center">Register for Everest!</div> {% endblock %}
 
 {% block form %}
-<img class="profile-img" src="{% static 'everest/img/everest.png' %}" alt="">
 <form class="form-signin" method="post">{% csrf_token %}
   {{form.non_field_errors}}
   {% for field in form %}

@@ -8,7 +8,7 @@ urlpatterns = patterns('everest.views',
 )
 
 urlpatterns += patterns('everest.views.general',
-    url(r'^find_list$','find_list',name='find_list'),
+    url(r'^find_lesson$','find_list',name='find_list'),
     url(r'^find_user$','find_user',name='find_user'),
     url(r'^find_sentence$','find_sentence',name='find_sentence'),
     url(r'^manage_account$','manage_account',name='manage_account')
@@ -16,8 +16,8 @@ urlpatterns += patterns('everest.views.general',
 
 urlpatterns += patterns('everest.views.teacher',
     url(r'^teacher$','home',name='teacher_home'),
-    url(r'^teacher/add_list$','add_list',name='add_list'),
-    url(r'^teacher/my_lists$','user_lists',name='user_lists'),
+    url(r'^teacher/add_lesson$','add_list',name='add_list'),
+    url(r'^teacher/my_lessons$','user_lists',name='user_lists'),
     url(r'^teacher/profile$','profile',name='teacher_profile')
 )
 
