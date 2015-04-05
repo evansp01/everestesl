@@ -11,9 +11,10 @@ urlpatterns += patterns('everest.views.general',
     url(r'^find_lesson$','find_lesson',name='find_lesson'),
     url(r'^find_user$','find_user',name='find_user'),
     url(r'^find_sentence$','find_sentence',name='find_sentence'),
-    url(r'^sentence$','sentence',name='sentence'),
-
-    url(r'^manage_account$','manage_account',name='manage_account')
+    url(r'^view_lesson$','view_lesson',name='view_lesson'),
+    url(r'^view_user$','view_user',name='view_user'),
+    url(r'^view_sentence$','view_sentence',name='view_sentence'),
+    url(r'^manage_account$','manage_account',name='manage_account'),
 )
 
 urlpatterns += patterns('everest.views.teacher',

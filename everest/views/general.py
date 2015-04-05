@@ -29,19 +29,28 @@ def home(request):
     return render(request, 'everest/index.html', {})
 
 def find_lesson(request):
-    return render(request, 'everest/lesson.html', {})
+    return render(request, 'everest/list_of_lessons.html', {})
 
 def find_user(request):
-    return render(request, 'everest/profile.html', {})
+    return render(request, 'everest/list_of_users.html', {})
 
 def find_sentence(request):
-    return render(request, 'everest/sentence.html', {})
+    return render(request, 'everest/list_of_sentences.html', {})
 
-def sentence(request):
+def view_lesson(request):
+    return render(request, 'everest/lesson.html', {})
+
+def view_user(request):
+    return render(request, 'everest/profile.html', {})
+
+def view_sentence(request):
     return render(request, 'everest/sentence.html', {})
 
 def manage_account(request):
     return render(request, 'everest/account.html', {})
+
+def view_sentence(request):
+    return render(request, 'everest/sentence.html', {})
 
 @transaction.atomic
 def register(request):
