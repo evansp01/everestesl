@@ -5,15 +5,23 @@
 
 {% block content %}
 <h3>Sentences</h3>
-      <ul class="list-unstyled">
-	<li><button type="button" class="btn btn-danger btn-xs"><span
-	class="glyphicon glyphicon-remove"
-	aria-hidden="true"></span></button>  <a href="find_sentence">The quick brown fox jumps over the
-	lazy dog.</a></li></ul>
-            <form action="/teacher/edit_lesson" method="post">
+LESSON = {{lesson.id}}
+
+    <ul class="list-unstyled">
+      {% for sentence in sentences %}
+      <li><button type="button" class="btn btn-danger btn-xs">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+      <a href="find_sentence">
+      {{sentence}}</a></li>
+      {% endfor %}
+      </ul>
+
+	<form action="/teacher/edit_lesson" method="post">
 	      <div class="input-group">
 		<span class="input-group-addon">Add sentence</span>
-		  <input type="text" class="form-control" name="sentence" maxlength="200" autofocus>
+		  <input type="text" class="form-control"
+		name="sentence" maxlength="200" autofocus>
+		  <input type="hidden" name="lesson" value="{{lesson.id}}">
 		  <span class="input-group-btn">
 		  <button class="btn btn-default" type="submit">Submit</button>
 		</span>
