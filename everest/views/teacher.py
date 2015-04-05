@@ -43,7 +43,7 @@ def edit_lesson(request):
 
 
 def user_lessons(request):
-    return render(request, 'everest/index.html', {})
+    return render(request, 'everest/list_of_lessons.html', {})
 
 def profile(request):
-    return render(request, 'everest/index.html', {})
+    return render(request, 'everest/profile.html', {})
