@@ -1,11 +1,10 @@
 {% extends "everest/base.html" %}
 
 {% block title %}Everest Lesson {% endblock %}
-{% block pageheader %} The Joy of Rutabagas {% endblock %}
+{% block pageheader %} {{lesson}} {% endblock %}
 
 {% block content %}
 <h3>Sentences</h3>
-LESSON = {{lesson.id}}
 
     <ul class="list-unstyled">
       {% for sentence in sentences %}
@@ -13,17 +12,17 @@ LESSON = {{lesson.id}}
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
       <a href="find_sentence">
       {{sentence}}</a></li>
+      
       {% endfor %}
       </ul>
 
-	<form action="/teacher/edit_lesson" method="post">
+	<form action="/teacher/edit_lesson?l={{lesson.id}}" method="post">
 	      <div class="input-group">
 		<span class="input-group-addon">Add sentence</span>
 		  <input type="text" class="form-control"
 		name="sentence" maxlength="200" autofocus>
-		  <input type="hidden" name="lesson" value="{{lesson.id}}">
 		  <span class="input-group-btn">
-		  <button class="btn btn-default" type="submit">Submit</button>
+		  <button class="btn btn-default" type="submit" name="lessonnumber" value="{{lesson.id}}">Submit</button>
 		</span>
 	      </div>
 	      {% csrf_token %}

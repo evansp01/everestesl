@@ -37,7 +37,9 @@ def find_user(request):
     return render(request, 'everest/list_of_users.html', {})
 
 def find_sentence(request):
-    return render(request, 'everest/list_of_sentences.html', {})
+    context = {}
+    context['sentences'] = Sentence.objects.all # for now, return all sentences
+    return render(request, 'everest/list_of_sentences.html', context)
 
 def view_lesson(request):
     errors = []

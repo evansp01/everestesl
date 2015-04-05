@@ -5,8 +5,11 @@
 
 {% block content %}
 <ul class="list-unstyled">
-  <li><a href="{% url 'view_sentence' %}"> The quick brown fox jumped over
-  the lazy dog.</a> </li>
-  <li><a href="">Hold the newsreader’s nose squarely, waiter, or friendly milk will countermand my trousers.</a></li>
+  {% for sentence in sentences %}
+  <li><a href="/view_sentence?s={{sentence.id}}">{{sentence}}</a></li>
+    {% endfor %}
+  </ul>
+
+  
 </ul>
 {% endblock %}

@@ -45,23 +45,22 @@ def create_lesson(request):
 def edit_lesson(request):    # SHOULD ONLY BE POSSIBLE IF IT'S YOUR SENTENCE
     errors = []
     context = {}
-    if request.method == 'GET':
-        lsn = request.GET.get('l')
-        lesson = Lesson.objects.get(id=lsn)
+    lsn = request.GET.get('l')
+    lesson = Lesson.objects.get(id=lsn)
     if request.method == 'POST':
         form = AddSentence(request.POST)
         if form.is_valid():
             new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
             new_sentence.save()
-            lesson = form['lesson']
             lesson.sentences.add(new_sentence)
-            sentences = Sentence.objects.all()
-            context = {'sentences' : sentences, 'this_lesson' : lesson}
             
         elif form.is_bound:
             for field, error in form.errors.iteritems():
                 errors.append((field, error))
-            context = {'errors' : errors}
+            context['errors'] = errors
+    context['lesson'] = lesson
+    context['sentences'] = Sentence.objects.filter(lessons=lesson) # breaks if form breaks?
+#    context['sentences'] = Sentence.objects.all
     return render(request, 'everest/edit_lesson.html', context)
 
 
