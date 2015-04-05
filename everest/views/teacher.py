@@ -60,7 +60,6 @@ def edit_lesson(request):    # SHOULD ONLY BE POSSIBLE IF IT'S YOUR SENTENCE
             context['errors'] = errors
     context['lesson'] = lesson
     context['sentences'] = Sentence.objects.filter(lessons=lesson) # breaks if form breaks?
-#    context['sentences'] = Sentence.objects.all
     return render(request, 'everest/edit_lesson.html', context)
 
 
