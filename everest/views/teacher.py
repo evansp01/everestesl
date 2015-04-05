@@ -31,14 +31,15 @@ def edit_lesson(request):
         form = AddSentence(request.POST)
 
         if form.is_valid():
-            new_sentence = Sentence(text=form.cleaned_data['sentence'], user=request.user)
-            new_post.save()
+            new_sentence = Sentence(text=form.cleaned_data['sentence'], creator=request.user)
+            new_sentence.save()
         elif form.is_bound:
             for field, error in form.errors.iteritems():
                 errors.append((field, error))
 
-    sentences = Sentence.objects.all()
-    context = {'sentences' : sentences, 'errors' : errors}
+#    sentences = Sentence.objects.all()
+    context = []
+#    context = {'sentences' : sentences, 'errors' : errors}
     return render(request, 'everest/edit_lesson.html', context)
 
 
