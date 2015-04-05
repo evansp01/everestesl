@@ -29,7 +29,9 @@ def home(request):
     return render(request, 'everest/index.html', {})
 
 def find_lesson(request):
-    return render(request, 'everest/list_of_lessons.html', {})
+    lessons = Lesson.objects.all()
+    context = {'lessons' : lessons}
+    return render(request, 'everest/list_of_lessons.html', context)
 
 def find_user(request):
     return render(request, 'everest/list_of_users.html', {})

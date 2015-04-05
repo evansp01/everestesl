@@ -30,7 +30,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Teacher Tools <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li class="dropdown-header">Lessons</li>
-              <li class="{% active request 'edit_lesson' %}"><a href="{% url 'edit_lesson'%}">Add New Lesson</a></li>
+              <li class="{% active request 'create_lesson' %}"><a href="{% url 'create_lesson'%}">Add New Lesson</a></li>
               <li class="{% active request 'user_lessons' %}"><a href="{% url 'user_lessons'%}">View My Lessons</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">Profile</li>

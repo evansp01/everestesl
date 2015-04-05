@@ -1,0 +1,20 @@
+{% extends "everest/base.html" %}
+
+{% block title %}Everest Lesson {% endblock %}
+{% block pageheader %} Create Lesson {% endblock %}
+
+{% block content %}	
+            <form action="/teacher/create_lesson" method="post">
+	      <div class="input-group">
+		<span class="input-group-addon">Name your lesson</span>
+		  <input type="text" class="form-control" name="title" maxlength="200" autofocus>
+		  <span class="input-group-btn">
+		  <button class="btn btn-default" type="submit">Submit</button>
+		</span>
+	      </div>
+	      {% csrf_token %}
+	      </form>
+
+	<ul class="list-unstyled">
+	<li><button type="button" class="btn btn-danger btn-xs"</li></ul>
+      {% endblock %}

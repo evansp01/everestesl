@@ -19,7 +19,7 @@ urlpatterns += patterns('everest.views.general',
 
 urlpatterns += patterns('everest.views.teacher',
     url(r'^teacher$','home',name='teacher_home'),
-    url(r'^teacher/add_lesson$','edit_lesson',name='edit_lesson'),
+    url(r'^teacher/create_lesson$','create_lesson',name='create_lesson'),
     url(r'^teacher/edit_lesson$','edit_lesson',name='edit_lesson'),
     url(r'^teacher/my_lessons$','user_lessons',name='user_lessons'),
     url(r'^teacher/profile$','profile',name='teacher_profile')

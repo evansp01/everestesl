@@ -25,13 +25,30 @@ def home(request):
 
 #@login_required
 #@transaction.atomic
+def create_lesson(request):
+    errors = []
+    context = {}
+    if request.method == 'POST':
+        form = AddLesson(request.POST)
+
+        if form.is_valid():
+            new_lesson = Lesson(title=form.cleaned_data['title'], creator=request.user)
+            new_lesson.save()
+        elif form.is_bound:
+            for field, error in form.errors.iteritems():
+                errors.append((field, error))
+        context = {'this_lesson' : new_lesson, 'errors' : errors}
+    return render(request, 'everest/create_lesson.html', context)
+
+#@login_required
+#@transaction.atomic
 def edit_lesson(request):
     errors = []
     if request.method == 'POST':
         form = AddSentence(request.POST)
 
         if form.is_valid():
-            new_sentence = Sentence(text=form.cleaned_data['sentence'], creator=request.user)
+            new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
             new_sentence.save()
         elif form.is_bound:
             for field, error in form.errors.iteritems():

@@ -74,3 +74,6 @@ class ProfileForm(forms.Form):
 
 class AddSentence(forms.Form):
     sentence = forms.CharField(max_length = 200)
+
+class AddLesson(forms.Form):
+    title = forms.CharField(max_length = 50)

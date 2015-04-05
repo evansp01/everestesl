@@ -2,10 +2,10 @@
 
 {% block pageheader %} Lessons {% endblock %}
 
-
 {% block content %}
 <ul class="list-unstyled">
-  <li><a href="{% url 'view_lesson' %}"> The joy of rutabagas</a> </li>
-  <li><a href="">The Lesson of the Moth</a></li>
+     {% for lesson in lessons %}
+  <li><a href="/view_lesson?l={{lesson.id}}">{{lesson}}</a></li>
+     {% endfor %}
 </ul>
 {% endblock %}
