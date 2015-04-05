@@ -44,6 +44,7 @@ def create_lesson(request):
 #@transaction.atomic
 def edit_lesson(request):
     errors = []
+    context = {}
     if request.method == 'POST':
         form = AddSentence(request.POST)
 

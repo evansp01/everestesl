@@ -40,7 +40,13 @@ def find_sentence(request):
     return render(request, 'everest/list_of_sentences.html', {})
 
 def view_lesson(request):
-    return render(request, 'everest/lesson.html', {})
+    errors = []
+    comments = {}
+    lsn = request.GET.get('l')   # ADD ERROR-CHECKING
+    lesson = Lesson.objects.get(id=lsn)
+    sentences = Sentence.objects.all # for now, return all sentences
+    context = {'lesson' : lesson, 'sentences' : sentences}
+    return render(request, 'everest/lesson.html', context)
 
 def view_user(request):
     return render(request, 'everest/profile.html', {})
