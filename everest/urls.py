@@ -27,6 +27,7 @@ urlpatterns += patterns('everest.views.teacher',
 
 urlpatterns += patterns('everest.views.translator',
     url(r'^translator$','home',name='translator_home'),
+    url(r'^translator/translate$','translate',name='translate'),
     url(r'^translator/need_translation$','need_translation',name='need_translation'),
     url(r'^translator/need_audio$','need_audio',name='need_audio'),
     url(r'^transtator/profile$','profile',name='translator_profile')
