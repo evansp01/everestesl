@@ -1,0 +1,126 @@
+{% extends "everest/base.html" %}
+
+{% block content %}
+  <button id="record-audio" onclick>Record</button>
+  <button id="stop-recording-audio" disabled>Stop</button>
+  <button id="upload">Upload</button>
+  <p id="progress">not recording</p>
+  <br>
+  <audio id="audio" controls></audio>
+  <h2 id="audio-url-preview"></h2>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    function getByID(id) {
+        return document.getElementById(id);
+    }
+
+    var recordAudio = getByID('record-audio');
+    var stopRecordingAudio = getByID('stop-recording-audio');
+    var audio = getByID('audio');
+    var uploadBtn = getByID('upload')
+  </script>
+
+  <script>
+    //{% csrf_token %}
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+            }
+        }
+    });
+    var intervalId,
+        audioStream,
+        recorder;
+
+    var monitor = function(){
+        var recordingLength = 0;
+        const MAX_LENGTH = 10;
+
+        return function(){
+            if(recordingLength < MAX_LENGTH){
+                recordingLength += 1;
+                text_string = '' + recordingLength + '/'+ MAX_LENGTH;
+                $( "#progress" ).text(text_string);
+            } else {
+                stopMyRecording();
+            }
+        }
+    }
+
+    var uploadCurrent = function(){
+        if (recorder){
+            var data = new FormData();
+            data.append('language','english');
+            data.append('sentence','1');
+            data.append('file',recorder.blob);
+            console.log(recorder.blob);
+            $.ajax({
+              type:"POST",
+              url: "/finished_recording",
+              data: data,
+              contentType: false,
+              processData: false,
+              success: function(){
+              }
+            });
+        }
+    }
+    uploadBtn.onclick = uploadCurrent;
+
+    var startRecording = function() {
+        if (!audioStream) {
+            navigator.getUserMedia(
+              { audio: true, video: false},
+              function(stream) {
+                if (window.IsChrome){
+                    stream = new window.MediaStream(stream.getAudioTracks());
+                }
+                audioStream = stream;
+
+                // "audio" is a default type
+                recorder = window.RecordRTC(stream, {
+                    type: 'audio',
+                });
+                recorder.startRecording();
+              },
+              function() {}
+            );
+        } else {
+            // audio.src = URL.createObjectURL(audioStream);
+            if (recorder) {
+              recorder.startRecording();
+            }
+        }
+        intervalId = setInterval(monitor(), 1000);
+        //window.isAudio = true;
+        recordAudio.disabled = true;
+        stopRecordingAudio.disabled = false;
+    };
+    recordAudio.onclick = startRecording;
+
+
+    var stopMyRecording = function() {
+        stopRecordingAudio.disabled = true;
+        recordAudio.disabled = false;
+        audio.src = '';
+        clearInterval(intervalId);
+        $( "#progress" ).text("not recording");
+
+        if (recorder){
+            recorder.stopRecording(function(url) {
+                audio.src = url;
+                audio.muted = false;
+                document.getElementById('audio-url-preview').innerHTML = '<a href="' + url + '" target="_blank">Recorded Audio URL</a>';
+            });
+        }
+
+    };
+    stopRecordingAudio.onclick = stopMyRecording;
+  </script>
+  <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+{% endblock %}
