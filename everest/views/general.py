@@ -56,9 +56,10 @@ def view_user(request):
 def view_sentence(request):
     context = {}
     snt = request.GET.get('s')   # ADD ERROR-CHECKING
-    sentence = Sentence.objects.get(id=snt)
-    context['sentence'] = sentence
-    context['lessons'] = Lesson.objects.filter(sentences=sentence)
+    s = Sentence.objects.get(id=snt)
+    context['sentence'] = s
+    context['lessons'] = Lesson.objects.filter(sentences=s)
+    context['translations'] = s.translation_set.all()
     return render(request, 'everest/sentence.html', context)
 
 def manage_account(request):

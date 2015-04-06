@@ -1,14 +1,16 @@
 {% extends "everest/base.html" %}
 
 {% block title %} Everest Sentence {% endblock %}
-{% block pageheader %} {{sentence}} {% endblock %}
+{% block pageheader %} {{sentence}} <a href="" type="button"
+class="btn btn-default"> Add to your own lesson </a>{% endblock %}
 
 {% block content %}
 <div class="row">
   <div class="col-md-4"><h3>In Nepali</h3>
-      <ul class="list-unstyled">
-        <li>द्रुत खैरो फक्स अल्छी कुकुर भन्दा जान्छ।</li>
-	<li>फास्ट खैरो फक्स नींद कुकुर भन्दा जान्छ।</li>
+    <ul class="list-unstyled">
+      {% for translation in translations %}
+      <li>{{translation}}</li>
+      {% endfor %}
 	<li>
 	<form action="/translator/translate?s={{sentence.id}}" method="post">
 	<div class="input-group">
@@ -40,7 +42,7 @@
       <li> <a href="/view_lesson?l={{lesson.id}}"> {{lesson}} </a> </>
       {% endfor %}
     </ul>
-    <p><a href=""> Add to your own lesson </a> </p>
   </div>
 </div>
+    
 {% endblock %}
