@@ -38,29 +38,30 @@ def create_lesson(request):
             for field, error in form.errors.iteritems():
                 errors.append((field, error))
         context = {'this_lesson' : new_lesson, 'errors' : errors}
-    return render(request, 'everest/create_lesson.html', context)
+    return render(request, 'everest/edit_lesson.html', context)
 
 #@login_required
 #@transaction.atomic
 def edit_lesson(request):    # SHOULD ONLY BE POSSIBLE IF IT'S YOUR SENTENCE
     errors = []
     context = {}
-    lsn = request.GET.get('l')
-    lesson = Lesson.objects.get(id=lsn)
+    lesson = request.GET.get('l')
+    l = Lesson.objects.get(id=lesson)
+    
     if request.method == 'POST':
         form = AddSentence(request.POST)
         if form.is_valid():
             new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
             new_sentence.save()
-            lesson.sentences.add(new_sentence)  # fix this to use the form data, not the URL
+            l.sentences.add(new_sentence)  # fix this to use the form data, not the URL
 
         elif form.is_bound:
             for field, error in form.errors.iteritems():
                 errors.append((field, error))
             context['errors'] = errors
-    context['lesson'] = lesson
-    context['sentences'] = Sentence.objects.filter(lessons=lesson) # breaks if form breaks?
-    return render(request, 'everest/edit_lesson.html', context)
+    context['lesson'] = l
+    context['sentences'] = Sentence.objects.filter(lessons=l) # breaks if form breaks?
+    return render(request, 'everest/create_lesson.html', context)
 
 
 def user_lessons(request):
