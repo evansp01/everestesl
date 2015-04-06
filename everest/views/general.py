@@ -44,7 +44,7 @@ def find_sentence(request):
 def view_lesson(request):
     errors = []
     comments = {}
-    lsn = request.GET.get('l')   # ADD ERROR-CHECKING
+    lsn = request.GET.get('l')   #TODO: ADD ERROR-CHECKING
     lesson = Lesson.objects.get(id=lsn)
     sentences = Sentence.objects.filter(lessons=lesson)
     context = {'lesson' : lesson, 'sentences' : sentences}
@@ -55,7 +55,7 @@ def view_user(request):
 
 def view_sentence(request):
     context = {}
-    snt = request.GET.get('s')   # ADD ERROR-CHECKING
+    snt = request.GET.get('s')   #TODO: ADD ERROR-CHECKING
     s = Sentence.objects.get(id=snt)
     context['sentence'] = s
     context['lessons'] = Lesson.objects.filter(sentences=s)

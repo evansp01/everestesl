@@ -3,6 +3,20 @@ from django.contrib.auth.models import User
 from everest.models import UserProfile
 from models import *
 
+class AudioForm(forms.Form):
+    audio = forms.FileField()
+    language = forms.ChoiceField(choices=('english','nepali'))
+    sentence = forms.IntegerField();
+    def clean_sentence(self):
+        sen = Sentence.objects.filter(id=cleaned_data.get(sentence))
+        if sen.count() != 1:
+            raise forms.ValidationError("Sentence does not exist");
+
+
+
+#TODO: Use RegexFields for username, first_name, last_name
+#TODO: Use EmailField for email
+
 class RegisterForm(forms.Form):
     username   = forms.CharField(max_length = 20, label='Username')
     first_name = forms.CharField(max_length = 120, label='First name')
@@ -44,6 +58,8 @@ class RegisterForm(forms.Form):
         # dictionary
         return username
 
+
+#TODO use include instead of exclude
 class CreateForm(forms.ModelForm):
     class Meta:
         model = User

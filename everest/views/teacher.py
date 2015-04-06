@@ -34,7 +34,7 @@ def create_lesson(request):
         if form.is_valid():
             new_lesson = Lesson(title=form.cleaned_data['title'], creator=request.user)
             new_lesson.save()
-        elif form.is_bound:
+        elif form.is_bound: #QQQ: Can't this just be form.errors?
             for field, error in form.errors.iteritems():
                 errors.append((field, error))
         context = {'this_lesson' : new_lesson, 'errors' : errors}
@@ -53,7 +53,7 @@ def edit_lesson(request):    # SHOULD ONLY BE POSSIBLE IF IT'S YOUR SENTENCE
             new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
             new_sentence.save()
             lesson.sentences.add(new_sentence)  # fix this to use the form data, not the URL
-            
+
         elif form.is_bound:
             for field, error in form.errors.iteritems():
                 errors.append((field, error))

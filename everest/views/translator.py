@@ -37,7 +37,7 @@ def translate(request):  # check if translator? Must be logged in?
         if form.is_valid():
             new_translation = Translation(nepali=form.cleaned_data['translation'], creator=request.user, sentence=s)
             new_translation.save()
-            
+
         elif form.is_bound:
             for field, error in form.errors.iteritems():
                 errors.append((field, error))
