@@ -31,21 +31,21 @@
             <ul class="dropdown-menu" role="menu">
               <li class="dropdown-header">Lessons</li>
               <li class="{% active request 'create_lesson' %}"><a href="{% url 'create_lesson'%}">Add New Lesson</a></li>
-              <li class="{% active request 'user_lessons' %}"><a href="{% url 'user_lessons'%}">View My Lessons</a></li>
+              <li class="{% active request 'find_lesson' %}"><a href="{% url 'find_lesson'%}">View My Lessons</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">Profile</li>
-              <li class="{% active request 'teacher_profile' %}"><a href="{% url 'find_user'%}">My Profile</a></li>
+              <li class="{% active request 'find_user' %}"><a href="{% url 'find_user'%}">My Profile</a></li>
             </ul>
           </li>
           <li class="dropdown {% active request 'translator_home' %}">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Translator Tools <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li class="dropdown-header">Sentences</li>
-              <li class="{% active request 'need_translation' %}"><a href="#">Sentences Needing Translation</a></li>
-              <li class="{% active request 'need_audio' %}"><a href="#">Sentences Needing Audio</a></li>
+              <li class="{% active request 'find_sentence' %}"><a href="{% url 'find_sentence'%}">Sentences Needing Translation</a></li>
+              <li class="{% active request 'find_sentence' %}"><a href="{% url 'find_sentence'%}">Sentences Needing Audio</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">Profile</li>
-              <li class="{% active request 'translator_profile' %}"><a href="#">My Profile</a></li>
+              <li class="{% active request 'find_user' %}"><a href="{% url 'find_user'%}">My Profile</a></li>
             </ul>
           </li>
         </ul>
