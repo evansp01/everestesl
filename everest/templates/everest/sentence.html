@@ -43,10 +43,10 @@ class="btn btn-default"> Add to your own lesson </a>{% endblock %}
     <div class="col-md-3"><h3>Audio</h3>
       <p><button type="button" class="btn btn-primary" aria-label="Play">
          <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
-      English</button> (by ___)</p>
+      English</button> (by <a href="/view_user?u={{lesson.creator.id}}">Ursula</a>)</p>
       <p><button type="button" class="btn btn-primary" aria-label="Play">
          <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
-      Nepali</button> (by ___) </p>
+      Nepali</button> (by <a href="/view_user?u={{lesson.creator.id}}">Ursula</a>) </p>
       <a href="everest/record">Add your own recording</a>
     </div>
 
