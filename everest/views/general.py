@@ -44,7 +44,7 @@ def find_sentence(request):
 def view_lesson(request):
     errors = []
     comments = {}
-    lsn = request.GET.get('l')   # ADD ERROR-CHECKING
+    lsn = request.GET.get('l')   #TODO: ADD ERROR-CHECKING
     lesson = Lesson.objects.get(id=lsn)
     sentences = Sentence.objects.filter(lessons=lesson)
     context = {'lesson' : lesson, 'sentences' : sentences}
@@ -53,14 +53,26 @@ def view_lesson(request):
 def view_user(request):
     return render(request, 'everest/profile.html', {})
 
+# SHOULD BE LOGGED IN TO POST...
+@transaction.atomic  # SEPARATE OUT ONLY ATOMIC IF EDIT?
 def view_sentence(request):
     context = {}
-    snt = request.GET.get('s')   # ADD ERROR-CHECKING
+    errors = []
+    snt = request.GET.get('s')   #TODO: ADD ERROR-CHECKING
     s = Sentence.objects.get(id=snt)
+    if request.method == 'POST':
+        form = AddTranslation(request.POST)
+        if form.is_valid():
+            new_translation = s.translation_set.create(nepali=form.cleaned_data['translation'], creator=request.user)
+        elif form.is_bound:
+            for field, error in form.errors.iteritems():
+                errors.append((field, error))
     context['sentence'] = s
     context['lessons'] = Lesson.objects.filter(sentences=s)
     context['translations'] = s.translation_set.all()
+    context['errors'] = errors
     return render(request, 'everest/sentence.html', context)
+
 
 def manage_account(request):
     return render(request, 'everest/account.html', {})
