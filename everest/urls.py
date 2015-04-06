@@ -32,19 +32,12 @@ urlpatterns += patterns('everest.views.translator',
     url(r'^translator/need_audio$','need_audio',name='need_audio'),
     url(r'^transtator/profile$','profile',name='translator_profile')
 )
-# urlpatterns += patterns('everst.views.teacher',
-#     url(r'^find_list$','general.find_list',name='find_list'),
-#     url(r'^find_user$','general.find_user',name='find_user'),
-#     url(r'^find_sentence$','general.find_sentence',name='find_sentence'),
-#     url(r'^manage_account$','general.manage_account',name='manage_account')
-# )
+urlpatterns += patterns('everest.views.record',
+    url(r'^record$','home',name='record'),
+    url(r'^finished_recording$','upload',name='finished_recording'),
+)
 
-# urlpatterns += patterns('everst.views.translator',
-#     url(r'^find_list$','general.find_list',name='find_list'),
-#     url(r'^find_user$','general.find_user',name='find_user'),
-#     url(r'^find_sentence$','general.find_sentence',name='find_sentence'),
-#     url(r'^manage_account$','general.manage_account',name='manage_account')
-# )
+
 
 urlpatterns += patterns('',
     url(r'^login$', 'django.contrib.auth.views.login', {'template_name':'everest/login.html'}),
