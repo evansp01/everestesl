@@ -6,24 +6,26 @@ class="btn btn-default"> Add to your own lesson </a>{% endblock %}
 
 {% block content %}
 
-{% if errors %}
-{% for error in errors %}
+  {% if errors %}
+  {% for error in errors %}
     <div class="alert alert-danger" role="alert">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true">{{error}}</span>
     </div>
-    {% endfor %}
-    {% endif %}
+  {% endfor %}
+  {% endif %}
       
 <div class="row">
   <div class="col-md-4"><h3>In Nepali</h3>
     <ul class="list-unstyled">
-      {% for translation in translations %}
-      <li>{{translation}}</li>
-      {% endfor %}
-
-
+      {% if translations %}
+        {% for translation in translations %}
+          <li>{{translation}}</li>
+	  {% endfor %}
+	  {% else %}
+	 <i>This sentence has not yet been translated!</i>
+	  {% endif %}
+</ul>
       
-	<li>
 	<form action="/view_sentence?s={{sentence.id}}" method="POST">
 	<div class="input-group">
 	  <span class="input-group-addon">Translate:</span>
@@ -34,8 +36,6 @@ class="btn btn-default"> Add to your own lesson </a>{% endblock %}
 	</div>
 	{% csrf_token %}
 	</form>
-	</li>
-      </ul>
     </div>
 
 
