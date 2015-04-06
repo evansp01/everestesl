@@ -10,8 +10,8 @@
       {% for sentence in sentences %}
       <li><button type="button" class="btn btn-danger btn-xs">
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-      <a href="find_sentence">
-      {{sentence}}</a></li>
+      
+      <a href="/view_sentence?s={{sentence.id}}">{{sentence}}</a></li>
       
       {% endfor %}
       </ul>

@@ -52,7 +52,7 @@ def edit_lesson(request):    # SHOULD ONLY BE POSSIBLE IF IT'S YOUR SENTENCE
         if form.is_valid():
             new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
             new_sentence.save()
-            lesson.sentences.add(new_sentence)
+            lesson.sentences.add(new_sentence)  # fix this to use the form data, not the URL
             
         elif form.is_bound:
             for field, error in form.errors.iteritems():

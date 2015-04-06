@@ -46,7 +46,7 @@ def view_lesson(request):
     comments = {}
     lsn = request.GET.get('l')   # ADD ERROR-CHECKING
     lesson = Lesson.objects.get(id=lsn)
-    sentences = Sentence.objects.all # for now, return all sentences
+    sentences = Sentence.objects.filter(lessons=lesson)
     context = {'lesson' : lesson, 'sentences' : sentences}
     return render(request, 'everest/lesson.html', context)
 
@@ -54,13 +54,17 @@ def view_user(request):
     return render(request, 'everest/profile.html', {})
 
 def view_sentence(request):
-    return render(request, 'everest/sentence.html', {})
+    context = {}
+    snt = request.GET.get('s')   # ADD ERROR-CHECKING
+    context['sntvalue'] = snt
+    sentence = Sentence.objects.get(id=snt)
+    context['sentence'] = sentence
+    context['lessons'] = Lesson.objects.filter(sentences=sentence)
+    context['user'] = request.user
+    return render(request, 'everest/sentence.html', context)
 
 def manage_account(request):
     return render(request, 'everest/account.html', {})
-
-def view_sentence(request):
-    return render(request, 'everest/sentence.html', {})
 
 @transaction.atomic
 def register(request):
