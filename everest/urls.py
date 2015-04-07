@@ -8,12 +8,11 @@ urlpatterns = patterns('everest.views',
 )
 
 urlpatterns += patterns('everest.views.general',
-    url(r'^find_lesson$','find_lesson',name='find_lesson'),
-    url(r'^find_user$','find_user',name='find_user'),
-    url(r'^find_sentence$','find_sentence',name='find_sentence'),
-    url(r'^view_lesson/(?P<lesson>[0-9]*)$','view_lesson',name='view_lesson'),
-    url(r'^view_user/(?P<username>.*)$','view_user',name='view_user'),
-
+    url(r'^lessons$','find_lesson',name='find_lesson'),
+    url(r'^teachers$','find_user',name='find_user'),
+    url(r'^sentences$','find_sentence',name='find_sentence'),
+    url(r'^lesson/(?P<lesson>[0-9]*)$','view_lesson',name='view_lesson'),
+    url(r'^user/(?P<username>.*)$','view_user',name='view_user'),
     url(r'^manage_account$','manage_account',name='manage_account'),
 )
 
@@ -33,9 +32,12 @@ urlpatterns += patterns('everest.views.translator',
     url(r'^transtator/profile$','profile',name='translator_profile')
 )
 urlpatterns += patterns('everest.views.sentence',
-    url(r'^record$','home',name='record'),
-    url(r'^finished_recording$','upload',name='finished_recording'),
-    url(r'^view_sentence/(?P<sentence>[0-9]*)$','view_sentence',name='view_sentence'),
+    
+    url(r'^sentence/(?P<sentence>[0-9]+)$','view_sentence',name='view_sentence'),
+    url(r'^sentence/(?P<sentence>[0-9]+)/record/english$','record_english',name='record_english'),
+    url(r'^sentence/(?P<sentence>[0-9]+)/record/nepali$','record_nepali',name='record_nepali'),
+    url(r'^sentence/(?P<sentence>[0-9]+)/recording$','upload_audio',name='submit_recording'),
+    url(r'^sentence/(?P<sentence>[0-9]+)/translation$','submit_translation',name='submit_translation'),
 )
 
 

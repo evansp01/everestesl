@@ -50,7 +50,7 @@ class Translation(models.Model):
     nepali = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User, related_name='translations')
-    sentence = models.ForeignKey(Sentence, related_name='translation')
+    sentence = models.ForeignKey(Sentence, related_name='translations')
     def __unicode__(self):
         return self.nepali
 

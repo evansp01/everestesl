@@ -6,11 +6,9 @@ from models import *
 class AudioForm(forms.Form):
     audio = forms.FileField()
     language = forms.ChoiceField(choices=('english','nepali'))
-    sentence = forms.IntegerField();
-    def clean_sentence(self):
-        sen = Sentence.objects.filter(id=cleaned_data.get(sentence))
-        if sen.count() != 1:
-            raise forms.ValidationError("Sentence does not exist");
+
+class NepaliTranslation(forms.Form):
+    translation = forms.CharField(max_length = 400)
 
 
 
@@ -90,9 +88,6 @@ class ProfileForm(forms.Form):
 
 class AddSentence(forms.Form):
     sentence = forms.CharField(max_length = 200)
-
-class AddTranslation(forms.Form):
-    translation = forms.CharField(max_length = 200)
 
 class AddLesson(forms.Form):
     title = forms.CharField(max_length = 50)
