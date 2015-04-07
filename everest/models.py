@@ -36,21 +36,21 @@ class Lesson(models.Model):
 class NepaliAudio(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User)
-    sentence = models.ForeignKey(Sentence)
+    sentence = models.ForeignKey(Sentence, related_name='nep_audio')
     audio = models.FileField(upload_to='nepali')
     #filefiled
 
 class EnglishAudio(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User)
-    sentence = models.ForeignKey(Sentence)
+    sentence = models.ForeignKey(Sentence, related_name='eng_audio')
     audio = models.FileField(upload_to='english')
 
 class Translation(models.Model):
     nepali = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
-    creator = models.ForeignKey(User)
-    sentence = models.ForeignKey(Sentence)
+    creator = models.ForeignKey(User, related_name='translations')
+    sentence = models.ForeignKey(Sentence, related_name='translation')
     def __unicode__(self):
         return self.nepali
 
