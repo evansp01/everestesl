@@ -17,31 +17,29 @@ from django.db import transaction
 from django.core.mail import send_mail
 from everest.models import *
 from everest.forms import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def home(request):
     return render(request, 'everest/index.html', {})
 
-#@login_required
-#@transaction.atomic
+@login_required
+@transaction.atomic
 def create_lesson(request):
-    errors = []
     context = {}
     if request.method == 'POST':
         form = AddLesson(request.POST)
-
         if form.is_valid():
             new_lesson = Lesson(title=form.cleaned_data['title'], creator=request.user)
             new_lesson.save()
-        elif form.is_bound: #QQQ: Can't this just be form.errors?
-            for field, error in form.errors.iteritems():
-                errors.append((field, error))
-        context = {'this_lesson' : new_lesson, 'errors' : errors}
-    return render(request, 'everest/edit_lesson.html', context)
+        else:
+            context['errors'] = form.errors
+            context = {'this_lesson' : new_lesson, 'errors' : errors}
+    return render(request, 'everest/create_lesson.html', context)
 
-#@login_required
-#@transaction.atomic
+@login_required
+@transaction.atomic
 def edit_lesson(request):    # SHOULD ONLY BE POSSIBLE IF IT'S YOUR SENTENCE
     errors = []
     context = {}
@@ -61,7 +59,7 @@ def edit_lesson(request):    # SHOULD ONLY BE POSSIBLE IF IT'S YOUR SENTENCE
             context['errors'] = errors
     context['lesson'] = l
     context['sentences'] = Sentence.objects.filter(lessons=l) # breaks if form breaks?
-    return render(request, 'everest/create_lesson.html', context)
+    return render(request, 'everest/edit_lesson.html', context)
 
 
 def user_lessons(request):
