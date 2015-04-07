@@ -54,8 +54,8 @@
     var uploadCurrent = function(){
         if (recorder){
             var data = new FormData();
-            data.append('language',{{language}});
-            data.append('file',recorder.blob);
+            data.append('language',"{{language}}");
+            data.append('audio',recorder.blob);
             console.log(recorder.blob);
             $.ajax({
               type:"POST",

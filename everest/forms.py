@@ -5,12 +5,10 @@ from models import *
 
 class AudioForm(forms.Form):
     audio = forms.FileField()
-    language = forms.ChoiceField(choices=('english','nepali'))
+    language = forms.ChoiceField(choices=(('english','english'),('nepali','nepali')))
 
 class NepaliTranslation(forms.Form):
     translation = forms.CharField(max_length = 400)
-
-
 
 #TODO: Use RegexFields for username, first_name, last_name
 #TODO: Use EmailField for email

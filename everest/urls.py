@@ -26,7 +26,6 @@ urlpatterns += patterns('everest.views.teacher',
 
 urlpatterns += patterns('everest.views.translator',
     url(r'^translator$','home',name='translator_home'),
-    url(r'^translator/translate$','translate',name='translate'),
     url(r'^translator/need_translation$','need_translation',name='need_translation'),
     url(r'^translator/need_audio$','need_audio',name='need_audio'),
     url(r'^transtator/profile$','profile',name='translator_profile')
@@ -38,6 +37,8 @@ urlpatterns += patterns('everest.views.sentence',
     url(r'^sentence/(?P<sentence>[0-9]+)/record/nepali$','record_nepali',name='record_nepali'),
     url(r'^sentence/(?P<sentence>[0-9]+)/recording$','upload_audio',name='submit_recording'),
     url(r'^sentence/(?P<sentence>[0-9]+)/translation$','submit_translation',name='submit_translation'),
+    url(r'^audio/english/(?P<audio>[0-9]+)$','english_audio',name='english_audio'),
+    url(r'^audio/nepali/(?P<audio>[0-9]+)$','nepali_audio',name='nepali_audio'),
 )
 
 
