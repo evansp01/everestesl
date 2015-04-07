@@ -25,29 +25,6 @@ from everest.forms import *
 def home(request):
     return render(request, 'everest/index.html', {})
 
-#@login_required
-#@transaction.atomic
-def translate(request):  # check if translator? Must be logged in?
-    errors = []
-    context = {}
-    snt = request.GET.get('s')   # ADD ERROR-CHECKING -- grab from submit button
-    s = Sentence.objects.get(id=snt)
-    if request.method == 'POST':
-        form = AddTranslation(request.POST)
-        if form.is_valid():
-            new_translation = Translation(nepali=form.cleaned_data['translation'], creator=request.user, sentence=s)
-            new_translation.save()
-
-        elif form.is_bound:
-            for field, error in form.errors.iteritems():
-                errors.append((field, error))
-            context['errors'] = errors
-    context['sentence'] = s
-    context['lessons'] = Lesson.objects.filter(sentences=s)
-    context['translations'] = s.translation_set.all()
-    return render(request, 'everest/sentence.html', context)
-
-
 def need_translation(request):
     return render(request, 'everest/list_of_lessons.html', {})
 
