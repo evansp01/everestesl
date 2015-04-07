@@ -1,5 +1,4 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect, get_object_or_404
 # Decorator to use built-in authentication system
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404
@@ -33,32 +32,28 @@ def create_lesson(request):
         if form.is_valid():
             new_lesson = Lesson(title=form.cleaned_data['title'], creator=request.user)
             new_lesson.save()
+            new_lesson.sentences.clear()
+            new_lesson.save()
+            return edit_lesson(request, new_lesson.id)
         else:
             context['errors'] = form.errors
-            context = {'this_lesson' : new_lesson, 'errors' : errors}
     return render(request, 'everest/create_lesson.html', context)
 
 @login_required
 @transaction.atomic
-def edit_lesson(request):    # SHOULD ONLY BE POSSIBLE IF IT'S YOUR SENTENCE
-    errors = []
-    context = {}
-    lesson = request.GET.get('l')
-    l = Lesson.objects.get(id=lesson)
-    
+def edit_lesson(request, lesson):    # TODO: actually use permissions
+    lesson = get_object_or_404(Lesson, id=lesson)
+    context = { 'lesson':lesson }
+    if request.user != lesson.creator:
+        raise Http404("Access denied")
     if request.method == 'POST':
         form = AddSentence(request.POST)
         if form.is_valid():
             new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
             new_sentence.save()
-            l.sentences.add(new_sentence)  # fix this to use the form data, not the URL
-
+            lesson.sentences.add(new_sentence)
         elif form.is_bound:
-            for field, error in form.errors.iteritems():
-                errors.append((field, error))
-            context['errors'] = errors
-    context['lesson'] = l
-    context['sentences'] = Sentence.objects.filter(lessons=l) # breaks if form breaks?
+            context['errors'] = form.errors
     return render(request, 'everest/edit_lesson.html', context)
 
 
