@@ -48,10 +48,12 @@
     </div>
     <div class="col-md-5" style="padding-left:5%">
       <h4>English Audio</h4>
-        <ul class="list-unstyled">
-          {% if not sentence.eng_audio.all %}
+        {% if not sentence.eng_audio.all %}
+          <ul>
             <li> No English Audio </li>
-          {% endif %}
+          </ul>
+        {% endif %}
+        <ul class="list-unstyled">
           {% for audio in sentence.eng_audio.all %}
             <li>
               <audio  src="{% url 'english_audio' audio.id %}" controls style="width:90%"></audio>
@@ -64,12 +66,15 @@
           <li>
             <a href="{% url 'record_english' sentence.id %}">Add your own recording</a>
           </li>
-        </ul>      
+        </ul>  
+      <br>    
       <h4>Nepali Audio</h4>
-        <ul class="list-unstyled">
-          {% if not sentence.nep_audio.all %}
+        {% if not sentence.nep_audio.all %}
+          <ul>
             <li> No Nepali Audio </li>
-          {% endif %}
+          </ul>
+        {% endif %}
+        <ul class="list-unstyled">
           {% for audio in sentence.nep_audio.all %}
             <li>
               <audio  src="{% url 'nepali_audio' audio.id %}" controls style="width:90%"></audio>
