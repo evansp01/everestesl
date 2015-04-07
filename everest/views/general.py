@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.template.loader import render_to_string
@@ -29,38 +28,27 @@ def home(request):
     return render(request, 'everest/index.html', {})
 
 def find_lesson(request):
-    lessons = Lesson.objects.all()
-    context = {'lessons' : lessons}
-    return render(request, 'everest/list_of_lessons.html', context)
-
-def find_user(request):
-    return render(request, 'everest/list_of_users.html', {})
+    context = {'lessons' : Lesson.objects.all()}
+    return render(request, 'everest/general/list_of_lessons.html', context)
 
 def find_sentence(request):
-    context = {}
-    context['sentences'] = Sentence.objects.all # for now, return all sentences
-    return render(request, 'everest/list_of_sentences.html', context)
+    context = {'sentences': Sentence.objects.all()}
+    return render(request, 'everest/general/list_of_sentences.html', context)
 
-def view_lesson(request):
-    errors = []
-    comments = {}
-    lsn = request.GET.get('l')   #TODO: ADD ERROR-CHECKING
-    lesson = Lesson.objects.get(id=lsn)
-    sentences = Sentence.objects.filter(lessons=lesson)
-    context = {'lesson' : lesson, 'sentences' : sentences}
+def find_user(request):
+    context = {'users' : User.objects.all()}
+    return render(request, 'everest/general/list_of_users.html', context)
+
+def view_lesson(request, lesson):
+    lesson = get_object_or_404(Lesson, id=lesson)
+    context = {'lesson' : lesson}
     return render(request, 'everest/lesson.html', context)
 
-def view_user(request):
-    return render(request, 'everest/profile.html', {})
+def view_user(request, username):
+    user = get_object_or_404(User, username=username)
+    context = {'user' : user}
+    return render(request, 'everest/profile.html', context)
 
-def view_sentence(request):
-    context = {}
-    snt = request.GET.get('s')   #TODO: ADD ERROR-CHECKING
-    s = Sentence.objects.get(id=snt)
-    context['sentence'] = s
-    context['lessons'] = Lesson.objects.filter(sentences=s)
-    context['translations'] = s.translation_set.all()
-    return render(request, 'everest/sentence.html', context)
 
 def manage_account(request):
     return render(request, 'everest/account.html', {})

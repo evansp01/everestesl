@@ -64,7 +64,7 @@ def edit_lesson(request):    # SHOULD ONLY BE POSSIBLE IF IT'S YOUR SENTENCE
 
 
 def user_lessons(request):
-    return render(request, 'everest/list_of_lessons.html', {})
+    return render(request, 'everest/general/list_of_lessons.html', {})
 
 def profile(request):
     return render(request, 'everest/profile.html', {})
