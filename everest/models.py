@@ -26,7 +26,7 @@ class UserProfile(models.Model):
 
 class Lesson(models.Model):
     title = models.CharField(max_length=50)
-    sentences = models.ManyToManyField(Sentence, related_name='lessons', symmetrical=True)
+    sentences = models.ManyToManyField(Sentence, related_name='lessons', symmetrical=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User)
     def __unicode__(self):

@@ -11,7 +11,7 @@ urlpatterns += patterns('everest.views.general',
     url(r'^lessons$','find_lesson',name='find_lesson'),
     url(r'^teachers$','find_user',name='find_user'),
     url(r'^sentences$','find_sentence',name='find_sentence'),
-    url(r'^lesson/(?P<lesson>[0-9]*)$','view_lesson',name='view_lesson'),
+    url(r'^lesson/(?P<lesson>[0-9]+)$','view_lesson',name='view_lesson'),
     url(r'^user/(?P<username>.*)$','view_user',name='view_user'),
     url(r'^manage_account$','manage_account',name='manage_account'),
 )
@@ -19,7 +19,7 @@ urlpatterns += patterns('everest.views.general',
 urlpatterns += patterns('everest.views.teacher',
     url(r'^teacher$','home',name='teacher_home'),
     url(r'^teacher/create_lesson$','create_lesson',name='create_lesson'),
-    url(r'^teacher/edit_lesson$','edit_lesson',name='edit_lesson'),
+    url(r'^teacher/edit_lesson/(?P<lesson>[0-9]+)$','edit_lesson',name='edit_lesson'),
     url(r'^teacher/my_lessons$','user_lessons',name='user_lessons'),
     url(r'^teacher/profile$','profile',name='teacher_profile')
 )
