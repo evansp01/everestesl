@@ -38,11 +38,11 @@
           </div>
         {% endfor %}
       {% endif %}
-    	<form action="{% url 'submit_translation' sentence.id %}" method="post"> {% csrf_token %}
+      <form action="{% url 'submit_translation' sentence.id %}" method="post"> {% csrf_token %}
         <label>Add Nepali Translation</label>
         <textarea name="translation" type="textarea" class="form-control" rows="4" placeholder="Enter neplai translation" maxlength="400"></textarea>
         <input class="btn btn-default btn-primary" type="submit" value="Translate"></button>
-    	</form>
+      </form>
     </div>
     <div class="col-md-4" style="padding-left:5%">
       <h4>English Audio</h4>
