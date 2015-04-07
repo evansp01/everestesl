@@ -4,7 +4,7 @@
 {% block pageheader %} Create Lesson {% endblock %}
 
 {% block content %} 
-  <form action="/teacher/create_lesson" method="post"> {% csrf_token %}
+  <form action="{% url 'create_lesson' %}" method="post"> {% csrf_token %}
     <div class="input-group">
       <span class="input-group-addon">Name your lesson</span>
       <input type="text" class="form-control" name="title" maxlength="200" autofocus>

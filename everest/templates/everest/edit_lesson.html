@@ -6,7 +6,7 @@
 {% block content %}
   <h3>Sentences</h3>
   <ul class="list-unstyled">
-    {% for sentence in sentences %}
+    {% for sentence in lesson.sentences.all %}
     <li>
       <button type="button" class="btn btn-danger btn-xs">
         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -16,12 +16,12 @@
     {% endfor %}
   </ul>
 
-	<form action="/teacher/edit_lesson?l={{lesson.id}}" method="post"> {% csrf_token %}
+	<form action="{% url 'edit_lesson' lesson.id%}" method="post"> {% csrf_token %}
 	  <div class="input-group">
 		  <span class="input-group-addon">Add sentence</span>
 		  <input type="text" class="form-control" name="sentence" maxlength="200" autofocus>
 		  <span class="input-group-btn">
-		    <button class="btn btn-default" type="submit" name="lessonnumber" value="{{lesson.id}}">Submit</button>
+		    <button class="btn btn-default" type="submit" value="{{lesson.id}}">Submit</button>
 		  </span>
 	  </div>
 	</form>
