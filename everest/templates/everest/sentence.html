@@ -88,7 +88,17 @@
               <audio  src="{% url 'nepali_audio' audio.id %}" controls style="width:90%"></audio>
             </li>
             <li>
-              by <a href="{% url 'view_user' audio.creator.username %}">{{audio.creator}}</a>
+              by <a href="{% url 'view_user' audio.creator.username
+	    %}">{{audio.creator}}</a>
+
+	    {% if audio.creator == user %}
+
+	    <form action="{% url 'del_nepaliaudio' audio.id %}" method="post">
+	    {% csrf_token %}<input class="btn btn-default btn-xs"
+	                     type="submit" value="Delete"></button></form>
+	    {% endif %}
+
+	    
             </li>
           {% endfor %}
           <br>

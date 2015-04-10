@@ -33,6 +33,8 @@ def del_englishaudio(request, audio):
 def del_nepaliaudio(request, audio):
     audio = get_object_or_404(NepaliAudio, id=audio)
     context = {'sentence': audio.sentence}
+    if request.method == 'POST' and request.user == audio.creator:
+        audio.delete()
     return render(request, 'everest/sentence.html', context)
 
 @login_required
