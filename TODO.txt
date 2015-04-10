@@ -1,0 +1,21 @@
+1. fix basic functionality
+   - figure out why that one sentence didn't get added to its list
+   - add ability to delete your own sentence/translation/audio/list
+   - clean up "orphan" sentences
+   - add ability to add a sentence to a different list
+   - add profiles
+   - add picture upload
+   - make sure people only see/can do what their privileges should allow
+   - require audio recording when a sentence is created
+
+2. figure out AWS storage
+
+3. figure out mp3 creation/interleaving
+
+4. add search
+
+5. Ajaxify things
+
+6. CSSify things, forms -> regex, etc.
+
+7. display related sentences during sentence creation (TFIDF)

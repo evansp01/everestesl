@@ -8,3 +8,4 @@ staticfiles
 *.pdf
 *.swp
 /everest/migrations/*
+/english/*
