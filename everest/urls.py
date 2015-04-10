@@ -31,7 +31,6 @@ urlpatterns += patterns('everest.views.translator',
     url(r'^transtator/profile$','profile',name='translator_profile')
 )
 urlpatterns += patterns('everest.views.sentence',
-    
     url(r'^sentence/(?P<sentence>[0-9]+)$','view_sentence',name='view_sentence'),
     url(r'^sentence/(?P<sentence>[0-9]+)/record/english$','record_english',name='record_english'),
     url(r'^sentence/(?P<sentence>[0-9]+)/record/nepali$','record_nepali',name='record_nepali'),
@@ -41,7 +40,9 @@ urlpatterns += patterns('everest.views.sentence',
     url(r'^audio/nepali/(?P<audio>[0-9]+)$','nepali_audio',name='nepali_audio'),
 )
 
-
+urlpatterns += patterns('everest.views.delete',
+    url(r'^delete-translation/(?P<translation>[0-9]+)$','del_translation',name='del_translation'),
+)
 
 urlpatterns += patterns('',
     url(r'^login$', 'django.contrib.auth.views.login', {'template_name':'everest/login.html'}),

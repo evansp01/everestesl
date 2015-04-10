@@ -5,6 +5,7 @@
 {% block title %} Sentence {{sentence.id}} {% endblock %}
 
 {% block content %}
+
   <div class="row" style="margin-bottom:4%">
     <h2>
     <div class="col-md-9">
@@ -25,10 +26,13 @@
       {% endif %}
       <ol>
         {% for translation in sentence.translations.all %}
-	<li>{{translation}}</li>
+	<li>{{translation}}
 	{% if translation.creator == user %}
-	<a href="{% url 'del_translation' translation.id %}">XXX</a>
+	    <form action="{% url 'del_translation' translation.id %}" method="post">
+	    {% csrf_token %}<input class="btn btn-default btn-xs"
+	                     type="submit" value="Delete"></button></form>
 	{% endif %}
+	</li>
         {% endfor %}
       </ol>
       <br>
