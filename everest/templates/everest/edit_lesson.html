@@ -5,13 +5,17 @@
 
 {% block content %}
   <h3>Sentences</h3>
-  <ul class="list-unstyled">
+<ul class="list-unstyled">
+    <ol>
     {% for sentence in lesson.sentences.all %}
-    <li>
-      <button type="button" class="btn btn-danger btn-xs">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-      </button>
-      <a href="{% url 'view_sentence' sentence.id %}">{{sentence}}</a>
+        <li><a href="{% url 'view_sentence' sentence.id
+    %}">{{sentence}}</a>
+    {% if sentence.creator == user %}
+	    <form action="{% url 'del_sentence' sentence.id %}" method="post">
+	    {% csrf_token %}<input class="btn btn-default btn-xs"
+	                     type="submit" value="Delete"></button></form>
+	    {% endif %}
+      
     </li>  
     {% endfor %}
   </ul>
