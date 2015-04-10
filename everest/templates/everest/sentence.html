@@ -21,13 +21,14 @@
   <div class="row">
     <div class="col-md-5"><h4>Nepali Translations:</h4>
       {% if not sentence.translations.all %}
-        <ul>
-          <li>No Translations</li>
-        </ul>
+        <i> No Translations</i>
       {% endif %}
       <ol>
         {% for translation in sentence.translations.all %}
-        <li>{{translation}}</li>
+	<li>{{translation}}</li>
+	{% if translation.creator == user %}
+	<a href="{% url 'del_translation' translation.id %}">XXX</a>
+	{% endif %}
         {% endfor %}
       </ol>
       <br>
@@ -42,16 +43,14 @@
       {% endif %}
       <form action="{% url 'submit_translation' sentence.id %}" method="post"> {% csrf_token %}
         <label>Add Nepali Translation</label>
-        <textarea name="translation" type="textarea" class="form-control" rows="4" placeholder="Enter neplai translation" maxlength="400"></textarea>
+        <textarea name="translation" type="textarea" class="form-control" rows="4" placeholder="Add Nepali translation" maxlength="400"></textarea>
         <input class="btn btn-default btn-primary" type="submit" value="Translate"></button>
       </form>
     </div>
     <div class="col-md-5" style="padding-left:5%">
       <h4>English Audio</h4>
         {% if not sentence.eng_audio.all %}
-          <ul>
-            <li> No English Audio </li>
-          </ul>
+         <i> No English Audio </i>
         {% endif %}
         <ul class="list-unstyled">
           {% for audio in sentence.eng_audio.all %}
@@ -70,9 +69,7 @@
       <br>    
       <h4>Nepali Audio</h4>
         {% if not sentence.nep_audio.all %}
-          <ul>
-            <li> No Nepali Audio </li>
-          </ul>
+            <i> No Nepali Audio </i>
         {% endif %}
         <ul class="list-unstyled">
           {% for audio in sentence.nep_audio.all %}
@@ -90,7 +87,7 @@
         </ul>
     </div>
     <div class="col-md-2" style="background-color:#f5f5f5;">
-      <h5>Lessons including:</h5>
+      <h5>Lessons that include this sentence:</h5>
       <ul class="list-unstyled">
         {% for lesson in sentence.lessons.all %}
           <li> <a href="{% url 'view_lesson' lesson.id %}"> {{lesson}} </a> <li/>
