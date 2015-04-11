@@ -1,15 +1,18 @@
 {% extends "everest/base.html" %}
 
 {% block title %}Everest Lesson {% endblock %}
-{% block pageheader %} {{lesson}} {% endblock %}
+{% block pageheader %} {{lesson}}<form action="{% url 'del_lesson' lesson.id %}"
+method="post" onsubmit="return confirm('This will delete your lesson. Are you sure?')">
+	    {% csrf_token %}<input class="btn btn-warning" type="submit" value="Delete"></button></form>
+
+{% endblock %}
 
 {% block content %}
   <h3>Sentences</h3>
 <ul class="list-unstyled">
     <ol>
     {% for sentence in lesson.sentences.all %}
-        <li><a href="{% url 'view_sentence' sentence.id
-    %}">{{sentence}}</a>
+        <li><a href="{% url 'view_sentence' sentence.id  %}">{{sentence}}</a>
     {% if sentence.creator == user %}
 	    <form action="{% url 'del_sentence' sentence.id %}" method="post">
 	    {% csrf_token %}<input class="btn btn-default btn-xs"
