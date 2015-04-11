@@ -14,8 +14,8 @@ type="submit" value="Delete lesson"></button></form>
     <ol>
     {% for sentence in lesson.sentences.all %}
         <li><a href="{% url 'view_sentence' sentence.id  %}">{{sentence}}</a>
-    {% if sentence.creator == user %}
-	    <form action="{% url 'del_sentence' sentence.id %}">
+    {% if lesson.creator == user %}
+	    <form action="{% url 'del_sentence' sentence.id lesson.id %}" method="post">
 	    {% csrf_token %}<input class="btn btn-default btn-xs"
 	                     type="submit" value="Delete"></button></form>
 	    {% endif %}

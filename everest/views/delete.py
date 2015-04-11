@@ -45,12 +45,14 @@ def del_nepaliaudio(request, audio):
 
 @login_required
 @transaction.atomic
-def del_sentence(request, sentence): #, lesson):
+def del_sentence(request, sentence, lesson):
     sentence = get_object_or_404(Sentence, id=sentence)
-    if request.method == 'POST': # and request.user == lesson creator!
-        # figure out which lesson this is. Delete sentence from its sentences. Put lesson in context
+    lesson = get_object_or_404(Lesson, id=lesson)
+    if request.method == 'POST' and request.user == lesson.creator:
+        lesson.sentences.remove(sentence)
         cleanup(sentence)
-    return render(request, 'everest/lesson.html', context)
+    context = {'lesson': lesson}
+    return render(request, 'everest/edit_lesson.html', context)
 
 @login_required
 @transaction.atomic
@@ -65,5 +67,7 @@ def del_lesson(request, lesson):
     return render(request, 'everest/general/list_of_lessons.html', context)
 
 def cleanup(sentence):
+    # if it has no translation AND no engaudio AND no nepaliaudio, delete it
+    # should we check if it's in a lesson???
     #todo
     return

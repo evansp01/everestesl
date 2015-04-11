@@ -44,7 +44,7 @@ urlpatterns += patterns('everest.views.delete',
     url(r'^delete-translation/(?P<translation>[0-9]+)$','del_translation',name='del_translation'),
     url(r'^delete-englishaudio/(?P<audio>[0-9]+)$','del_englishaudio',name='del_englishaudio'),
     url(r'^delete-nepaliaudio/(?P<audio>[0-9]+)$','del_nepaliaudio',name='del_nepaliaudio'),
-    url(r'^delete-sentence/(?P<sentence>[0-9]+)$','del_sentence',name='del_sentence'),
+    url(r'^delete-sentence/(?P<sentence>[0-9]+)/(?P<lesson>[0-9]+)$','del_sentence',name='del_sentence'),
     url(r'^delete-lesson/(?P<lesson>[0-9]+)$','del_lesson',name='del_lesson')
     )
 
