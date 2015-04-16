@@ -1,6 +1,4 @@
 1. fix basic functionality
-   - figure out why that one sentence didn't get added to its list
-   - clean up "orphan" sentences
    - add ability to add a sentence to a different list
    - add profiles
    - add picture upload
@@ -18,3 +16,5 @@
 6. CSSify things, forms -> regex, etc.
 
 7. display related sentences during sentence creation (TFIDF)
+
+8. If time: figure out why that sentence didn't get added to its list

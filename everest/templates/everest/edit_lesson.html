@@ -2,7 +2,7 @@
 
 {% block title %}Everest Lesson {% endblock %}
 {% block pageheader %} {{lesson}}<form action="{% url 'del_lesson' lesson.id %}"
-method="post" onsubmit="return confirm('This will delete your lesson. Are you sure?')">
+method="post">
 	    {% csrf_token %}<input class="btn btn-danger"
 type="submit" value="Delete lesson"></button></form>
 

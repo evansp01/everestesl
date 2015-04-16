@@ -29,7 +29,7 @@ class Lesson(models.Model):
     title = models.CharField(max_length=50)
     sentences = models.ManyToManyField(Sentence, related_name='lessons', symmetrical=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
-    creator = models.ForeignKey(User)
+    creator = models.ForeignKey(User, related_name='lessons')
     def __unicode__(self):
         return self.title
     # link to mp3
