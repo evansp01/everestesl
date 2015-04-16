@@ -1,6 +1,7 @@
 {% extends "everest/base.html" %}
 <!-- TODO, use url tag for urls -->
 {% block title %}Everest Lesson {% endblock %}
+
 {% block pageheader %} 
   {{lesson}}
 {% if lesson.creator == user %}
@@ -13,23 +14,19 @@
 
 {% block content %}
   <div class="row">
-    <div class="col-md-8"><h3>Sentences</h3>
-      <ul class="list-unstyled">
-        {% for sentence in lesson.sentences.all %}
-          <li><a href="{% url 'view_sentence' sentence.id %}">{{sentence}}</a></li>
-        {% endfor %}
-      </ul>
-      <br>
+  <div class="col-md-8">
+    {% include "everest/general/sentencetable.html" with sentences=lesson.sentences.all %}
       <p>
         <button type="button" class="btn btn-primary" aria-label="Download">
         <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
         <b>Download this audio lesson!</b></button>
       </p>
     </div>
-  <div class="col-md-4" style="background-color:#f5f5f5;">
-  <h3>Lesson creator</h3>
-  <p><a href="{% url 'view_user' lesson.creator.username %}">{{lesson.creator}}</a></p>
-  </div>
+
+    <div class="col-md-4" style="background-color:#f5f5f5;">
+      <h3>Lesson creator</h3>
+      <p><a href="{% url 'view_user' lesson.creator.username %}">{{lesson.creator}}</a></p>
+    </div>
 
   </div>
 {% endblock %}

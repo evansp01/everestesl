@@ -3,48 +3,5 @@
 {% block pageheader %} Sentences {% endblock %}
 
 {% block content %}
-  <table class="table table-hover">
-    <tr>
-      <td> English Sentence </td>
-      <td> Lists<br>Containing It</td>
-      <td> Nepali<br>Translation </td>
-      <td> English<br>Audio </td>
-      <td> Nepali<br>Audio </td>
-      <td> Date<br>Created </td>
-    </tr>
-  {% for sentence in sentences %}
-    <tr>
-      <td style="width:60%">
-        <a href="{% url 'view_sentence' sentence.id %}">{{sentence}}</a>
-      </td>
-      <td>
-        {{ sentence.lessons.count }}
-      </td>
-      <td>
-        {% if sentence.translations.count > 0 %}
-          Yes
-        {% else %}
-          No
-        {% endif %}
-      </td>
-      <td>
-        {% if sentence.eng_audio.count > 0 %}
-          Yes
-        {% else %}
-          No
-        {% endif %}
-      </td>
-      <td>
-        {% if sentence.nep_audio.count > 0 %}
-          Yes
-        {% else %}
-          No
-        {% endif %}
-      </td>
-      <td>
-        {{ sentence.created|date:"SHORT_DATE_FORMAT" }}
-      </td>
-    </tr>
-  {% endfor %}
-  </table>
+    {% include "everest/general/sentencetable.html" %}
 {% endblock %}
