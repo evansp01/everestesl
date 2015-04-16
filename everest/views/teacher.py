@@ -32,8 +32,6 @@ def create_lesson(request):
         if form.is_valid():
             new_lesson = Lesson(title=form.cleaned_data['title'], creator=request.user)
             new_lesson.save()
-            new_lesson.sentences.clear()
-            new_lesson.save()
             return edit_lesson(request, new_lesson.id)
         else:
             context['errors'] = form.errors

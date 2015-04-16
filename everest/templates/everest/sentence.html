@@ -5,6 +5,7 @@
 {% block title %} Sentence {{sentence.id}} {% endblock %}
 
 {% block content %}
+
   <div class="row" style="margin-bottom:4%">
     <h2>
     <div class="col-md-9">
@@ -25,10 +26,13 @@
       {% endif %}
       <ol>
         {% for translation in sentence.translations.all %}
-	<li>{{translation}}</li>
+	<li>{{translation}}
 	{% if translation.creator == user %}
-	<a href="{% url 'del_translation' translation.id %}">XXX</a>
+	    <form action="{% url 'del_translation' translation.id %}" method="post">
+	    {% csrf_token %}<input class="btn btn-default btn-xs"
+	                     type="submit" value="Delete"></button></form>
 	{% endif %}
+	</li>
         {% endfor %}
       </ol>
       <br>
@@ -58,7 +62,14 @@
               <audio  src="{% url 'english_audio' audio.id %}" controls style="width:90%"></audio>
             </li>
             <li>
-              by <a href="{% url 'view_user' audio.creator.username %}">{{audio.creator}}</a>
+              by <a href="{% url 'view_user' audio.creator.username
+	    %}">{{audio.creator}}</a>
+	    {% if audio.creator == user %}
+
+	    <form action="{% url 'del_englishaudio' audio.id %}" method="post">
+	    {% csrf_token %}<input class="btn btn-default btn-xs"
+	                     type="submit" value="Delete"></button></form>
+	    {% endif %}
             </li>
           {% endfor %}
           <br>
@@ -77,7 +88,17 @@
               <audio  src="{% url 'nepali_audio' audio.id %}" controls style="width:90%"></audio>
             </li>
             <li>
-              by <a href="{% url 'view_user' audio.creator.username %}">{{audio.creator}}</a>
+              by <a href="{% url 'view_user' audio.creator.username
+	    %}">{{audio.creator}}</a>
+
+	    {% if audio.creator == user %}
+
+	    <form action="{% url 'del_nepaliaudio' audio.id %}" method="post">
+	    {% csrf_token %}<input class="btn btn-default btn-xs"
+	                     type="submit" value="Delete"></button></form>
+	    {% endif %}
+
+	    
             </li>
           {% endfor %}
           <br>

@@ -1,6 +1,5 @@
 1. fix basic functionality
    - figure out why that one sentence didn't get added to its list
-   - add ability to delete your own sentence/translation/audio/list
    - clean up "orphan" sentences
    - add ability to add a sentence to a different list
    - add profiles
