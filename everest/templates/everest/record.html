@@ -52,6 +52,7 @@
     }
 
     var uploadCurrent = function(){
+        uploadBtn.innerHTML = "Uploading..."
         if (recorder){
             var data = new FormData();
             data.append('language',"{{language}}");
@@ -64,6 +65,8 @@
               contentType: false,
               processData: false,
               success: function(){
+                uploadBtn.innerHTML = "Success!"
+
               }
             });
         }
