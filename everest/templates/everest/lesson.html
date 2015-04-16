@@ -13,13 +13,8 @@
 
 {% block content %}
   <div class="row">
-    <div class="col-md-8"><h3>Sentences</h3>
-      <ul class="list-unstyled">
-        {% for sentence in lesson.sentences.all %}
-          <li><a href="{% url 'view_sentence' sentence.id %}">{{sentence}}</a></li>
-        {% endfor %}
-      </ul>
-      <br>
+  <div class="col-md-8">
+    {% include "everest/general/sentencetable.html" with sentences=lesson.sentences.all %}
       <p>
         <button type="button" class="btn btn-primary" aria-label="Download">
         <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
