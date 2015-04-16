@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 import os
 
 # User class for built-in authentication module
@@ -33,18 +34,26 @@ class Lesson(models.Model):
         return self.title
     # link to mp3
 
+
+def nepali_path(instance, filename):
+    return 'nepali/audio-{0}'.format(uuid.uuid4())
+
+def english_path(instance, filename):
+    return 'english/audio-{0}'.format(uuid.uuid4())
+
+
 class NepaliAudio(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User)
     sentence = models.ForeignKey(Sentence, related_name='nep_audio')
-    audio = models.FileField(upload_to='nepali')
+    audio = models.FileField(upload_to=nepali_path)
     #filefiled
 
 class EnglishAudio(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User)
     sentence = models.ForeignKey(Sentence, related_name='eng_audio')
-    audio = models.FileField(upload_to='english')
+    audio = models.FileField(upload_to=english_path)
 
 class Translation(models.Model):
     nepali = models.CharField(max_length=200)
