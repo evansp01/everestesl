@@ -1,13 +1,11 @@
 {% extends "everest/base.html" %}
 
 {% block content %}
-  <button id="record-audio" onclick>Record</button>
-  <button id="stop-recording-audio" disabled>Stop</button>
-  <button id="upload">Upload</button>
+  <button id="button1">Record</button>
+  <button id="button2">Stop Recording</button>  
   <p id="progress">not recording</p>
   <br>
-  <audio id="audio" controls></audio>
-  <h2 id="audio-url-preview"></h2>
+  <audio id="audio" controls hidden></audio>
 {% endblock %}
 
 {% block scripts %}
@@ -15,11 +13,88 @@
     function getByID(id) {
         return document.getElementById(id);
     }
-
-    var recordAudio = getByID('record-audio');
-    var stopRecordingAudio = getByID('stop-recording-audio');
+    var button1 = getByID('button1');
+    var button2 = getByID('button2');
     var audio = getByID('audio');
-    var uploadBtn = getByID('upload')
+  </script>
+
+
+  <script>
+
+  var noCurrentRecording = function(){
+      button1.innerHTML = "Record";
+      button1.disabled = false;
+      button2.innerHTML = "Stop Recording";
+      button2.disabled = true;
+      button1.onclick = startMyRecording;
+      button2.onclick = stopMyRecording;
+      audio.muted = true;
+      audio.hidden = true;
+      $( "#progress" ).text("not recording");
+  }
+
+  var currentlyRecording = function(){
+      button1.innerHTML = "Recording...";
+      button1.disabled = true;
+      button2.innerHTML = "Stop Recording";
+      button2.disabled = false;
+      button1.onclick = startMyRecording;
+      button2.onclick = stopMyRecording;
+      audio.muted = true;
+      audio.hidden = true;
+
+  }
+
+  var audioNotUploaded = function(){
+      button1.innerHTML = "Upload Recording";
+      button1.disabled = false;
+      button2.innerHTML = "Clear Recording";
+      button2.disabled = false;
+      button1.onclick = uploadCurrent;
+      button2.onclick = noCurrentRecording;
+      audio.muted = false;
+      audio.hidden = false;
+      $( "#progress" ).text("not recording");
+  }
+
+  var currentlyUploading = function(){
+      button1.innerHTML = "Uploading...";
+      button1.disabled = true;
+      button2.innerHTML = "Clear Recording";
+      button2.disabled = true;
+      button1.onclick = uploadCurrent;
+      button2.onclick = noCurrentRecording;
+      audio.muted = false;
+      audio.hidden = false;
+      $( "#progress" ).text("not recording");
+  }
+
+  var audioUploadSuccess = function(){
+      button1.innerHTML = "Upload Success!";
+      button1.disabled = true;
+      button2.innerHTML = "Return to Sentence";
+      button2.disabled = false;
+      button1.onclick = uploadCurrent;
+      button2.onclick = function() {window.location.replace("{% url 'view_sentence' sentence.id %}"); };
+      audio.muted = true;
+      audio.hidden = true;
+      $( "#progress" ).text("not recording");
+
+  }
+
+  var audioUploadFailed = function(){
+      button1.innerHTML = "Upload Failed";
+      button1.disabled = true;
+      button2.innerHTML = "Try again";
+      button2.disabled = false;
+      button1.onclick = uploadCurrent;
+      button2.onclick = noCurrentRecording();
+      audio.muted = true;
+      audio.hidden = true;
+      $( "#progress" ).text("not recording");
+
+  }
+
   </script>
 
   <script>
@@ -52,8 +127,8 @@
     }
 
     var uploadCurrent = function(){
-        uploadBtn.innerHTML = "Uploading..."
         if (recorder){
+            currentlyUploading();
             var data = new FormData();
             data.append('language',"{{language}}");
             data.append('audio',recorder.blob);
@@ -65,15 +140,16 @@
               contentType: false,
               processData: false,
               success: function(){
-                uploadBtn.innerHTML = "Success!"
-
+                audioUploadSuccess();
+              },
+              error: function(){
+                audioUploadFailed();
               }
             });
         }
     }
-    uploadBtn.onclick = uploadCurrent;
 
-    var startRecording = function() {
+    var startMyRecording = function() {
         if (!audioStream) {
             navigator.getUserMedia(
               { audio: true, video: false},
@@ -98,30 +174,20 @@
             }
         }
         intervalId = setInterval(monitor(), 1000);
-        //window.isAudio = true;
-        recordAudio.disabled = true;
-        stopRecordingAudio.disabled = false;
+        currentlyRecording();
     };
-    recordAudio.onclick = startRecording;
-
 
     var stopMyRecording = function() {
-        stopRecordingAudio.disabled = true;
-        recordAudio.disabled = false;
         audio.src = '';
         clearInterval(intervalId);
-        $( "#progress" ).text("not recording");
-
         if (recorder){
             recorder.stopRecording(function(url) {
                 audio.src = url;
-                audio.muted = false;
-                document.getElementById('audio-url-preview').innerHTML = '<a href="' + url + '" target="_blank">Recorded Audio URL</a>';
+                audioNotUploaded();
             });
         }
-
     };
-    stopRecordingAudio.onclick = stopMyRecording;
+    noCurrentRecording();
   </script>
   <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>

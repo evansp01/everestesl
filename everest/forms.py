@@ -14,10 +14,10 @@ class NepaliTranslation(forms.Form):
 #TODO: Use EmailField for email
 
 class RegisterForm(forms.Form):
-    username   = forms.CharField(max_length = 20, label='Username')
-    first_name = forms.CharField(max_length = 120, label='First name')
-    last_name  = forms.CharField(max_length = 120, label='Last name')
-    email      = forms.CharField(max_length = 30, label='Email')
+    username   = forms.RegexField(regex=r'^[a-zA-Z0-9_]+$', max_length=20, label='Username');
+    first_name = forms.RegexField(regex=r'^[a-zA-Z_]+$', max_length=20, label='First name')
+    last_name  = forms.RegexField(regex=r'^[a-zA-Z_]+$', max_length=40, label='Last name')
+    email      = forms.EmailField(max_length = 30, label='Email')
     password1  = forms.CharField(max_length = 25,
                                  label='Password',
                                  widget = forms.PasswordInput())
@@ -47,42 +47,10 @@ class RegisterForm(forms.Form):
         username = self.cleaned_data.get('username')
         if User.objects.filter(username__exact=username):
             raise forms.ValidationError("Username is already taken.")
-        if " " in username:
-            raise forms.ValidationError("Username must be one word.")
-
         # We must return the cleaned data we got from the cleaned_data
         # dictionary
         return username
 
-
-#TODO use include instead of exclude
-class CreateForm(forms.ModelForm):
-    class Meta:
-        model = User
-        exclude = (
-            'created_by',
-            'creation_time',
-            'updated_by',
-            'update_time',
-        )
-
-
-class EditForm(forms.ModelForm):
-    class Meta:
-        model = User
-        exclude = (
-            'created_by',
-            'creation_time',
-            'updated_by',
-        )
-        widgets = {
-            'update_time': forms.HiddenInput,
-        }
-
-class ProfileForm(forms.Form):
-    first_name = forms.CharField(max_length = 20)
-    last_name  = forms.CharField(max_length = 20)
-    bio = forms.CharField(max_length = 430, required=False)
 
 class AddSentence(forms.Form):
     sentence = forms.CharField(max_length = 200)
