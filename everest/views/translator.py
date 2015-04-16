@@ -26,10 +26,12 @@ def home(request):
     return render(request, 'everest/index.html', {})
 
 def need_translation(request):
-    return render(request, 'everest/list_of_lessons.html', {})
+    sentences = Sentence.objects.filter(translations__isnull=True)
+    return render(request, 'everest/general/list_of_sentences.html', {'sentences' : sentences})
 
 def need_audio(request):
-    return render(request, 'everest/list_of_lessons.html', {})
+    sentences = Sentence.objects.filter(nep_audio__isnull=True)
+    return render(request, 'everest/general/list_of_sentences.html', {'sentences' : sentences})
 
 def profile(request):
     return render(request, 'everest/profile.html', {})

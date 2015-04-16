@@ -1,6 +1,7 @@
 {% extends "everest/base.html" %}
 <!-- TODO, use url tag for urls -->
 {% block title %}Everest Lesson {% endblock %}
+
 {% block pageheader %} 
   {{lesson}}
 {% if lesson.creator == user %}
@@ -21,10 +22,11 @@
         <b>Download this audio lesson!</b></button>
       </p>
     </div>
-  <div class="col-md-4" style="background-color:#f5f5f5;">
-  <h3>Lesson creator</h3>
-  <p><a href="{% url 'view_user' lesson.creator.username %}">{{lesson.creator}}</a></p>
-  </div>
+
+    <div class="col-md-4" style="background-color:#f5f5f5;">
+      <h3>Lesson creator</h3>
+      <p><a href="{% url 'view_user' lesson.creator.username %}">{{lesson.creator}}</a></p>
+    </div>
 
   </div>
 {% endblock %}

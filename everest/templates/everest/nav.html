@@ -43,8 +43,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Translator Tools <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li class="dropdown-header">Sentences</li>
-              <li class="{% active request 'all_sentences' %}"><a href="{% url 'all_sentences'%}">Sentences Needing Translation</a></li>
-              <li class="{% active request 'all_sentences' %}"><a href="{% url 'all_sentences'%}">Sentences Needing Audio</a></li>
+              <li class="{% active request 'need_translation' %}"><a href="{% url 'need_translation'%}">Sentences Needing Translation</a></li>
+              <li class="{% active request 'need_audio' %}"><a href="{% url 'need_audio'%}">Sentences Needing Audio</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">Profile</li>
               <li class="{% active request 'all_users' %}"><a href="{% url 'all_users'%}">My Profile</a></li>
