@@ -11,21 +11,19 @@
 
 {% block content %}
     <h3>Sentences</h3>
-    <ul class="list-unstyled">
-        <ol>
-            {% for sentence in lesson.sentences.all %}
-                <li><a href="{% url 'view_sentence' sentence.id %}">{{ sentence }}</a>
-                    {% if lesson.creator == user %}
-                        <form action="{% url 'del_sentence' sentence.id lesson.id %}" method="post">
-                            {% csrf_token %}
-                            <input class="btn btn-default btn-xs" type="submit" value="Delete">
-                        </form>
-                    {% endif %}
+    <ol>
+        {% for sentence in lesson.sentences.all %}
+            <li><a href="{% url 'view_sentence' sentence.id %}">{{ sentence }}</a>
+                {% if lesson.creator == user %}
+                    <form action="{% url 'del_sentence' sentence.id lesson.id %}" method="post">
+                        {% csrf_token %}
+                        <input class="btn btn-default btn-xs" type="submit" value="Delete">
+                    </form>
+                {% endif %}
 
-                </li>
-            {% endfor %}
-        </ol>
-    </ul>
+            </li>
+        {% endfor %}
+    </ol>
 
     <form action="{% url 'edit_lesson' lesson.id %}" method="post"> {% csrf_token %}
         <div class="input-group">

@@ -85,7 +85,7 @@ def file_to_mp3(infile):
     args = [FFMPEG_PATH, '-i', '-', '-f', SERVER_SIDE_ENCODING, '-']
     with open(os.devnull, 'wb') as devnull:
         ffmpeg_proc = Popen(args, stdout=PIPE, stdin=PIPE, stderr=devnull)
-    output = ffmpeg_proc.communicate(infile.read());
+    output = ffmpeg_proc.communicate(infile.read())
     return ContentFile(output[0])
 
 

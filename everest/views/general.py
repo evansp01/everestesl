@@ -82,7 +82,7 @@ def register(request):
         form.data['password2'] = None
         context['form'] = form
         return render(request, 'everest/register.html', context)
-    #everything is okay, register
+    # everything is okay, register
     username = form.cleaned_data['username']
     password = form.cleaned_data['password1']
     new_user = User.objects.create_user(
@@ -92,7 +92,7 @@ def register(request):
         last_name=form.cleaned_data['last_name'],
         email=form.cleaned_data['email'],
     )
-    #new_user.is_active = False
+    # new_user.is_active = False
     new_user.save()
 
     UserProfile.objects.create(
