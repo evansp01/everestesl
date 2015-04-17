@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import everest.models
 from django.conf import settings
 
 
@@ -17,7 +18,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('created', models.DateTimeField(auto_now_add=True)),
-                ('audio', models.FileField(upload_to=b'english')),
+                ('audio', models.FileField(upload_to=everest.models.english_path)),
                 ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -30,7 +31,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=50)),
                 ('created', models.DateTimeField(auto_now_add=True)),
-                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('creator', models.ForeignKey(related_name='lessons', to=settings.AUTH_USER_MODEL)),
             ],
             options={
             },
@@ -41,7 +42,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('created', models.DateTimeField(auto_now_add=True)),
-                ('audio', models.FileField(upload_to=b'nepali')),
+                ('audio', models.FileField(upload_to=everest.models.nepali_path)),
                 ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={

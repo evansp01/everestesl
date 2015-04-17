@@ -9,6 +9,13 @@ import json
 import mimetypes
 from everest.models import *
 from everest.forms import *
+import os
+import os.path
+from subprocess import Popen, PIPE
+from django.core.files import File
+from django.core.files.base import ContentFile
+
+FFMPEG_PATH = 'ffmpeg'
 
 def view_sentence(request, sentence):
     sentence = get_object_or_404(Sentence, id=sentence)
@@ -51,15 +58,17 @@ def upload_audio(request, sentence):
         raise Http404("Method not supported on this url")
     form = AudioForm(request.POST, request.FILES)
     if form.is_valid():
+        print type(form.cleaned_data['audio'])
+        audio_file = file_to_mp3(form.cleaned_data['audio'])
         if form.cleaned_data['language'] == 'english':
-            audio = EnglishAudio(audio=form.cleaned_data['audio'],
-                                 creator=request.user,
+            audio = EnglishAudio(creator=request.user,
                                  sentence=sentence)
+            audio.audio.save('audio',audio_file)
             audio.save()
         elif form.cleaned_data['language'] == 'nepali':
-            audio = NepaliAudio(audio=form.cleaned_data['audio'],
-                                creator=request.user,
+            audio = NepaliAudio(creator=request.user,
                                 sentence=sentence)
+            audio.audio.save('audio',audio_file)
             audio.save()
         else:
             raise Http404("langauge parameter not understood")
@@ -67,6 +76,13 @@ def upload_audio(request, sentence):
     print form.errors
     raise Http404("Form data failed to validate")
 
+#subprocess call to ffmpeg
+def file_to_mp3(infile):
+    args = [FFMPEG_PATH,'-i', '-', '-f', 'mp3', '-']
+    with open(os.devnull, 'wb') as devnull:
+        ffmpeg_proc = Popen(args, stdout=PIPE, stdin=PIPE, stderr=devnull)
+    output = ffmpeg_proc.communicate(infile.read());
+    return ContentFile(output[0])
 
 def english_audio(request, audio):
     audio = get_object_or_404(EnglishAudio, id=audio)
@@ -81,6 +97,8 @@ def nepali_audio(request, audio):
     url = urllib.pathname2url(audio.audio.name)
     content_type = mimetypes.guess_type(url)
     return HttpResponse(audio.audio, content_type='audio/wav')
+
+
     
 
 
