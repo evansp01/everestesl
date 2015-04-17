@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 import os
+
 import dj_database_url
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -55,7 +57,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 )
 
 # HAYSTACK_CONNECTIONS = {
-#     'default': {
+# 'default': {
 #         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
 #         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
 #     },
@@ -85,7 +87,7 @@ USE_TZ = True
 
 
 # Parse database configuration from $DATABASE_URL
-DATABASES = { 'default' : dj_database_url.config() }
+DATABASES = {'default': dj_database_url.config()}
 
 # Enable Connection Pooling (if desired)
 DATABASES['default']['ENGINE'] = 'django_postgrespool'
@@ -130,4 +132,4 @@ MEDIA_ROOT = '/media/'
 S3_URL = 'http://s3.amazonaws.com/ %s' % AWS_STORAGE_BUCKET_NAME
 MEDIA_URL = S3_URL + MEDIA_ROOT
 
-FFMPEG_INSTALL=os.getenv('FFMPEG_INSTALL') or ''
+FFMPEG_INSTALL = os.getenv('FFMPEG_INSTALL') or ''
