@@ -1,129 +1,119 @@
 {% extends "everest/base.html" %}
-
 <!-- TODO: FIX COLUMN PADDING HACK -->
-
-{% block title %} Sentence {{sentence.id}} {% endblock %}
-
+{% block title %} Sentence {{ sentence.id }} {% endblock %}
 {% block content %}
-
-  <div class="row" style="margin-bottom:4%">
-    <h2>
-    <div class="col-md-9">
-      {{sentence}}
+    <div class="row" style="margin-bottom:4%">
+        <h2>
+            <div class="col-md-9">
+                {{ sentence }}
+            </div>
+            <div class="col-md-3">
+                <a href="" type="button" class="btn btn-default pull-right">
+                    Add to your lesson
+                </a>
+            </div>
+        </h2>
     </div>
-    <div class="col-md-3">
-      <a href="" type="button" class="btn btn-default pull-right">
-        Add to your lesson 
-      </a>
+    <div class="row">
+        <div class="col-md-5"><h4>Nepali Translations:</h4>
+            {% if not sentence.translations.all %}
+                <i> No Translations</i>
+            {% endif %}
+            <ol>
+                {% for translation in sentence.translations.all %}
+                    <li>{{ translation }}
+                        {% if translation.creator == user %}
+                            <form action="{% url 'del_translation' translation.id %}" method="post">{% csrf_token %}
+                                <input class="btn btn-default btn-xs" type="submit" value="Delete">
+                            </form>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>
+            <br>
+            <br>
+            {% if errors %}
+                {% for error in errors %}
+                    <div class="alert alert-danger" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        {{ error|escape }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form action="{% url 'submit_translation' sentence.id %}" method="post"> {% csrf_token %}
+                <label>Add Nepali Translation</label>
+                <textarea name="translation" type="textarea" class="form-control" rows="4"
+                          placeholder="Add Nepali translation" maxlength="400"></textarea>
+                <input class="btn btn-default btn-primary" type="submit" value="Translate">
+            </form>
+        </div>
+        <div class="col-md-5" style="padding-left:5%">
+            <h4>English Audio</h4>
+            {% if not sentence.eng_audio.all %}
+                <i> No English Audio </i>
+            {% endif %}
+            <ul class="list-unstyled">
+                {% for audio in sentence.eng_audio.all %}
+                    <li>
+                        <audio src="{% url 'english_audio' audio.id %}" controls style="width:90%"></audio>
+                    </li>
+                    <li>
+                        by <a href="{% url 'view_user' audio.creator.username %}">{{ audio.creator }}</a>
+                        {% if audio.creator == user %}
+                            <form action="{% url 'del_englishaudio' audio.id %}" method="post"> {% csrf_token %}
+                                <input class="btn btn-default btn-xs" type="submit" value="Delete">
+                            </form>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                <br>
+                <li>
+                    <a href="{% url 'record_english' sentence.id %}">Add your own recording</a>
+                </li>
+            </ul>
+            <br>
+            <h4>Nepali Audio</h4>
+            {% if not sentence.nep_audio.all %}
+                <i> No Nepali Audio </i>
+            {% endif %}
+            <ul class="list-unstyled">
+                {% for audio in sentence.nep_audio.all %}
+                    <li>
+                        <audio src="{% url 'nepali_audio' audio.id %}" controls style="width:90%"></audio>
+                    </li>
+                    <li>
+                        by <a href="{% url 'view_user' audio.creator.username %}">{{ audio.creator }}</a>
+                        {% if audio.creator == user %}
+                            <form action="{% url 'del_nepaliaudio' audio.id %}" method="post">
+                                {% csrf_token %}
+                                <input class="btn btn-default btn-xs" type="submit" value="Delete">
+                            </form>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                <br>
+                <li>
+                    <a href="{% url 'record_nepali' sentence.id %}">Add your own recording</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-2" style="background-color:#f5f5f5;">
+            <h5>Lessons that include this sentence:</h5>
+            <ul class="list-unstyled">
+                {% for lesson in sentence.lessons.all %}
+                    <li><a href="{% url 'view_lesson' lesson.id %}"> {{ lesson }} </a>
+                    <li/>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-    </h2>
-  </div>
-
-  <div class="row">
-    <div class="col-md-5"><h4>Nepali Translations:</h4>
-      {% if not sentence.translations.all %}
-        <i> No Translations</i>
-      {% endif %}
-      <ol>
-        {% for translation in sentence.translations.all %}
-	<li>{{translation}}
-	{% if translation.creator == user %}
-	    <form action="{% url 'del_translation' translation.id %}" method="post">
-	    {% csrf_token %}<input class="btn btn-default btn-xs"
-	                     type="submit" value="Delete"></button></form>
-	{% endif %}
-	</li>
-        {% endfor %}
-      </ol>
-      <br>
-      <br>
-      {% if errors %}
-        {% for error in errors %}
-          <div class="alert alert-danger" role="alert">
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-          {{error|escape}}
-          </div>
-        {% endfor %}
-      {% endif %}
-      <form action="{% url 'submit_translation' sentence.id %}" method="post"> {% csrf_token %}
-        <label>Add Nepali Translation</label>
-        <textarea name="translation" type="textarea" class="form-control" rows="4" placeholder="Add Nepali translation" maxlength="400"></textarea>
-        <input class="btn btn-default btn-primary" type="submit" value="Translate"></button>
-      </form>
-    </div>
-    <div class="col-md-5" style="padding-left:5%">
-      <h4>English Audio</h4>
-        {% if not sentence.eng_audio.all %}
-         <i> No English Audio </i>
-        {% endif %}
-        <ul class="list-unstyled">
-          {% for audio in sentence.eng_audio.all %}
-            <li>
-              <audio  src="{% url 'english_audio' audio.id %}" controls style="width:90%"></audio>
-            </li>
-            <li>
-              by <a href="{% url 'view_user' audio.creator.username
-	    %}">{{audio.creator}}</a>
-	    {% if audio.creator == user %}
-
-	    <form action="{% url 'del_englishaudio' audio.id %}" method="post">
-	    {% csrf_token %}<input class="btn btn-default btn-xs"
-	                     type="submit" value="Delete"></button></form>
-	    {% endif %}
-            </li>
-          {% endfor %}
-          <br>
-          <li>
-            <a href="{% url 'record_english' sentence.id %}">Add your own recording</a>
-          </li>
-        </ul>  
-      <br>    
-      <h4>Nepali Audio</h4>
-        {% if not sentence.nep_audio.all %}
-            <i> No Nepali Audio </i>
-        {% endif %}
-        <ul class="list-unstyled">
-          {% for audio in sentence.nep_audio.all %}
-            <li>
-              <audio  src="{% url 'nepali_audio' audio.id %}" controls style="width:90%"></audio>
-            </li>
-            <li>
-              by <a href="{% url 'view_user' audio.creator.username
-	    %}">{{audio.creator}}</a>
-
-	    {% if audio.creator == user %}
-
-	    <form action="{% url 'del_nepaliaudio' audio.id %}" method="post">
-	    {% csrf_token %}<input class="btn btn-default btn-xs"
-	                     type="submit" value="Delete"></button></form>
-	    {% endif %}
-
-	    
-            </li>
-          {% endfor %}
-          <br>
-          <li>
-            <a href="{% url 'record_nepali' sentence.id %}">Add your own recording</a>
-          </li>
-        </ul>
-    </div>
-    <div class="col-md-2" style="background-color:#f5f5f5;">
-      <h5>Lessons that include this sentence:</h5>
-      <ul class="list-unstyled">
-        {% for lesson in sentence.lessons.all %}
-          <li> <a href="{% url 'view_lesson' lesson.id %}"> {{lesson}} </a> <li/>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
 {% endblock %}
-
 <!--
 <li>
-  <button type="button" class="btn btn-primary" aria-label="Play">
-    <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
-    English
-  </button> 
-  (by Sherry)
+<button type="button" class="btn btn-primary" aria-label="Play">
+<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+English
+</button>
+(by Sherry)
 </li>
 -->

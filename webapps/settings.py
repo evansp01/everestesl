@@ -120,11 +120,14 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+#aws config
 AWS_STORAGE_BUCKET_NAME = 'everestesl'
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    print "Backend is s3"
-else:
-    print "No s3 backend"
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+#set up the media url
+MEDIA_ROOT = '/media/'
+S3_URL = 'http://s3.amazonaws.com/ %s' % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = S3_URL + MEDIA_ROOT
+
+FFMPEG_INSTALL=os.getenv('FFMPEG_INSTALL') or ''

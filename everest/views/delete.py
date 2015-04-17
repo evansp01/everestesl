@@ -1,14 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.shortcuts import render, get_object_or_404
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
-from django.http import Http404
-import urllib
-import json
-import mimetypes
-from everest.models import *
 from everest.forms import *
+
 
 @login_required
 @transaction.atomic
@@ -26,6 +21,7 @@ def del_translation(request, translation):
     context = {'sentence': sentence}
     return render(request, 'everest/sentence.html', context)
 
+
 @login_required
 @transaction.atomic
 def del_englishaudio(request, audio):
@@ -41,6 +37,7 @@ def del_englishaudio(request, audio):
         return render(request, 'everest/general/list_of_sentences.html', context)
     context = {'sentence': sentence}
     return render(request, 'everest/sentence.html', context)
+
 
 @login_required
 @transaction.atomic
@@ -58,6 +55,7 @@ def del_nepaliaudio(request, audio):
     context = {'sentence': sentence}
     return render(request, 'everest/sentence.html', context)
 
+
 @login_required
 @transaction.atomic
 def del_sentence(request, sentence, lesson):
@@ -74,6 +72,7 @@ def del_sentence(request, sentence, lesson):
     context = {'lesson': lesson}
     return render(request, 'everest/edit_lesson.html', context)
 
+
 @login_required
 @transaction.atomic
 def del_lesson(request, lesson):
@@ -84,14 +83,15 @@ def del_lesson(request, lesson):
             for sentence in lesson.sentences.all():
                 sentenceWasDeleted = cleanup(sentence)
     lesson.delete()
-    context = {'lessons' : Lesson.objects.all()}
+    context = {'lessons': Lesson.objects.all()}
     return render(request, 'everest/general/list_of_lessons.html', context)
+
 
 # returns True if deleted sentence
 def cleanup(sentence):
     if (not sentence.translations.all() and
-        not sentence.eng_audio.all() and
-        not sentence.nep_audio.all()):
+            not sentence.eng_audio.all() and
+            not sentence.nep_audio.all()):
         sentence.delete()
         return True
     else:

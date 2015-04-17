@@ -1,38 +1,40 @@
-from django.shortcuts import render
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
-from django.http import Http404
-from django.db import transaction
-import urllib
-from django.contrib.auth.decorators import login_required
-import json
-import mimetypes
-from everest.models import *
-from everest.forms import *
-import os
-import os.path
 from subprocess import Popen, PIPE
-from django.core.files import File
-from django.core.files.base import ContentFile
+import json
 
-FFMPEG_PATH = 'ffmpeg'
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, Http404
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
+from django.core.files.base import ContentFile
+from django.conf import settings
+import os
+
+from everest.forms import *
+
+
+FFMPEG_PATH = settings.FFMPEG_INSTALL + 'ffmpeg'
+SERVER_SIDE_ENCODING = 'mp3'
+
 
 def view_sentence(request, sentence):
     sentence = get_object_or_404(Sentence, id=sentence)
     context = {'sentence': sentence}
     return render(request, 'everest/sentence.html', context)
 
+
 @login_required
 def record_english(request, sentence):
     sentence = get_object_or_404(Sentence, id=sentence)
-    context = {'sentence': sentence, 'language':'english'}
+    context = {'sentence': sentence, 'language': 'english'}
     return render(request, 'everest/record.html', context)
+
 
 @login_required
 def record_nepali(request, sentence):
     sentence = get_object_or_404(Sentence, id=sentence)
-    context = {'sentence': sentence, 'language':'nepali'}
+    context = {'sentence': sentence, 'language': 'nepali'}
     return render(request, 'everest/record.html', context)
+
 
 @login_required
 @transaction.atomic
@@ -50,6 +52,7 @@ def submit_translation(request, sentence):
             context['errors'] = form.errors
     return render(request, 'everest/sentence.html', context)
 
+
 @login_required
 @transaction.atomic
 def upload_audio(request, sentence):
@@ -63,46 +66,34 @@ def upload_audio(request, sentence):
         if form.cleaned_data['language'] == 'english':
             audio = EnglishAudio(creator=request.user,
                                  sentence=sentence)
-            audio.audio.save('audio',audio_file)
+            audio.audio.save('audio.' + SERVER_SIDE_ENCODING, audio_file)
             audio.save()
         elif form.cleaned_data['language'] == 'nepali':
             audio = NepaliAudio(creator=request.user,
                                 sentence=sentence)
-            audio.audio.save('audio',audio_file)
+            audio.audio.save('audio.' + SERVER_SIDE_ENCODING, audio_file)
             audio.save()
         else:
             raise Http404("langauge parameter not understood")
-        return HttpResponse(json.dumps({"status":"success"}), content_type='application/json')
+        return HttpResponse(json.dumps({"status": "success"}), content_type='application/json')
     print form.errors
     raise Http404("Form data failed to validate")
 
-#subprocess call to ffmpeg
+
+# subprocess call to ffmpeg
 def file_to_mp3(infile):
-    args = [FFMPEG_PATH,'-i', '-', '-f', 'mp3', '-']
+    args = [FFMPEG_PATH, '-i', '-', '-f', SERVER_SIDE_ENCODING, '-']
     with open(os.devnull, 'wb') as devnull:
         ffmpeg_proc = Popen(args, stdout=PIPE, stdin=PIPE, stderr=devnull)
     output = ffmpeg_proc.communicate(infile.read());
     return ContentFile(output[0])
 
+
 def english_audio(request, audio):
     audio = get_object_or_404(EnglishAudio, id=audio)
-    url = urllib.pathname2url(audio.audio.name)
-    content_type = mimetypes.guess_type(url)
-    print content_type
-    return HttpResponse(audio.audio, content_type='audio/wav')
+    return HttpResponse(audio.audio, content_type='audio/' + SERVER_SIDE_ENCODING)
 
 
 def nepali_audio(request, audio):
     audio = get_object_or_404(NepaliAudio, id=audio)
-    url = urllib.pathname2url(audio.audio.name)
-    content_type = mimetypes.guess_type(url)
-    return HttpResponse(audio.audio, content_type='audio/wav')
-
-
-    
-
-
-
-
-
-
+    return HttpResponse(audio.audio, content_type='audio/' + SERVER_SIDE_ENCODING)

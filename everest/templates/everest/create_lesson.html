@@ -3,14 +3,14 @@
 {% block title %}Everest Lesson {% endblock %}
 {% block pageheader %} Create Lesson {% endblock %}
 
-{% block content %} 
-  <form action="{% url 'create_lesson' %}" method="post"> {% csrf_token %}
-    <div class="input-group">
-      <span class="input-group-addon">Name your lesson</span>
-      <input type="text" class="form-control" name="title" maxlength="200" autofocus>
+{% block content %}
+    <form action="{% url 'create_lesson' %}" method="post"> {% csrf_token %}
+        <div class="input-group">
+            <span class="input-group-addon">Name your lesson</span>
+            <input type="text" class="form-control" name="title" maxlength="200" autofocus>
       <span class="input-group-btn">
         <button class="btn btn-default" type="submit">Submit</button>
       </span>
-     </div>
-  </form>
+        </div>
+    </form>
 {% endblock %}

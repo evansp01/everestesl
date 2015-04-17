@@ -1,29 +1,31 @@
 from django import forms
-from django.contrib.auth.models import User
-from everest.models import UserProfile
+
 from models import *
+
 
 class AudioForm(forms.Form):
     audio = forms.FileField()
-    language = forms.ChoiceField(choices=(('english','english'),('nepali','nepali')))
+    language = forms.ChoiceField(choices=(('english', 'english'), ('nepali', 'nepali')))
+
 
 class NepaliTranslation(forms.Form):
-    translation = forms.CharField(max_length = 400)
+    translation = forms.CharField(max_length=400)
 
-#TODO: Use RegexFields for username, first_name, last_name
+
+# TODO: Use RegexFields for username, first_name, last_name
 #TODO: Use EmailField for email
 
 class RegisterForm(forms.Form):
-    username   = forms.RegexField(regex=r'^[a-zA-Z0-9_]+$', max_length=20, label='Username');
+    username = forms.RegexField(regex=r'^[a-zA-Z0-9_]+$', max_length=20, label='Username');
     first_name = forms.RegexField(regex=r'^[a-zA-Z_]+$', max_length=20, label='First name')
-    last_name  = forms.RegexField(regex=r'^[a-zA-Z_]+$', max_length=40, label='Last name')
-    email      = forms.EmailField(max_length = 30, label='Email')
-    password1  = forms.CharField(max_length = 25,
-                                 label='Password',
-                                 widget = forms.PasswordInput())
-    password2  = forms.CharField(max_length = 25,
-                                 label='Confirm password',
-                                 widget = forms.PasswordInput())
+    last_name = forms.RegexField(regex=r'^[a-zA-Z_]+$', max_length=40, label='Last name')
+    email = forms.EmailField(max_length=30, label='Email')
+    password1 = forms.CharField(max_length=25,
+                                label='Password',
+                                widget=forms.PasswordInput())
+    password2 = forms.CharField(max_length=25,
+                                label='Confirm password',
+                                widget=forms.PasswordInput())
 
     # Customizes form validation for properties that apply to more
     # than one field.  Overrides the forms.Form.clean function.
@@ -53,7 +55,8 @@ class RegisterForm(forms.Form):
 
 
 class AddSentence(forms.Form):
-    sentence = forms.CharField(max_length = 200)
+    sentence = forms.CharField(max_length=200)
+
 
 class AddLesson(forms.Form):
-    title = forms.CharField(max_length = 50)
+    title = forms.CharField(max_length=50)

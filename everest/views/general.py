@@ -1,54 +1,48 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.core.exceptions import ObjectDoesNotExist
-from django.template.loader import render_to_string
-from django.middleware.csrf import get_token
-import json
 from django.core.urlresolvers import reverse
 
 # Decorator to use built-in authentication system
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, Http404
 
 # Used to create and manually log in a user
-from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
-from django.views.defaults import page_not_found
-import mimetypes
-import urllib
-from django.contrib.auth.tokens import default_token_generator
 
 # Django transaction system so we can use @transaction.atomic
 from django.db import transaction
-from django.core.mail import send_mail
-from everest.models import *
 from everest.forms import *
 
 
 def home(request):
     return render(request, 'everest/index.html', {})
 
+
 def all_lessons(request):
-    context = {'lessons' : Lesson.objects.all()}
+    context = {'lessons': Lesson.objects.all()}
     return render(request, 'everest/general/list_of_lessons.html', context)
+
 
 def all_sentences(request):
     context = {'sentences': Sentence.objects.all()}
     return render(request, 'everest/general/list_of_sentences.html', context)
 
+
 def all_users(request):
-    context = {'users' : User.objects.all()}
+    context = {'users': User.objects.all()}
     return render(request, 'everest/general/list_of_users.html', context)
+
 
 def find_lesson(request, userid=None):
     if not userid:
         userid = request.user.id
     user = get_object_or_404(User, id=userid)
-    context = {'lessons' : user.lessons.all()}
+    context = {'lessons': user.lessons.all()}
     return render(request, 'everest/general/list_of_lessons.html', context)
+
 
 @login_required
 def find_my_lessons(request):
     return redirect('find_lesson', userid=request.user.id)
+
 
 def find_sentence(request, userid):
     context = {'sentences': userid.sentences.all()}
@@ -56,22 +50,24 @@ def find_sentence(request, userid):
 
 
 # def find_user(request, userid):
-#    context = {'users' : 
-#    return render(request, 'everest/general/list_of_users.html', context)
+# context = {'users' :
+# return render(request, 'everest/general/list_of_users.html', context)
 
 def view_lesson(request, lesson):
     lesson = get_object_or_404(Lesson, id=lesson)
-    context = {'lesson' : lesson}
+    context = {'lesson': lesson}
     return render(request, 'everest/lesson.html', context)
+
 
 def view_user(request, username):
     user = get_object_or_404(User, username=username)
-    context = {'user' : user}
+    context = {'user': user}
     return render(request, 'everest/profile.html', context)
 
 
 def manage_account(request):
     return render(request, 'everest/account.html', {})
+
 
 @transaction.atomic
 def register(request):

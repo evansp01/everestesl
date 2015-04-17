@@ -1,44 +1,45 @@
 {% extends "everest/base.html" %}
 
 {% block title %}Everest Lesson {% endblock %}
-{% block pageheader %} {{lesson}}<form action="{% url 'del_lesson' lesson.id %}"
-method="post">
-	    {% csrf_token %}<input class="btn btn-danger"
-type="submit" value="Delete lesson"></button></form>
+{% block pageheader %}{{ lesson }}
+    <form action="{% url 'del_lesson' lesson.id %}"
+          method="post">
+        {% csrf_token %}<input class="btn btn-danger"
+                               type="submit" value="Delete lesson"></button></form>
 
 {% endblock %}
 
 {% block content %}
-  <h3>Sentences</h3>
-<ul class="list-unstyled">
-    <ol>
-    {% for sentence in lesson.sentences.all %}
-        <li><a href="{% url 'view_sentence' sentence.id  %}">{{sentence}}</a>
-    {% if lesson.creator == user %}
-	    <form action="{% url 'del_sentence' sentence.id lesson.id %}" method="post">
-	    {% csrf_token %}<input class="btn btn-default btn-xs"
-	                     type="submit" value="Delete"></button></form>
-	    {% endif %}
-      
-    </li>  
-    {% endfor %}
-  </ul>
+    <h3>Sentences</h3>
+    <ul class="list-unstyled">
+        <ol>
+            {% for sentence in lesson.sentences.all %}
+                <li><a href="{% url 'view_sentence' sentence.id %}">{{ sentence }}</a>
+                    {% if lesson.creator == user %}
+                        <form action="{% url 'del_sentence' sentence.id lesson.id %}" method="post">
+                            {% csrf_token %}<input class="btn btn-default btn-xs"
+                                                   type="submit" value="Delete"></button></form>
+                    {% endif %}
 
-	<form action="{% url 'edit_lesson' lesson.id%}" method="post"> {% csrf_token %}
-	  <div class="input-group">
-		  <span class="input-group-addon">Add sentence</span>
-		  <input type="text" class="form-control" name="sentence" maxlength="200" autofocus>
+                </li>
+            {% endfor %}
+    </ul>
+
+    <form action="{% url 'edit_lesson' lesson.id %}" method="post"> {% csrf_token %}
+        <div class="input-group">
+            <span class="input-group-addon">Add sentence</span>
+            <input type="text" class="form-control" name="sentence" maxlength="200" autofocus>
 		  <span class="input-group-btn">
-		    <button class="btn btn-default" type="submit" value="{{lesson.id}}">Submit</button>
+		    <button class="btn btn-default" type="submit" value="{{ lesson.id }}">Submit</button>
 		  </span>
-	  </div>
-	</form>
-	<br>
-  <br>
-  <p>
-    <button type="button" class="btn btn-primary" aria-label="Create audio lesson">
-      <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
-      <b>Create this audio lesson!</b>
-    </button>
-  </p>
+        </div>
+    </form>
+    <br>
+    <br>
+    <p>
+        <button type="button" class="btn btn-primary" aria-label="Create audio lesson">
+            <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+            <b>Create this audio lesson!</b>
+        </button>
+    </p>
 {% endblock %}

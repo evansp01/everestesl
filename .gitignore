@@ -7,5 +7,7 @@ staticfiles
 *.sqlite3
 *.pdf
 *.swp
+setenv_heroku.sh
 setenv.sh
 /english/*
+.idea/*

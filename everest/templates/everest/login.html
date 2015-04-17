@@ -2,18 +2,21 @@
 {% load static %}
 
 {% block title %}Log in to Everest{% endblock %}
-{% block pageheader %} <div align="center">Log in to Everest</div> {% endblock %}
+{% block pageheader %}
+    <div align="center">Log in to Everest</div> {% endblock %}
 
 {% block form %}
-<form class="form-signin" method="post" action="{% url 'django.contrib.auth.views.login' %}">{% csrf_token %}
-  {% if form.errors %}
-  <p class="errorlist">
-    Invalid username or password.
-  </p>
-  {% endif %}
-  <input name="{{form.username.html_name}}" type="text" class="form-control" placeholder="Username" required autofocus>
-  <input name="{{form.password.html_name}}" type="password" class="form-control" placeholder="Password" required>
-  <input type="submit" class="btn btn-lg btn-primary btn-block btn-default" value="Log In" />
-</form>
-<p class="text-center"><a href="{% url 'register' %}">Need an Account?</a></p>
+    <form class="form-signin" method="post" action="{% url 'django.contrib.auth.views.login' %}">{% csrf_token %}
+        {% if form.errors %}
+            <p class="errorlist">
+                Invalid username or password.
+            </p>
+        {% endif %}
+        <input name="{{ form.username.html_name }}" type="text" class="form-control" placeholder="Username" required
+               autofocus>
+        <input name="{{ form.password.html_name }}" type="password" class="form-control" placeholder="Password"
+               required>
+        <input type="submit" class="btn btn-lg btn-primary btn-block btn-default" value="Log In"/>
+    </form>
+    <p class="text-center"><a href="{% url 'register' %}">Need an Account?</a></p>
 {% endblock %}
