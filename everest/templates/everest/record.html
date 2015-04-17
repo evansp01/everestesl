@@ -31,7 +31,7 @@
             audio.muted = true;
             audio.hidden = true;
             $("#progress").text("not recording");
-        }
+        };
 
         var currentlyRecording = function () {
             button1.innerHTML = "Recording...";
@@ -43,7 +43,7 @@
             audio.muted = true;
             audio.hidden = true;
 
-        }
+        };
 
         var audioNotUploaded = function () {
             button1.innerHTML = "Upload Recording";
@@ -55,7 +55,7 @@
             audio.muted = false;
             audio.hidden = false;
             $("#progress").text("not recording");
-        }
+        };
 
         var currentlyUploading = function () {
             button1.innerHTML = "Uploading...";
@@ -67,7 +67,7 @@
             audio.muted = false;
             audio.hidden = false;
             $("#progress").text("not recording");
-        }
+        };
 
         var audioUploadSuccess = function () {
             button1.innerHTML = "Upload Success!";
@@ -82,7 +82,7 @@
             audio.hidden = true;
             $("#progress").text("not recording");
 
-        }
+        };
 
         var audioUploadFailed = function () {
             button1.innerHTML = "Upload Failed";
@@ -120,13 +120,13 @@
             return function () {
                 if (recordingLength < MAX_LENGTH) {
                     recordingLength += 1;
-                    text_string = '' + recordingLength + '/' + MAX_LENGTH;
+                    var text_string = '' + recordingLength + '/' + MAX_LENGTH;
                     $("#progress").text(text_string);
                 } else {
                     stopMyRecording();
                 }
             }
-        }
+        };
 
         var uploadCurrent = function () {
             if (recorder) {
@@ -149,7 +149,7 @@
                     }
                 });
             }
-        }
+        };
 
         var startMyRecording = function () {
             if (!audioStream) {
@@ -163,7 +163,7 @@
 
                             // "audio" is a default type
                             recorder = window.RecordRTC(stream, {
-                                type: 'audio',
+                                type: 'audio'
                             });
                             recorder.startRecording();
                         },

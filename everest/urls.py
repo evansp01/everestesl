@@ -29,7 +29,7 @@ urlpatterns += patterns('everest.views.translator',
                         url(r'^translator$', 'home', name='translator_home'),
                         url(r'^translator/need_translation$', 'need_translation', name='need_translation'),
                         url(r'^translator/need_audio$', 'need_audio', name='need_audio'),
-                        url(r'^transtator/profile$', 'profile', name='translator_profile')
+                        url(r'^translator/profile$', 'profile', name='translator_profile')
                         )
 urlpatterns += patterns('everest.views.sentence',
                         url(r'^sentence/(?P<sentence>[0-9]+)$', 'view_sentence', name='view_sentence'),

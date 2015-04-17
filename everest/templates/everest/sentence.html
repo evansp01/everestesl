@@ -3,16 +3,19 @@
 {% block title %} Sentence {{ sentence.id }} {% endblock %}
 {% block content %}
     <div class="row" style="margin-bottom:4%">
-        <h2>
             <div class="col-md-9">
-                {{ sentence }}
+                <h2>
+                    {{ sentence }}
+                </h2>
             </div>
             <div class="col-md-3">
-                <a href="" type="button" class="btn btn-default pull-right">
-                    Add to your lesson
-                </a>
+                <h2>
+                    <a href="" type="button" class="btn btn-default pull-right">
+                        Add to your lesson
+                    </a>
+                </h2>
             </div>
-        </h2>
+
     </div>
     <div class="row">
         <div class="col-md-5"><h4>Nepali Translations:</h4>
@@ -101,8 +104,7 @@
             <h5>Lessons that include this sentence:</h5>
             <ul class="list-unstyled">
                 {% for lesson in sentence.lessons.all %}
-                    <li><a href="{% url 'view_lesson' lesson.id %}"> {{ lesson }} </a>
-                    <li/>
+                    <li><a href="{% url 'view_lesson' lesson.id %}"> {{ lesson }} </a></li>
                 {% endfor %}
             </ul>
         </div>

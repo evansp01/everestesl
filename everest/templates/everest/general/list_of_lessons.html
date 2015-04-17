@@ -21,7 +21,7 @@
                     Contains {{ lesson.sentences.count }} sentence{{ lesson.sentences.count|pluralize }}
                 </td>
                 <td>
-                    <i> created by <a href="/profile?u={{ lesson.creator.id }}">{{ lesson.creator|lower }} </i>
+                    <i> created by <a href="#">{{ lesson.creator|lower }}</a></i>
                 </td>
                 <td>
                     <i> {{ lesson.created|date:"SHORT_DATE_FORMAT" }} </i>
