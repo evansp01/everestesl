@@ -1,5 +1,15 @@
 {% extends "everest/base.html" %}
 
+{% block pageheader %}
+{% if language == 'english' %}
+  {{ sentence }}
+{% else %}
+{% for trans in sentence.translations.all %}
+{{ trans }} <br/>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
 {% block content %}
     <button id="button1">Record</button>
     <button id="button2">Stop Recording</button>
