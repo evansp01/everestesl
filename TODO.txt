@@ -1,8 +1,7 @@
 1. fix basic functionality
    - add ability to add a sentence to a different list
    - add profiles & pic upload
-   - make sure people only see/can do what their privileges should allow
-   - require audio recording when a sentence is created
+   - require audio recording when a sentence is created?
 
 2. figure out mp3 creation/interleaving
 
@@ -10,12 +9,10 @@
 
 4. Ajaxify things
 
-5. CSSify things, forms -> regex, etc.
+5. make it all pretty
 
-6. display related sentences during sentence creation (TFIDF)
+6. decide about privileges/moderator
 
-7. delete deleted audio files from S3
+7. display related sentences during sentence creation (TFIDF)
 
-8. If time: figure out why that sentence didn't get added to its list
-
-9. Moderator??
+8. remove deleted audio files from S3
