@@ -1,27 +1,15 @@
 {% extends "everest/base.html" %}
-<!-- TODO: FIX COLUMN PADDING HACK -->
+
 {% block title %} Sentence {{ sentence.id }} {% endblock %}
+
+{% block pageheader %} {{sentence}} {% endblock %}
+
 {% block content %}
-
-    <div class="row" style="margin-bottom:4%">
-            <div class="col-md-9">
-                <div class="title">
-                    {{ sentence }}
-                </div>
-            </div>
-            <div class="col-md-3">
-                <h2>
-                    <a href="" type="button" class="btn btn-default pull-right">
-                        Add to your lesson
-                    </a>
-                </h2>
-            </div>
-
-    </div>
     <div class="row">
-        <div class="col-md-5"><h4>Nepali Translations:</h4>
+        <div class="col-md-5">
+            <div class="subtitle">Nepali translations</div>
             {% if not sentence.translations.all %}
-                <i> No Translations</i>
+                <b>No translations.</b>
             {% endif %}
             <ol>
                 {% for translation in sentence.translations.all %}
@@ -45,16 +33,16 @@
                 {% endfor %}
             {% endif %}
             <form action="{% url 'submit_translation' sentence.id %}" method="post"> {% csrf_token %}
-                <label>Add Nepali Translation</label>
+                <label>Add Nepali translation:</label>
                 <textarea name="translation" type="textarea" class="form-control" rows="4"
                           placeholder="Add Nepali translation" maxlength="400"></textarea>
                 <input class="btn btn-default btn-primary" type="submit" value="Translate">
             </form>
         </div>
-        <div class="col-md-5" style="padding-left:5%">
-            <h4>English Audio</h4>
+        <div class="col-md-5">
+            <div class="subtitle">English audio</div>
             {% if not sentence.eng_audio.all %}
-                <i> No English Audio </i>
+                <b>No English audio.</b>
             {% endif %}
             <ul class="list-unstyled">
                 {% for audio in sentence.eng_audio.all %}
@@ -76,9 +64,9 @@
                 </li>
             </ul>
             <br>
-            <h4>Nepali Audio</h4>
+            <div class="subtitle">Nepali audio</div>
             {% if not sentence.nep_audio.all %}
-                <i> No Nepali Audio </i>
+                <b>No Nepali audio.</b>
             {% endif %}
             <ul class="list-unstyled">
                 {% for audio in sentence.nep_audio.all %}
@@ -101,13 +89,22 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-2" style="background-color:#f5f5f5;">
-            <h5>Lessons that include this sentence:</h5>
+        <div class="col-md-2">
+                <div class="subtitle">Lessons that include this sentence:</div>
             <ul class="list-unstyled">
                 {% for lesson in sentence.lessons.all %}
                     <li><a href="{% url 'view_lesson' lesson.id %}"> {{ lesson }} </a></li>
                 {% endfor %}
             </ul>
+                        <div class="col-md-3">
+                <h2>
+                    <a href="" type="button" class="btn btn-default pull-right">
+                        Add to your lesson
+                    </a>
+                </h2>
+            </div>
+
+    </div>
         </div>
     </div>
 {% endblock %}
