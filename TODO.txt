@@ -1,13 +1,13 @@
 1. fix basic functionality
-   - add ability to add a sentence to a different list
    - add profiles & pic upload
-   - require audio recording when a sentence is created?
+   - should we require audio recording when a sentence is created?
 
 2. figure out mp3 creation/interleaving
 
 3. add search
 
 4. Ajaxify things
+   - add ability to add sentence to a different list
 
 5. make it all pretty
 

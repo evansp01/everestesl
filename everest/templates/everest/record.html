@@ -4,9 +4,11 @@
 {% if language == 'english' %}
   {{ sentence }}
 {% else %}
+<ul>
 {% for trans in sentence.translations.all %}
-{{ trans }} <br/>
-{% endfor %}
+  <li>{{ trans }} <br/>
+  {% endfor %}
+</ul>  
 {% endif %}
 {% endblock %}
 
