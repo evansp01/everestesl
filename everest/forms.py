@@ -12,9 +12,6 @@ class NepaliTranslation(forms.Form):
     translation = forms.CharField(max_length=400)
 
 
-# TODO: Use RegexFields for username, first_name, last_name
-#TODO: Use EmailField for email
-
 class RegisterForm(forms.Form):
     username = forms.RegexField(regex=r'^[a-zA-Z0-9_]+$', max_length=20, label='Username');
     first_name = forms.RegexField(regex=r'^[a-zA-Z_]+$', max_length=20, label='First name')
@@ -41,7 +38,6 @@ class RegisterForm(forms.Form):
         # We must return the cleaned data we got from our parent.
         return cleaned_data
 
-
     # Customizes form validation for the username field.
     def clean_username(self):
         # Confirms that the username is not already present in the
@@ -60,6 +56,7 @@ class AddSentence(forms.Form):
 
 class AddLesson(forms.Form):
     title = forms.CharField(max_length=50)
+
 
 class ProfileForm(forms.Form):
     first_name = forms.CharField(max_length = 20)

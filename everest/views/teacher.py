@@ -9,7 +9,6 @@ from django.db import transaction
 from everest.forms import *
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
 
 def home(request):
     return render(request, 'everest/index.html', {})
@@ -43,6 +42,7 @@ def edit_lesson(request, lesson):  # TODO: actually use permissions
             new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
             new_sentence.save()
             lesson.sentences.add(new_sentence)
+            lesson.save()
         elif form.is_bound:
             context['errors'] = form.errors
     return render(request, 'everest/edit_lesson.html', context)
