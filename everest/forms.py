@@ -60,3 +60,10 @@ class AddSentence(forms.Form):
 
 class AddLesson(forms.Form):
     title = forms.CharField(max_length=50)
+
+class ProfileForm(forms.Form):
+    first_name = forms.CharField(max_length = 20)
+    last_name  = forms.CharField(max_length = 20)
+    email = forms.EmailField()
+    bio = forms.CharField(max_length = 430, required=False)
+#    user_type = forms.ChoiceField(choices=(('E', 'ESL Teacher'), ('T', 'Bhutanese Translator'), ('O', 'Other')))
