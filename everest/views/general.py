@@ -63,6 +63,8 @@ def view_user(request, username):
     context = {'profile': user.profile}
     return render(request, 'everest/profile.html', context)
 
+@login_required
+@transaction.atomic
 def manage_account(request):
     context = {}
     if request.method == 'GET':    # GET request: display form
@@ -76,13 +78,13 @@ def manage_account(request):
         return render(request, 'everest/account.html', context)
     
     else:    # valid form; make requested changes
-        request.user.first_name=form.cleaned_data['first_name'],
-        request.user.last_name=form.cleaned_data['last_name'],
-        request.user.email=form.cleaned_data['email'],
-        request.user.profile.bio=form.cleaned_data['bio'],
+        request.user.first_name=form.cleaned_data['first_name']
+        request.user.last_name=form.cleaned_data['last_name']
+        request.user.email=form.cleaned_data['email']
+        request.user.profile.bio=form.cleaned_data['bio']
     #    request.user.profile.user_type =form.cleaned_data['user_type']
-        request.user.save
-        request.user.profile.save
+        request.user.save()
+        request.user.profile.save()
         context['profile'] = request.user.profile
         return render(request, 'everest/profile.html', context)
     

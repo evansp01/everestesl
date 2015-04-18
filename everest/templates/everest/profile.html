@@ -1,7 +1,9 @@
 {% extends "everest/base.html" %}
 
 {% block title %} {{profile.userkey}} {% endblock %}
-{% block pageheader %} <h1>{{profile.userkey}}</h1 {% endblock %}
+{% block pageheader %}
+ {{profile.userkey}}
+{% endblock %}
 
 {% block content %}
 
