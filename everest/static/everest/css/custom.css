@@ -26,9 +26,8 @@ body {
 }
 
 .box {
-    border: 0px;
-    padding: 25px;
-    margin: 30px;
+    border: 1px;
+    background-color: #fefefe
 }
 
 .padleft {

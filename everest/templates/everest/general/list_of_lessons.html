@@ -3,5 +3,18 @@
 {% block pageheader %} Lessons {% endblock %}
 
 {% block content %}
-    {% include "everest/general/lessontable.html" %}
+
+<form action="#" method="post"> {% csrf_token %}
+    <div class="input-group">
+        <span class="input-group-addon">Search</span>
+        <input type="text" class="form-control" name="sentence" maxlength="200" autofocus>
+		  <span class="input-group-btn">
+		    <button class="btn btn-default" type="submit">Submit</button>
+		  </span>
+    </div>
+</form>
+
+<div class="smallskip"></div>
+
+{% include "everest/general/lessontable.html" %}
 {% endblock %}
