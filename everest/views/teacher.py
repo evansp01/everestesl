@@ -50,7 +50,3 @@ def edit_lesson(request, lesson):  # TODO: actually use permissions
 
 def user_lessons(request):
     return render(request, 'everest/general/list_of_lessons.html', {})
-
-
-def profile(request):
-    return render(request, 'everest/profile.html', {})

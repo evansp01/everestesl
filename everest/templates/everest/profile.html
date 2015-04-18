@@ -1,20 +1,24 @@
 {% extends "everest/base.html" %}
 
-
-{% block title %} Ursula Kumquat {% endblock %}
-{% block pageheader %} Ursula Kumquat {% endblock %}
+{% block title %} {{profile.userkey}} {% endblock %}
+{% block pageheader %} {{profile.userkey}} {% endblock %}
 
 {% block content %}
 
-    [PICTURE GOES HERE]
+<div class="row">
+  <div class="col-md-9">
+    BIO: {{profile.bio}}
+  </div>
 
-    <h3>Bio</h3>
-    <p>But what I do have are a very particular set of skills,
-        skills I have acquired over a very long career. </p>
+  <div class="col-md-3">
+    <img src="TODO" />
+  </div>
+</div>
 
-    <h3>Lessons</h3>
-    <ul class="list-unstyled">
-        <li><a href="{% url 'view_lesson' 0 %}"> The joy of rutabagas</a></li>
-    </ul>
+<div>
+  {% with lessons as profile.user.lessons %}
+  {% include "everest/general/lessontable.html" %}
+  {% endwith %}
+</div>
 
 {% endblock %}

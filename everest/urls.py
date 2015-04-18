@@ -21,15 +21,13 @@ urlpatterns += patterns('everest.views.general',
 urlpatterns += patterns('everest.views.teacher',
                         url(r'^teacher$', 'home', name='teacher_home'),
                         url(r'^teacher/create_lesson$', 'create_lesson', name='create_lesson'),
-                        url(r'^teacher/edit_lesson/(?P<lesson>[0-9]+)$', 'edit_lesson', name='edit_lesson'),
-                        url(r'^teacher/profile$', 'profile', name='teacher_profile')
+                        url(r'^teacher/edit_lesson/(?P<lesson>[0-9]+)$', 'edit_lesson', name='edit_lesson')
                         )
 
 urlpatterns += patterns('everest.views.translator',
                         url(r'^translator$', 'home', name='translator_home'),
                         url(r'^translator/need_translation$', 'need_translation', name='need_translation'),
-                        url(r'^translator/need_audio$', 'need_audio', name='need_audio'),
-                        url(r'^translator/profile$', 'profile', name='translator_profile')
+                        url(r'^translator/need_audio$', 'need_audio', name='need_audio')
                         )
 urlpatterns += patterns('everest.views.sentence',
                         url(r'^sentence/(?P<sentence>[0-9]+)$', 'view_sentence', name='view_sentence'),

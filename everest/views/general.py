@@ -58,16 +58,13 @@ def view_lesson(request, lesson):
     context = {'lesson': lesson}
     return render(request, 'everest/lesson.html', context)
 
-
 def view_user(request, username):
     user = get_object_or_404(User, username=username)
-    context = {'user': user}
+    context = {'profile': user.profile}
     return render(request, 'everest/profile.html', context)
-
 
 def manage_account(request):
     return render(request, 'everest/account.html', {})
-
 
 @transaction.atomic
 def register(request):
