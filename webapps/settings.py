@@ -56,16 +56,10 @@ TEMPLATE_CONTEXT_PROCESSORS += (
     'django.core.context_processors.request',
 )
 
-# HAYSTACK_CONNECTIONS = {
-# 'default': {
-#         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-#         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
-#     },
-# }
-
 HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
     },
 }
 
@@ -92,8 +86,8 @@ DATABASES = {'default': dj_database_url.config()}
 # Enable Connection Pooling (if desired)
 DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
-#if we did not find a database engine, use sqlite
-#this allows us to use sqlite locally, but postgres on heroku
+# if we did not find a database engine, use sqlite
+# this allows us to use sqlite locally, but postgres on heroku
 if 'NAME' not in DATABASES['default']:
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
