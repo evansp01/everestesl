@@ -9,5 +9,6 @@ staticfiles
 *.swp
 setenv_heroku.sh
 setenv.sh
+webapps/whoosh_index*
 /english/*
 .idea/*
