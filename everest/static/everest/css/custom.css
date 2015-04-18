@@ -6,7 +6,6 @@ body {
     color: #555;
     font-size: 22px;
     font-weight: 400;
-    display: block;
     margin-top: 5%;
     margin-bottom: 5%;
 }
@@ -21,49 +20,25 @@ body {
     margin-bottom: 15px;
 }
 
+.tableheading {
+    color: #555;
+    font-style: italic;
+}
+
 .box {
     border: 0px;
-    border-style: solid;
     padding: 25px;
     margin: 30px;
 }
 
-.profile-img {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
+.padleft {
+    margin-left: 2%;
 }
 
-.select-img {
-    border-radius: 50%;
-    display: block;
-    height: 75px;
-    margin: 0 30px 10px;
-    width: 75px;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
+.smallskip {
+    margin-top: 5%;
 }
 
-.select-name {
-    display: block;
-    margin: 30px 10px 10px;
-}
-
-.logo-img {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-
-.errorlist {
-    color: red;
+.bigskip {
+    margin-top: 15%;
 }

@@ -1,25 +1,24 @@
     <table class="table table-hover">
-        <!--
-        <tr>
-          <td> Lesson Name </td>
-          <td> Number of Sentences </td>
-          <td> Created By </td>
-          <td> Created Date </td>
-        </tr>
-        -->
+    <tr class="tableheading">
+        <td> Lesson</td>
+        <td> Created by</td>
+        <td> Created on</td>
+        <td> Contains</td>
+    </tr>
         {% for lesson in lessons %}
             <tr>
                 <td>
                     <a href="{% url 'view_lesson' lesson.id %}">{{ lesson|title }}</a>
                 </td>
+
                 <td>
-                    Contains {{ lesson.sentences.count }} sentence{{ lesson.sentences.count|pluralize }}
+                    <a href="{% url 'view_user' lesson.creator.username %}">{{ lesson.creator | lower }}</a>
                 </td>
                 <td>
-                    <i> created by <a href="#">{{ lesson.creator|lower }}</a></i>
+                    {{ lesson.created|date:"SHORT_DATE_FORMAT" }}
                 </td>
                 <td>
-                    <i> {{ lesson.created|date:"SHORT_DATE_FORMAT" }} </i>
+                   {{ lesson.sentences.count }} sentence{{ lesson.sentences.count|pluralize }}
                 </td>
             </tr>
         {% endfor %}
