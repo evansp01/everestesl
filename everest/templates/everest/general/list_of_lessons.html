@@ -3,30 +3,5 @@
 {% block pageheader %} Lessons {% endblock %}
 
 {% block content %}
-    <table class="table table-hover">
-        <!--
-        <tr>
-          <td> Lesson Name </td>
-          <td> Number of Sentences </td>
-          <td> Created By </td>
-          <td> Created Date </td>
-        </tr>
-        -->
-        {% for lesson in lessons %}
-            <tr>
-                <td>
-                    <a href="{% url 'view_lesson' lesson.id %}">{{ lesson|title }}</a>
-                </td>
-                <td>
-                    Contains {{ lesson.sentences.count }} sentence{{ lesson.sentences.count|pluralize }}
-                </td>
-                <td>
-                    <i> created by <a href="#">{{ lesson.creator|lower }}</a></i>
-                </td>
-                <td>
-                    <i> {{ lesson.created|date:"SHORT_DATE_FORMAT" }} </i>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+    {% include "everest/general/lessontable.html" %}
 {% endblock %}
