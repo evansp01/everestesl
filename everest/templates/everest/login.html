@@ -3,7 +3,7 @@
 
 {% block title %}Log in to Everest{% endblock %}
 {% block pageheader %}
-    <div class="title" align="center">Log in to Everest</div> {% endblock %}
+    <div align="center">Log in to Everest</div> {% endblock %}
 
 {% block form %}
     <form class="form-signin" method="post" action="{% url 'django.contrib.auth.views.login' %}">{% csrf_token %}
