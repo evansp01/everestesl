@@ -36,7 +36,7 @@ def find_lesson(request, userid=None):
     if not userid:
         userid = request.user.id
     user = get_object_or_404(User, id=userid)
-    head = user.username + "'s Sentences"
+    head = "All " + user.username + "'s Lessons"
     context = {'lessons': user.lessons.all(), 'head': head}
     return render(request, 'everest/lists/list_of_lessons.html', context)
 
