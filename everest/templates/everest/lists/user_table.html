@@ -8,11 +8,12 @@
                     </a>
                 </td>
                 <td>
-                    {{ user.userprofile.bio }} This is the user's bio which could be pretty long and have <br>lots of
-                    information
-                    which students can use to identify their class
-                </td>
-            </tr>
+                    {{ user.profile.bio }}
+            </td>
+            <td>
+                {{ user.profile.user_type }}
+            </td>
+               </tr>
         {% empty %}
             <tr>
                 <td>
