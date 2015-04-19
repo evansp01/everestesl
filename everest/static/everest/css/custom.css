@@ -1,13 +1,20 @@
 body {
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
 .title {
-    color: #555;
+    background-color: #006dcc;
+    color: #fff;
+    letter-spacing: .025em;
     font-size: 1.75em;
-    font-weight: 400;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    font-weight: 100;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    margin-right: 5%;
+    padding-top: 3%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .subtitle {
@@ -30,17 +37,9 @@ body {
     font-style: italic;
 }
 
-.box {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
+.padded {
+    padding: 5%;
 }
-
-.box-padded {
-    padding: 30px;
-    border: 1px solid #dddddd;
-    border-radius: 7px;
-    }
 
 .padleft {
     margin-left: 2%;

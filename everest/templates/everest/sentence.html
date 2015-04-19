@@ -111,7 +111,7 @@
     <div class="col-md-2">
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="subtitle">This sentence is in:</div>
+                <div class="subtitle">Lesson{{ sentence.lessons.count|pluralize }}:</div>
                 <ul class="list-unstyled">
                     {% for lesson in sentence.lessons.all %}
                     <li><a href="{% url 'view_lesson' lesson.id %}"> {{ lesson }} </a></li>
