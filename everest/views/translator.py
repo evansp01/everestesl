@@ -8,15 +8,12 @@ def home(request):
 
 
 def need_translation(request):
-    sentences = Sentence.objects.filter(translations__isnull=True)
-    return render(request, 'everest/lists/list_of_sentences.html', {'sentences': sentences})
+    context = {'sentences': Sentence.objects.filter(translations__isnull=True)}
+    context['head'] = "Sentences Needing Written Translation"
+    return render(request, 'everest/lists/list_of_sentences.html', context)
 
 
 def need_audio(request):
-    sentences = Sentence.objects.filter(nep_audio__isnull=True)
-    return render(request, 'everest/lists/list_of_sentences.html', {'sentences': sentences})
-
-
-def need_nepali(request):
-    sentences = Sentence.objects.filter(translations__isnull=True)
-    return render(request, 'everest/lists/list_of_sentences.html', {'sentences': sentences})
+    context = {'sentences': Sentence.objects.filter(nep_audio__isnull=True)}
+    context['head'] = "Sentences Needing Audio Translation"
+    return render(request, 'everest/lists/list_of_sentences.html', context)
