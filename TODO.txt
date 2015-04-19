@@ -1,15 +1,15 @@
 1. fix basic functionality
-   - add ability to add a sentence to a different list
    - add profiles & pic upload
-   - require audio recording when a sentence is created?
+   - should we require audio recording when a sentence is created?
 
-2. figure out mp3 creation/interleaving
+2. interleave mp3s when teacher creates mp3
 
-3. add search
+3. make search awesomer
 
 4. Ajaxify things
+   - add ability to add sentence to a different list
 
-5. make it all pretty
+5. make it all prettier
 
 6. decide about privileges/moderator
 
