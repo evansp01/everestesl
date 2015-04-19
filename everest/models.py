@@ -15,6 +15,8 @@ class Sentence(models.Model):
     def __unicode__(self):
         return self.english
 
+def picture_path(instance, filename):
+    return 'userpic/{0}{1}{2}'.format(instance.username, uuid.uuid4(), filename)
 
 class UserProfile(models.Model):
     userkey = models.OneToOneField(User, related_name='profile')

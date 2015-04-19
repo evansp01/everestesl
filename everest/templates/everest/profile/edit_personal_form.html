@@ -1,0 +1,51 @@
+<form class="form-horizontal" role="form" action="{% url 'change_personal' %}" method="post"> {% csrf_token %}
+    <div class="form-group">
+        <label class="col-lg-2 control-label">First name:</label>
+
+        <div class="col-lg-8">
+            <input class="form-control" type="text" value="{{ request.user.first_name }}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Last name:</label>
+
+        <div class="col-lg-8">
+            <input class="form-control" type="text" value="{{ request.user.last_name }}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Email:</label>
+
+        <div class="col-lg-8">
+            <input class="form-control" type="text" value="{{ request.user.email }}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Account Type:</label>
+
+        <div class="col-lg-8">
+            <div class="ui-select">
+                <select id="user_time_zone" class="form-control">
+                    <option value="ESL Teacher">ESL Teacher</option>
+                    <option value="Translator">Translator</option>
+                    <option value="Other" selected="selected">Other</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Bio:</label>
+
+        <div class="col-lg-8">
+            <textarea class="form-control" type="textarea" rows="2">{{ request.user.profile.bio }}</textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label"></label>
+
+        <div class="col-md-8">
+            <input type="submit" class="btn btn-primary" value="Save Changes">
+        </div>
+    </div>
+</form>
