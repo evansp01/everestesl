@@ -8,8 +8,7 @@ urlpatterns = patterns('everest.views',
                        )
 
 urlpatterns += patterns('everest.views.general',
-                        url(r'^lessons/all$', 'all_lessons', name='all_lessons'),
-                        url(r'^lessons/$', 'find_my_lessons', name='find_my_lessons'),
+                        url(r'^lessons/my$', 'find_my_lessons', name='find_my_lessons'),
                         url(r'^lessons/(?P<userid>[0-9]+)/$', 'find_lesson', name='find_lesson'),
                         url(r'^users/all$', 'all_users', name='all_users'),
                         url(r'^sentences/all$', 'all_sentences', name='all_sentences'),
@@ -47,6 +46,12 @@ urlpatterns += patterns('everest.views.delete',
                         url(r'^delete-sentence/(?P<sentence>[0-9]+)/(?P<lesson>[0-9]+)$', 'del_sentence',
                             name='del_sentence'),
                         url(r'^delete-lesson/(?P<lesson>[0-9]+)$', 'del_lesson', name='del_lesson')
+                        )
+
+urlpatterns += patterns('everest.views.search',
+                        url(r'^ajax/search_sentences$', 'search_sentence', name='search_sentence'),
+                        url(r'^lessons/$', 'search_lesson', name='search_lessons'),
+                        url(r'^ajax/search_user$', 'search_user', name='search_user'),
                         )
 
 urlpatterns += patterns('',

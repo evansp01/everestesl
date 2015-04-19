@@ -4,17 +4,40 @@
 
 {% block content %}
 
-<form action="#" method="post"> {% csrf_token %}
-    <div class="input-group">
-        <span class="input-group-addon">Search</span>
-        <input type="text" class="form-control" name="sentence" maxlength="200" autofocus>
+    <form id="filter-form" action="{% url 'search_lessons' %}" method="get">
+        <div class="input-group">
+            <input type="text" class="form-control" name="query" autofocus>
 		  <span class="input-group-btn">
-		    <button class="btn btn-default" type="submit">Submit</button>
+		    <button class="btn btn-default" type="submit">Filter</button>
 		  </span>
+        </div>
+    </form>
+
+    <div class="smallskip"></div>
+
+    <div id="filter-results">
+        {% include "everest/general/lesson_table.html" %}
     </div>
-</form>
 
-<div class="smallskip"></div>
-
-{% include "everest/general/lesson_table.html" %}
 {% endblock %}
+
+    {% block scripts %}
+    <script>
+    /*
+        $("#filter-form").on("submit", function (e) {
+            console.log("working");
+            $.ajax({
+                type: "GET",
+                url: $("form").attr('action'),
+                data: $("form").serialize(),
+                success: function (response) {
+                     $("#filter-form").find("button").blur();
+                    $("#filter-results").html(response);
+                }
+            });
+            e.preventDefault();
+            return false;
+        });
+        */
+    </script>
+    {% endblock %}

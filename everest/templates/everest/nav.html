@@ -28,7 +28,7 @@
                     {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="{% active request 'all_lessons' %}"><a href="{% url 'all_lessons' %}">Lessons</a></li>
+                    <li class="{% active request 'search_lessons' %}"><a href="{% url 'search_lessons' %}">Lessons</a></li>
                     <li class="{% active request 'all_users' %}"><a href="{% url 'all_users' %}">Users</a></li>
                     <li class="{% active request 'all_sentences' %}"><a href="{% url 'all_sentences' %}">Sentences</a>
                     </li>

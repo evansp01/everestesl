@@ -21,5 +21,18 @@
                    {{ lesson.sentences.count }} sentence{{ lesson.sentences.count|pluralize }}
                 </td>
             </tr>
+        {% empty %}
+            <tr>
+                <td>
+                    No Sentences Found
+                </td>
+
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
         {% endfor %}
     </table>
