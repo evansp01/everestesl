@@ -13,9 +13,9 @@
 {% endblock %}
 
 {% block content %}
-    <button id="button1">Record</button>
-    <button id="button2">Stop Recording</button>
-    <p id="progress">not recording</p>
+    <button class="btn btn-primary" id="button1">Record</button>
+    <button class="btn btn-default" id="button2">Stop Recording</button>
+    <p class="subtletext" id="progress">Not recording.</p>
     <br>
     <audio id="audio" controls hidden></audio>
 {% endblock %}
@@ -42,7 +42,7 @@
             button2.onclick = stopMyRecording;
             audio.muted = true;
             audio.hidden = true;
-            $("#progress").text("not recording");
+            $("#progress").text("Not recording.");
         };
 
         var currentlyRecording = function () {
@@ -66,7 +66,7 @@
             button2.onclick = noCurrentRecording;
             audio.muted = false;
             audio.hidden = false;
-            $("#progress").text("not recording");
+            $("#progress").text("");
         };
 
         var currentlyUploading = function () {
@@ -78,7 +78,7 @@
             button2.onclick = noCurrentRecording;
             audio.muted = false;
             audio.hidden = false;
-            $("#progress").text("not recording");
+            $("#progress").text("");
         };
 
         var audioUploadSuccess = function () {
@@ -88,12 +88,12 @@
             button2.disabled = false;
             button1.onclick = uploadCurrent;
             button2.onclick = function () {
-                console.log("yolooo");
+                console.log("Successfully uploaded audio!");
                 window.location.replace("{% url 'view_sentence' sentence.id %}");
             };
             audio.muted = true;
             audio.hidden = true;
-            $("#progress").text("not recording");
+            $("#progress").text("");
 
         };
 
@@ -106,7 +106,7 @@
             button2.onclick = noCurrentRecording();
             audio.muted = true;
             audio.hidden = true;
-            $("#progress").text("not recording");
+            $("#progress").text("Not recording.");
 
         }
 
