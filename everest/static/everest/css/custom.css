@@ -4,7 +4,7 @@ body {
 
 .title {
     color: #555;
-    font-size: 22px;
+    font-size: 1.75em;
     font-weight: 400;
     margin-top: 5%;
     margin-bottom: 5%;
@@ -12,12 +12,17 @@ body {
 
 .subtitle {
     color: #555;
-    font-size: 18px;
+    font-size: 1.4em;
     font-style: italic;
     font-weight: 200;
     display: block;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 5%
+}
+
+.subtletext{
+    font-style: italic;
+    font-weight: 200;
+    font-size: .8em;
 }
 
 .tableheading {
@@ -26,9 +31,16 @@ body {
 }
 
 .box {
-    border: 1px;
-    background-color: #fefefe
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
 }
+
+.box-padded {
+    padding: 30px;
+    border: 1px solid #dddddd;
+    border-radius: 7px;
+    }
 
 .padleft {
     margin-left: 2%;

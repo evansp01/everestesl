@@ -4,19 +4,20 @@
 
 {% block content %}
 
+<div class="title">
+    {{ lesson }}
+    {% if lesson.creator == user %}
+    <a class="btn btn-default btn-xs padleft" href="{% url 'edit_lesson' lesson.id %}" aria-label="Edit">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        Edit
+    </a>
+    {% endif %}
+</div>
+
 <div class="row" style="margin-bottom:4%">
     <div class="col-md-8">
-        <div class="title">
-            {{ lesson }}
-            {% if lesson.creator == user %}
-            <a class="btn btn-default btn-xs padleft" href="{% url 'edit_lesson' lesson.id %}" aria-label="Edit">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                Edit
-            </a>
-            {% endif %}
-        </div>
 
-        {% include "everest/general/sentencetable.html" with sentences=lesson.sentences.all %}
+        {% include "everest/general/sentence_table.html" with sentences=lesson.sentences.all %}
 
         <p class="bigskip">
             <button type="button" class="btn btn-primary" aria-label="Download">
@@ -26,16 +27,17 @@
     </div>
 
     <div class="col-md-4">
-        <div class="box">
+        <div class="box-padded">
             <div class="subtitle">Lesson info:</div>
             <ul class="list-unstyled">
                 <li>Created by
                     <a href="{% url 'view_user' lesson.creator.username %}">{{ lesson.creator|lower }}</a></li>
                 <li>Created on {{lesson.created|date:"SHORT_DATE_FORMAT"}}</li>
                 <li>Contains {{lesson.sentences.count}} sentence{{ lesson.sentences.count|pluralize }}</li>
-                </ul>
+            </ul>
         </div>
     </div>
+</div>
 
 </div>
 {% endblock %}
