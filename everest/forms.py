@@ -34,9 +34,7 @@ class ChangePersonalForm(forms.Form):
     last_name = forms.RegexField(regex=r'^[a-zA-Z_]+$', max_length=40, label='Last name')
     email = forms.EmailField(max_length=30, label='Email')
     bio = forms.CharField(max_length=430, required=False)
-    user_type = forms.CharField(max_length=20)
-
-    # user_type = forms.ChoiceField(choices=(('E', 'ESL Teacher'), ('T', 'Bhutanese Translator'), ('O', 'Other')))
+    user_type = forms.ChoiceField(choices=(('E', 'ESL Teacher'), ('T', 'Bhutanese Translator'), ('O', 'Other')))
 
 
 class ChangePasswordForm(forms.Form):

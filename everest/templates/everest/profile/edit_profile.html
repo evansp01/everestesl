@@ -20,7 +20,8 @@
 
                 <form id="picture-form" class="form-horizontal" role="form" action="{% url 'change_picture' %}"
                       method="post"> {% csrf_token %}
-                    <input type="file" id="picture-input" name="image" class="form-control">
+                    <div id="picture-errors"></div>
+                    <input type="file" id="picture-input" name="image" accept="image/*" class="form-control">
                     <input type="submit" class="btn" value="Upload Photo">
                 </form>
             </div>
@@ -67,7 +68,6 @@
         });
     </script>
     <script>
-        //TODO: don't reload form here, just clear
         $("#password-form").on("submit", function (e) {
             console.log("hai");
             $.ajax({
@@ -97,6 +97,9 @@
                     if (response['image'] != '') {
                         console.log("should replace");
                         $("#user-picture").attr("src", response['image']);
+                    }
+                    if (response['error'] != '') {
+                        $("#picture-errors").html(response['error']);
                     }
                     $("#picture-form").find("input").blur();
                     var pic_input = $("#picture-input");
