@@ -3,21 +3,17 @@
 {% block pageheader %} Teachers {% endblock %}
 
 {% block content %}
-    <table class="table table-hover">
-        {% for user in users %}
-            <tr>
-                <td style="width:30%">
-                    <a href="{% url 'view_user' user.username %}">
-                        {{ user.first_name|title }} {{ user.last_name|title }}&nbsp;
-                        ({{ user.username|lower }})
-                    </a>
-                </td>
-                <td>
-                    {{ user.userprofile.bio }} This is the user's bio which could be pretty long and have <br>lots of
-                    information
-                    which students can use to identify their class
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+
+    <form action="{% url 'search_users' %}" method="get">
+        <div class="input-group">
+            <input type="text" class="form-control" name="query" value="{{ query }}" autofocus>
+		  <span class="input-group-btn">
+		    <button class="btn btn-default" type="submit">Filter</button>
+		  </span>
+        </div>
+    </form>
+
+    <div class="smallskip"></div>
+
+    {% include "everest/general/user_table.html" %}
 {% endblock %}

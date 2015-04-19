@@ -1,0 +1,23 @@
+<table class="table table-hover">
+        {% for user in users %}
+            <tr>
+                <td style="width:30%">
+                    <a href="{% url 'view_user' user.username %}">
+                        {{ user.first_name|title }} {{ user.last_name|title }}&nbsp;
+                        ({{ user.username|lower }})
+                    </a>
+                </td>
+                <td>
+                    {{ user.userprofile.bio }} This is the user's bio which could be pretty long and have <br>lots of
+                    information
+                    which students can use to identify their class
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td>
+                    No Users Found
+                </td>
+            </tr>
+        {% endfor %}
+    </table>

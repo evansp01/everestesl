@@ -4,9 +4,9 @@
 
 {% block content %}
 
-    <form id="filter-form" action="{% url 'search_lessons' %}" method="get">
+    <form action="{% url 'search_lessons' %}" method="get">
         <div class="input-group">
-            <input type="text" class="form-control" name="query" autofocus>
+            <input type="text" class="form-control" name="query" value="{{ query }}" autofocus>
 		  <span class="input-group-btn">
 		    <button class="btn btn-default" type="submit">Filter</button>
 		  </span>
@@ -15,29 +15,7 @@
 
     <div class="smallskip"></div>
 
-    <div id="filter-results">
-        {% include "everest/general/lesson_table.html" %}
-    </div>
+    {% include "everest/general/lesson_table.html" %}
+
 
 {% endblock %}
-
-    {% block scripts %}
-    <script>
-    /*
-        $("#filter-form").on("submit", function (e) {
-            console.log("working");
-            $.ajax({
-                type: "GET",
-                url: $("form").attr('action'),
-                data: $("form").serialize(),
-                success: function (response) {
-                     $("#filter-form").find("button").blur();
-                    $("#filter-results").html(response);
-                }
-            });
-            e.preventDefault();
-            return false;
-        });
-        */
-    </script>
-    {% endblock %}

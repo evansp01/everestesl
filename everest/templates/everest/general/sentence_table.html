@@ -34,11 +34,17 @@
                 {% endif %}
             </td>
             <td>
-                {{ sentence.lessons.count }} lesson{{ lesson.sentences.count|pluralize }}
+                {{ sentence.lessons.count }} lesson{{ sentence.lessons.count|pluralize }}
             </td>
             <td>
                 {{ sentence.created|date:"SHORT_DATE_FORMAT" }}
             </td>
         </tr>
-    {% endfor %}
+        {% empty %}
+            <tr>
+                <td>
+                    No Sentences Found
+                </td>
+            </tr>
+        {% endfor %}
 </table>

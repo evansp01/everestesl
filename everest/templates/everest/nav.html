@@ -29,8 +29,8 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="{% active request 'search_lessons' %}"><a href="{% url 'search_lessons' %}">Lessons</a></li>
-                    <li class="{% active request 'all_users' %}"><a href="{% url 'all_users' %}">Users</a></li>
-                    <li class="{% active request 'all_sentences' %}"><a href="{% url 'all_sentences' %}">Sentences</a>
+                    <li class="{% active request 'search_users' %}"><a href="{% url 'search_users' %}">Users</a></li>
+                    <li class="{% active request 'search_sentences' %}"><a href="{% url 'search_sentences' %}">Sentences</a>
                     </li>
                     <li class="dropdown {% active request 'teacher_home' %}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Teacher
@@ -42,7 +42,7 @@
                             <li><a href="{% url 'find_my_lessons' %}">View My Lessons</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Profile</li>
-                            <li class="{% active request 'all_users' %}"><a href="{% url 'all_users' %}">My Profile</a>
+                            <li class="{% active request 'search_users' %}"><a href="{% url 'search_users' %}">My Profile</a>
                             </li>
                         </ul>
                     </li>
@@ -57,7 +57,7 @@
                                 Needing Audio</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Profile</li>
-                            <li class="{% active request 'all_users' %}"><a href="{% url 'all_users' %}">My Profile</a>
+                            <li class="{% active request 'search_users' %}"><a href="{% url 'search_users' %}">My Profile</a>
                             </li>
                         </ul>
                     </li>

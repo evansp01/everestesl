@@ -10,9 +10,8 @@ urlpatterns = patterns('everest.views',
 urlpatterns += patterns('everest.views.general',
                         url(r'^lessons/my$', 'find_my_lessons', name='find_my_lessons'),
                         url(r'^lessons/(?P<userid>[0-9]+)/$', 'find_lesson', name='find_lesson'),
-                        url(r'^users/all$', 'all_users', name='all_users'),
-                        url(r'^sentences/all$', 'all_sentences', name='all_sentences'),
                         url(r'^lesson/(?P<lesson>[0-9]+)$', 'view_lesson', name='view_lesson'),
+                        # todo regex
                         url(r'^user/(?P<username>.*)$', 'view_user', name='view_user'),
                         url(r'^manage_account$', 'manage_account', name='manage_account'),
                         )
@@ -49,9 +48,9 @@ urlpatterns += patterns('everest.views.delete',
                         )
 
 urlpatterns += patterns('everest.views.search',
-                        url(r'^ajax/search_sentences$', 'search_sentence', name='search_sentence'),
+                        url(r'^sentences/$', 'search_sentence', name='search_sentences'),
                         url(r'^lessons/$', 'search_lesson', name='search_lessons'),
-                        url(r'^ajax/search_user$', 'search_user', name='search_user'),
+                        url(r'^users/$', 'search_user', name='search_users'),
                         )
 
 urlpatterns += patterns('',
