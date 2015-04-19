@@ -2,25 +2,41 @@
 
 {% block title %} {{profile.userkey}} {% endblock %}
 {% block pageheader %}
- {{profile.userkey}}
+{{profile.userkey.first_name}} {{profile.userkey.last_name}} <i>({{profile.userkey}})</i>
 {% endblock %}
 
 {% block content %}
 
 <div class="row">
-  <div class="col-md-9">
-    BIO: {{profile.bio}}
-  </div>
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p class="subtitle">Bio</p>
+                {% if profile.bio %}
+                {{profile.bio}}
+                {% else %}
+                <p class="subtletext">User has no bio.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
-  <div class="col-md-3">
-    <img src="TODO" />
-  </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <img src="TODO" />
+            </div>
+        </div>
+    </div>
 </div>
 
-<div>
-  {% with lessons as profile.user.lessons %}
-  {% include "everest/general/lesson_table.html" %}
-  {% endwith %}
+<div class="panel panel-default">
+    <div class="panel-body">
+        <p class="subtitle">{{profile.userkey}}'s Lessons</p>
+        {% with lessons as profile.user.lessons %}
+        {% include "everest/general/lesson_table.html" %}
+        {% endwith %}
+    </div>
 </div>
 
 {% endblock %}
