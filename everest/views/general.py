@@ -31,9 +31,7 @@ def all_users(request):
     return render(request, 'everest/lists/list_of_users.html', context)
 
 
-def find_lesson(request, userid=None):
-    if not userid:
-        userid = request.user.id
+def find_lesson(request, userid):
     user = get_object_or_404(User, id=userid)
     head = "All " + user.username + "'s Lessons"
     context = {'lessons': user.lessons.all(), 'head': head}
@@ -42,7 +40,7 @@ def find_lesson(request, userid=None):
 
 @login_required
 def find_my_lessons(request):
-    return redirect('find_lesson', userid=request.user.id)
+    return redirect('find_lesson', request.user.id)
 
 # TODO do we ever use this???
 def find_sentence(request, userid):
