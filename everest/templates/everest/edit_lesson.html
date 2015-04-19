@@ -3,11 +3,13 @@
 {% block title %}Everest Lesson {% endblock %}
 
 {% block pageheader %}
-{{ lesson }}
-<form class="button-form" action="{% url 'del_lesson' lesson.id %}" method="post">
-    <input class="btn btn-danger btn-sm padleft" type="submit" value="Delete lesson">
-    {% csrf_token %}
-</form>
+<div class="title">
+    {{ lesson }}
+    <form class="button-form" action="{% url 'del_lesson' lesson.id %}" method="post">
+        <input class="btn btn-danger btn-sm padleft" type="submit" value="Delete lesson">
+        {% csrf_token %}
+    </form>
+</div>
 {% endblock %}
 
 {% block content %}

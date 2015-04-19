@@ -2,7 +2,11 @@
 
 {% block title %} Sentence {{ sentence.id }} {% endblock %}
 
-{% block pageheader %} {{sentence}} {% endblock %}
+{% block pageheader %}
+<div class="title">
+    {{sentence}}
+</div>
+{% endblock %}
 
 {% block content %}
 <div class="row">

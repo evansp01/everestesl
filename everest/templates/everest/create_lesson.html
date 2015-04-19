@@ -1,7 +1,9 @@
 {% extends "everest/base.html" %}
 
 {% block title %}Everest Lesson {% endblock %}
-{% block pageheader %} Create Lesson {% endblock %}
+{% block pageheader %}
+    <div class="title">Create Lesson</div>
+{% endblock %}
 
 {% block content %}
     <form action="{% url 'create_lesson' %}" method="post"> {% csrf_token %}

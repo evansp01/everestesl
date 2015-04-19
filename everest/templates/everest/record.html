@@ -1,27 +1,29 @@
 {% extends "everest/base.html" %}
 
 {% block pageheader %}
+<div class="title">
     {% if language == 'english' %}
-        {{ sentence }}
+    {{ sentence }}
     {% else %}
-        <ul>
-            {% for trans in sentence.translations.all %}
-                <li>{{ trans }}</li>
-            {% endfor %}
-        </ul>
-	{% endif %}
+    <ul>
+        {% for trans in sentence.translations.all %}
+        <li>{{ trans }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
 {% endblock %}
 
 {% block content %}
-    <button class="btn btn-primary" id="button1">Record</button>
-    <button class="btn btn-default" id="button2">Stop Recording</button>
-    <p class="subtletext" id="progress">Not recording.</p>
-    <br>
-    <audio id="audio" controls hidden></audio>
+<button class="btn btn-primary" id="button1">Record</button>
+<button class="btn btn-default" id="button2">Stop Recording</button>
+<p class="subtletext" id="progress">Not recording.</p>
+<br>
+<audio id="audio" controls hidden></audio>
 {% endblock %}
 
 {% block scripts %}
-    <script>
+<script>
         function getByID(id) {
             return document.getElementById(id);
         }
@@ -31,7 +33,7 @@
     </script>
 
 
-    <script>
+<script>
 
         var noCurrentRecording = function () {
             button1.innerHTML = "Record";
@@ -112,7 +114,7 @@
 
     </script>
 
-    <script>
+<script>
         //{% csrf_token %}
         $.ajaxSetup({
             beforeSend: function (xhr, settings) {
@@ -205,6 +207,6 @@
         };
         noCurrentRecording();
     </script>
-    <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 {% endblock %}

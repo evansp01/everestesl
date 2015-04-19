@@ -1,8 +1,9 @@
 1. fix basic functionality
    - add profiles & pic upload
    - ability to add sentence to different list
-   - change list-of-sentence header to need-translation, etc.
+   - change list-of-sentence and list-of-lesson header to need-translation, etc.
    - should we require audio recording when a sentence is created?
+   - make user types a thing
 
 2. interleave mp3s when teacher creates mp3
 
@@ -13,3 +14,5 @@
 5. display related sentences during sentence creation (TFIDF)
 
 6. remove deleted audio files from S3
+
+7. make index redirect to the user type's main page

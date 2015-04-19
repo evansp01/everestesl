@@ -2,7 +2,9 @@
 
 {% block title %} {{profile.userkey}} {% endblock %}
 {% block pageheader %}
-{{profile.userkey.first_name}} {{profile.userkey.last_name}} <i>({{profile.userkey}})</i>
+<div class="title">
+    {{profile.userkey.first_name}} {{profile.userkey.last_name}} <i>({{profile.userkey}})</i>
+</div>
 {% endblock %}
 
 {% block content %}
