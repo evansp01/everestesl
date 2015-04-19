@@ -6,6 +6,8 @@
         <td> Nepali audio</td>
         <td> Contained in</td>
         <td> Date created</td>
+        <td> Delete </td>
+
     </tr>
     {% for sentence in sentences %}
     <tr>
@@ -38,6 +40,12 @@
         </td>
         <td>
             {{ sentence.created|date:"SHORT_DATE_FORMAT" }}
+        </td>
+        <td>
+            <form action="{% url 'del_sentence' sentence.id lesson.id %}" method="post">
+            {% csrf_token %}
+            <input class="btn btn-danger btn-xs" type="submit" value="Delete">
+            </form>
         </td>
     </tr>
     {% empty %}

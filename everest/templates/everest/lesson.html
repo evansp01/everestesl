@@ -35,9 +35,9 @@
                 <div class="subtitle">Lesson info:</div>
                 <ul class="list-unstyled">
                     <li>Created by
-                        <a href="{% url 'view_user' lesson.creator.username %}">{{ lesson.creator|lower }}</a></li>
-                    <li>Created on {{lesson.created|date:"SHORT_DATE_FORMAT"}}</li>
-                    <li>Contains {{lesson.sentences.count}} sentence{{ lesson.sentences.count|pluralize }}</li>
+                        <a href="{% url 'view_user' lesson.creator.username %}">{{ lesson.creator|lower }}.</a></li>
+                    <li>Created on {{lesson.created|date:"SHORT_DATE_FORMAT"}}.</li>
+                    <li>Contains {{lesson.sentences.count}} sentence{{ lesson.sentences.count|pluralize }}.</li>
                 </ul>
             </div>
         </div>

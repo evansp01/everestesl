@@ -37,6 +37,10 @@ body {
     font-style: italic;
 }
 
+.button-form {
+    display: inline;
+}
+
 .padded {
     padding: 5%;
 }

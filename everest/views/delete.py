@@ -66,9 +66,6 @@ def del_sentence(request, sentence, lesson):
         lesson.sentences.remove(sentence)
         sentenceWasDeleted = cleanup(sentence)
 
-    if sentenceWasDeleted:
-        context = {'sentences': Sentence.objects.all()}
-        return render(request, 'everest/general/list_of_sentences.html', context)
     context = {'lesson': lesson}
     return render(request, 'everest/edit_lesson.html', context)
 

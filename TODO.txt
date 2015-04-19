@@ -1,18 +1,15 @@
 1. fix basic functionality
    - add profiles & pic upload
+   - ability to add sentence to different list
+   - when delete sentence from lesson - go back to lesson, not sentence?
    - should we require audio recording when a sentence is created?
 
 2. interleave mp3s when teacher creates mp3
 
-3. make search awesomer
+3. Ajaxify sentences.html
 
-4. Ajaxify things
-   - add ability to add sentence to a different list
+4. decide about privileges/moderator
 
-5. make it all prettier
+5. display related sentences during sentence creation (TFIDF)
 
-6. decide about privileges/moderator
-
-7. display related sentences during sentence creation (TFIDF)
-
-8. remove deleted audio files from S3
+6. remove deleted audio files from S3

@@ -14,7 +14,7 @@
                     {% for translation in sentence.translations.all %}
                     <li>{{ translation }}
                         {% if translation.creator == user %}
-                        <form action="{% url 'del_translation' translation.id %}" method="post">
+                        <form action="{% url 'del_translation' translation.id %}" method="post" class="button-form">
                             <input class="btn btn-default btn-xs pull-right" type="submit" value="Delete"> {% csrf_token %}
                         </form>
                         {% endif %}
@@ -56,7 +56,7 @@
                     </li>
                     <li>
                         {% if audio.creator == user %}
-                        <form action="{% url 'del_englishaudio' audio.id %}" method="post">
+                        <form action="{% url 'del_englishaudio' audio.id %}" method="post" class="button-form">
                             <input class="btn btn-default btn-xs pull-right" type="submit" value="Delete">  {% csrf_token %}
                         </form>
                         {% endif %}
@@ -88,7 +88,7 @@
                     </li>
                     <li>
                         {% if audio.creator == user %}
-                        <form action="{% url 'del_nepaliaudio' audio.id %}" method="post">
+                        <form action="{% url 'del_nepaliaudio' audio.id %}" method="post" class="button-form">
                             <input class="btn btn-default btn-xs pull-right" type="submit" value="Delete">  {% csrf_token %}
                         </form>
                         {% endif %}
