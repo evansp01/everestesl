@@ -41,7 +41,7 @@
                             <li><a href="{% url 'find_my_lessons' %}">View My Lessons</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Profile</li>
-                            <li class="{% active request 'search_users' %}"><a href="{% url 'search_users' %}">My Profile</a>
+                            <li class="{% active request 'view_self' %}"><a href="{% url 'view_self' %}">My Profile</a>
                             </li>
                         </ul>
                     </li>
@@ -56,7 +56,7 @@
                                 Needing Audio</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Profile</li>
-                            <li class="{% active request 'search_users' %}"><a href="{% url 'search_users' %}">My Profile</a>
+                            <li class="{% active request 'view_self' %}"><a href="{% url 'view_self' %}">My Profile</a>
                             </li>
                         </ul>
                     </li>

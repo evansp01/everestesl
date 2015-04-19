@@ -6,6 +6,7 @@ urlpatterns = patterns('everest.views.general',
                        url(r'^lessons/(?P<userid>[0-9]+)/$', 'find_lesson', name='find_lesson'),
                        url(r'^lesson/(?P<lesson>[0-9]+)$', 'view_lesson', name='view_lesson'),
                        url(r'^user/(?P<username>[a-zA-Z0-9_]+)$', 'view_user', name='view_user'),
+                       url(r'^user/$', 'view_self', name='view_self'),
                        url(r'^register$', 'register', name='register'),
                        url(r'^$', 'home', name='home'),
                        )
