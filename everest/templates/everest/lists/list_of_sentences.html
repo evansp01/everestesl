@@ -2,7 +2,11 @@
 
 {% block pageheader %}
 <div class="title">
-    Sentences
+    {% if head %}
+        {{head}}
+    {% else %}
+        All Sentences
+    {% endif %}
 </div>{% endblock %}
 
 {% block content %}

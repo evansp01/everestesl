@@ -15,3 +15,8 @@ def need_translation(request):
 def need_audio(request):
     sentences = Sentence.objects.filter(nep_audio__isnull=True)
     return render(request, 'everest/lists/list_of_sentences.html', {'sentences': sentences})
+
+
+def need_nepali(request):
+    sentences = Sentence.objects.filter(translations__isnull=True)
+    return render(request, 'everest/lists/list_of_sentences.html', {'sentences': sentences})

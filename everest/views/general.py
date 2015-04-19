@@ -17,17 +17,18 @@ def home(request):
 
 
 def all_lessons(request):
-    context = {'lessons': Lesson.objects.all()}
+    context = {'lessons': Lesson.objects.all(), 'head': "All Lessons"}
     return render(request, 'everest/lists/list_of_lessons.html', context)
 
 
 def all_sentences(request):
-    context = {'sentences': Sentence.objects.all()}
+    context = {'sentences': Sentence.objects.all(), 'head': "All Sentences"}
     return render(request, 'everest/lists/list_of_sentences.html', context)
 
 
 def all_users(request):
-    context = {'users': User.objects.all()}
+    head = 'All Users'
+    context = {'users': User.objects.all(), 'head': head}
     return render(request, 'everest/lists/list_of_users.html', context)
 
 
@@ -35,7 +36,8 @@ def find_lesson(request, userid=None):
     if not userid:
         userid = request.user.id
     user = get_object_or_404(User, id=userid)
-    context = {'lessons': user.lessons.all()}
+    head = user.username + "'s Sentences"
+    context = {'lessons': user.lessons.all(), 'head': head}
     return render(request, 'everest/lists/list_of_lessons.html', context)
 
 
@@ -43,9 +45,9 @@ def find_lesson(request, userid=None):
 def find_my_lessons(request):
     return redirect('find_lesson', userid=request.user.id)
 
-
+# TODO do we ever use this???
 def find_sentence(request, userid):
-    context = {'sentences': userid.sentences.all()}
+    context = {'sentences': userid.sentences.all(), 'head': "All Sentences"}
     return render(request, 'everest/lists/list_of_sentences.html', context)
 
 
@@ -119,10 +121,11 @@ def register(request):
     UserProfile.objects.create(
         userkey=new_user,
         bio='',
+        user_type='O'
     )
 
     # Logs in the new user and redirects to main page
     new_user = authenticate(username=request.POST['username'],
                             password=request.POST['password1'])
     login(request, new_user)
-    return redirect(reverse('home'))
+    return redirect(reverse('manage_account'))

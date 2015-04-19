@@ -16,7 +16,7 @@ def del_translation(request, translation):
         sentenceWasDeleted = cleanup(sentence)
 
     if sentenceWasDeleted:
-        context = {'sentences': Sentence.objects.all()}
+        context = {'sentences': Sentence.objects.all(), 'head': "All Sentences"}
         return render(request, 'everest/lists/list_of_sentences.html', context)
     context = {'sentence': sentence}
     return render(request, 'everest/sentence/sentence.html', context)
@@ -33,7 +33,7 @@ def del_englishaudio(request, audio):
         sentenceWasDeleted = cleanup(sentence)
 
     if sentenceWasDeleted:
-        context = {'sentences': Sentence.objects.all()}
+        context = {'sentences': Sentence.objects.all(), 'head': "All Sentences"}
         return render(request, 'everest/lists/list_of_sentences.html', context)
     context = {'sentence': sentence}
     return render(request, 'everest/sentence/sentence.html', context)
@@ -50,7 +50,7 @@ def del_nepaliaudio(request, audio):
         sentenceWasDeleted = cleanup(sentence)
 
     if sentenceWasDeleted:
-        context = {'sentences': Sentence.objects.all()}
+        context = {'sentences': Sentence.objects.all(), 'head': "All Sentences"}
         return render(request, 'everest/lists/list_of_sentences.html', context)
     context = {'sentence': sentence}
     return render(request, 'everest/sentence/sentence.html', context)
@@ -80,7 +80,7 @@ def del_lesson(request, lesson):
             for sentence in lesson.sentences.all():
                 cleanup(sentence)
     lesson.delete()
-    context = {'lessons': Lesson.objects.all()}
+    context = {'lessons': Lesson.objects.all(), 'head': "All Lessons"}
     return render(request, 'everest/lists/list_of_lessons.html', context)
 
 

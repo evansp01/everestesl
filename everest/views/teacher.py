@@ -58,4 +58,3 @@ def add_sentence(request, sentence, lesson):
         lesson.sentences.add(sentence)
         lesson.save()
         return render(request, 'everest/lesson/edit_lesson.html', {'lesson': lesson})
-    return render(request, 'everest/sentence/sentence.html', {'sentence': sentence})

@@ -2,7 +2,11 @@
 
 {% block pageheader %}
 <div class="title">
-    Teachers
+    {% if head %}
+        {{head}}
+    {% else %}
+        All Users
+    {% endif %}
 </div>{% endblock %}
 
 {% block content %}
