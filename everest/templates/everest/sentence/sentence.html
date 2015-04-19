@@ -10,10 +10,10 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="subtitle">Nepali translations</div>
+                <div class="subtitle">Nepali translation{{ sentence.translations.count|pluralize }}:</div>
                 <ol>
                     {% for translation in sentence.translations.all %}
                     <li>{{ translation }}
@@ -48,11 +48,11 @@
                 </form>
             </div>
         </div></div>
-    <div class="col-md-5">
+    <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-body">
 
-                <div class="subtitle">English audio</div>
+                <div class="subtitle">English audio:</div>
                 <ul class="list-unstyled">
                     {% for audio in sentence.eng_audio.all %}
                     <li>
@@ -84,7 +84,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
 
-                <div class="subtitle">Nepali audio</div>
+                <div class="subtitle">Nepali audio:</div>
                 <ul class="list-unstyled">
                     {% for audio in sentence.nep_audio.all %}
                     <li>
@@ -112,19 +112,29 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="subtitle">Lesson{{ sentence.lessons.count|pluralize }}:</div>
+                <div class="subtitle">In lesson{{ sentence.lessons.count|pluralize }}:</div>
                 <ul class="list-unstyled">
                     {% for lesson in sentence.lessons.all %}
                     <li><a href="{% url 'view_lesson' lesson.id %}"> {{ lesson }} </a></li>
                     {% endfor %}
                 </ul>
-                <a href="" type="button" class="btn btn-default btn-xs">
-                    Add to your lesson
-                </a>
+
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                        Add to your lesson!
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        {% for lesson in user.lessons.all %}
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'add_sentence' sentence.id lesson.id %}">{{lesson}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}

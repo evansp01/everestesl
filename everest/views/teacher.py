@@ -47,6 +47,15 @@ def edit_lesson(request, lesson):  # TODO: actually use permissions
             context['errors'] = form.errors
     return render(request, 'everest/lesson/edit_lesson.html', context)
 
-
-def user_lessons(request):
-    return render(request, 'everest/lists/list_of_lessons.html', {})
+@login_required
+@transaction.atomic
+def add_sentence(request, sentence, lesson):
+    sentence = get_object_or_404(Sentence, id=sentence)
+    lesson = get_object_or_404(Lesson, id=lesson)
+    if request.user != lesson.creator:
+        raise Http404("Access denied")
+    else:
+        lesson.sentences.add(sentence)
+        lesson.save()
+        return render(request, 'everest/lesson/edit_lesson.html', {'lesson': lesson})
+    return render(request, 'everest/sentence/sentence.html', {'sentence': sentence})

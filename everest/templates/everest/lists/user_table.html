@@ -1,7 +1,7 @@
 <table class="table table-hover">
     <tr class="info tableheading">
-        <td style="width:25%"> User name</td>
-        <td style="width:25%"> Nickname</td>
+        <td style="width:25%"> Name</td>
+        <td style="width:25%"> Username</td>
         <td style="width:50%"> Bio</td>
     </tr>
     {% for user in users %}
@@ -22,7 +22,7 @@
     {% empty %}
     <tr>
         <td>
-            No Users Found
+            <p class="subtletext">No users found.</p>
         </td>
     </tr>
 

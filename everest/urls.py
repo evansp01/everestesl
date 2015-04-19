@@ -13,7 +13,9 @@ urlpatterns = patterns('everest.views.general',
 urlpatterns += patterns('everest.views.teacher',
                         url(r'^teacher$', 'home', name='teacher_home'),
                         url(r'^teacher/create_lesson$', 'create_lesson', name='create_lesson'),
-                        url(r'^teacher/edit_lesson/(?P<lesson>[0-9]+)$', 'edit_lesson', name='edit_lesson')
+                        url(r'^teacher/edit_lesson/(?P<lesson>[0-9]+)$', 'edit_lesson', name='edit_lesson'),
+                        url(r'^teacher/add_sentence/(?P<sentence>[0-9]+)/(?P<lesson>[0-9]+)$', 'add_sentence',
+                            name='add_sentence'),
                         )
 
 urlpatterns += patterns('everest.views.translator',
