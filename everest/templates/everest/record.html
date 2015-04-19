@@ -6,7 +6,7 @@
     {% else %}
         <ul>
             {% for trans in sentence.translations.all %}
-                <li>{{ trans }} <br/>
+                <li>{{ trans }} <li/>
             {% endfor %}
         </ul>
 	{% endif %}
@@ -88,6 +88,7 @@
             button2.disabled = false;
             button1.onclick = uploadCurrent;
             button2.onclick = function () {
+                console.log("yolooo");
                 window.location.replace("{% url 'view_sentence' sentence.id %}");
             };
             audio.muted = true;
