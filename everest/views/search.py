@@ -22,6 +22,7 @@ def search_user(request):
             sqs = SearchQuerySet().models(User).filter(content=clean_query)
             context['users'] = list(query_unique(sqs))
             context['query'] = request.GET['query']
+            context['head'] = "Users Containing '" + clean_query + "'"
 
     if 'users' not in context:
         context['users'] = User.objects.all()
@@ -37,6 +38,7 @@ def search_lesson(request):
             sqs = SearchQuerySet().models(Lesson).filter(content=clean_query)
             context['lessons'] = list(query_unique(sqs))
             context['query'] = request.GET['query']
+            context['head'] = "Lessons Containing '" + clean_query + "'"
 
     if 'lessons' not in context:
         context['lessons'] = Lesson.objects.all()
@@ -52,6 +54,7 @@ def search_sentence(request):
             sqs = SearchQuerySet().models(Sentence).filter(content=clean_query)
             context['sentences'] = list(query_unique(sqs))
             context['query'] = request.GET['query']
+            context['head'] = "Sentences Containing '" + clean_query + "'"
 
     if 'sentences' not in context:
         context['sentences'] = Sentence.objects.all()
