@@ -17,9 +17,9 @@ def del_translation(request, translation):
 
     if sentenceWasDeleted:
         context = {'sentences': Sentence.objects.all()}
-        return render(request, 'everest/general/list_of_sentences.html', context)
+        return render(request, 'everest/lists/list_of_sentences.html', context)
     context = {'sentence': sentence}
-    return render(request, 'everest/sentence.html', context)
+    return render(request, 'everest/sentence/sentence.html', context)
 
 
 @login_required
@@ -34,9 +34,9 @@ def del_englishaudio(request, audio):
 
     if sentenceWasDeleted:
         context = {'sentences': Sentence.objects.all()}
-        return render(request, 'everest/general/list_of_sentences.html', context)
+        return render(request, 'everest/lists/list_of_sentences.html', context)
     context = {'sentence': sentence}
-    return render(request, 'everest/sentence.html', context)
+    return render(request, 'everest/sentence/sentence.html', context)
 
 
 @login_required
@@ -51,9 +51,9 @@ def del_nepaliaudio(request, audio):
 
     if sentenceWasDeleted:
         context = {'sentences': Sentence.objects.all()}
-        return render(request, 'everest/general/list_of_sentences.html', context)
+        return render(request, 'everest/lists/list_of_sentences.html', context)
     context = {'sentence': sentence}
-    return render(request, 'everest/sentence.html', context)
+    return render(request, 'everest/sentence/sentence.html', context)
 
 
 @login_required
@@ -67,7 +67,7 @@ def del_sentence(request, sentence, lesson):
         sentenceWasDeleted = cleanup(sentence)
 
     context = {'lesson': lesson}
-    return render(request, 'everest/edit_lesson.html', context)
+    return render(request, 'everest/lesson/edit_lesson.html', context)
 
 
 @login_required
@@ -81,7 +81,7 @@ def del_lesson(request, lesson):
                 cleanup(sentence)
     lesson.delete()
     context = {'lessons': Lesson.objects.all()}
-    return render(request, 'everest/general/list_of_lessons.html', context)
+    return render(request, 'everest/lists/list_of_lessons.html', context)
 
 
 # returns True if deleted sentence

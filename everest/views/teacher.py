@@ -26,7 +26,7 @@ def create_lesson(request):
             return edit_lesson(request, new_lesson.id)
         else:
             context['errors'] = form.errors
-    return render(request, 'everest/create_lesson.html', context)
+    return render(request, 'everest/lesson/create_lesson.html', context)
 
 
 @login_required
@@ -45,8 +45,8 @@ def edit_lesson(request, lesson):  # TODO: actually use permissions
             lesson.save()
         elif form.is_bound:
             context['errors'] = form.errors
-    return render(request, 'everest/edit_lesson.html', context)
+    return render(request, 'everest/lesson/edit_lesson.html', context)
 
 
 def user_lessons(request):
-    return render(request, 'everest/general/list_of_lessons.html', {})
+    return render(request, 'everest/lists/list_of_lessons.html', {})

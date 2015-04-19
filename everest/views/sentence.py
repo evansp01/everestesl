@@ -19,21 +19,21 @@ SERVER_SIDE_ENCODING = 'mp3'
 def view_sentence(request, sentence):
     sentence = get_object_or_404(Sentence, id=sentence)
     context = {'sentence': sentence}
-    return render(request, 'everest/sentence.html', context)
+    return render(request, 'everest/sentence/sentence.html', context)
 
 
 @login_required
 def record_english(request, sentence):
     sentence = get_object_or_404(Sentence, id=sentence)
     context = {'sentence': sentence, 'language': 'english'}
-    return render(request, 'everest/record.html', context)
+    return render(request, 'everest/sentence/record.html', context)
 
 
 @login_required
 def record_nepali(request, sentence):
     sentence = get_object_or_404(Sentence, id=sentence)
     context = {'sentence': sentence, 'language': 'nepali'}
-    return render(request, 'everest/record.html', context)
+    return render(request, 'everest/sentence/record.html', context)
 
 
 @login_required
@@ -50,7 +50,7 @@ def submit_translation(request, sentence):
             translation.save()
         else:
             context['errors'] = form.errors
-    return render(request, 'everest/sentence.html', context)
+    return render(request, 'everest/sentence/sentence.html', context)
 
 
 @login_required

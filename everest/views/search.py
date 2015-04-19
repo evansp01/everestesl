@@ -25,7 +25,7 @@ def search_user(request):
 
     if 'users' not in context:
         context['users'] = User.objects.all()
-    return render(request, "everest/general/list_of_users.html", context)
+    return render(request, "everest/lists/list_of_users.html", context)
 
 
 def search_lesson(request):
@@ -40,7 +40,7 @@ def search_lesson(request):
 
     if 'lessons' not in context:
         context['lessons'] = Lesson.objects.all()
-    return render(request, "everest/general/list_of_lessons.html", context)
+    return render(request, "everest/lists/list_of_lessons.html", context)
 
 
 def search_sentence(request):
@@ -55,4 +55,4 @@ def search_sentence(request):
 
     if 'sentences' not in context:
         context['sentences'] = Sentence.objects.all()
-    return render(request, "everest/general/list_of_sentences.html", context)
+    return render(request, "everest/lists/list_of_sentences.html", context)

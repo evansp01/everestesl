@@ -9,23 +9,22 @@
         <!-- left column -->
         <div class="col-md-3">
             <div class="text-center">
-                <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                <img src="http://placehold.it/150x150" class="avatar img-circle" alt="avatar">
                 <h6>Upload a different photo...</h6>
-                <input type="file" class="form-control">
+
+                <form class="form-horizontal" role="form" action="" method="post">
+                    <input type="file" class="form-control">
+                    <input type="button" class="btn" value="Upload Photo">
+                </form>
             </div>
         </div>
 
         <!-- edit form column -->
         <div class="col-md-9 personal-info">
-            <div class="alert alert-info alert-dismissable">
-                <a class="panel-close close" data-dismiss="alert">×</a>
-                <i class="fa fa-coffee"></i>
-                This is an <strong>.alert</strong>. Use this to show important messages to the user.
-            </div>
             <h3>Personal info</h3>
             <br>
 
-            <form class="form-horizontal" role="form" action="manage_account" method="post">
+            <form class="form-horizontal" role="form" action="" method="post">
                 <div class="form-group">
                     <label class="col-lg-2 control-label">First name:</label>
 
@@ -79,9 +78,11 @@
             </form>
             <br>
             <br>
+
             <h3>Change Password</h3>
             <br>
-            <form class="form-horizontal" role="form" action="manage_account" method="post">
+
+            <form class="form-horizontal" role="form" action="" method="post">
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Current:</label>
 

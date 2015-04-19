@@ -2,11 +2,12 @@
 
 {% block pageheader %}
 <div class="title">
-    Sentences
+    Teachers
 </div>{% endblock %}
 
 {% block content %}
-<form action="{% url 'search_sentences' %}" method="get">
+
+<form action="{% url 'search_users' %}" method="get">
     <div class="input-group">
         <input type="text" class="form-control" name="query" value="{{ query }}" autofocus>
 		  <span class="input-group-btn">
@@ -17,5 +18,5 @@
 
 <div class="smallskip"></div>
 
-{% include "everest/general/sentence_table.html" %}
+{% include "everest/lists/user_table.html" %}
 {% endblock %}
