@@ -123,7 +123,7 @@ AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 #set up the media url
 MEDIA_ROOT = '/media/'
-S3_URL = 'http://s3.amazonaws.com/ %s' % AWS_STORAGE_BUCKET_NAME
-MEDIA_URL = S3_URL + MEDIA_ROOT
+S3_URL = 'http://s3.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = S3_URL+'/'
 
 FFMPEG_INSTALL = os.getenv('FFMPEG_INSTALL') or ''

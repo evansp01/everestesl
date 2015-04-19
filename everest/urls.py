@@ -34,8 +34,6 @@ urlpatterns += patterns('everest.views.sentence',
                         url(r'^sentence/(?P<sentence>[0-9]+)/recording$', 'upload_audio', name='submit_recording'),
                         url(r'^sentence/(?P<sentence>[0-9]+)/translation$', 'submit_translation',
                             name='submit_translation'),
-                        url(r'^audio/english/(?P<audio>[0-9]+)$', 'english_audio', name='english_audio'),
-                        url(r'^audio/nepali/(?P<audio>[0-9]+)$', 'nepali_audio', name='nepali_audio'),
                         )
 
 urlpatterns += patterns('everest.views.delete',

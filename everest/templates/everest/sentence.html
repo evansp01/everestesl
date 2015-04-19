@@ -56,7 +56,7 @@
                 <ul class="list-unstyled">
                     {% for audio in sentence.eng_audio.all %}
                     <li>
-                        <audio src="{% url 'english_audio' audio.id %}" controls style="width:100%"></audio>
+                        <audio src="{{ audio.audio.url }}" controls style="width:100%"></audio>
                     </li>
                     <li>
                         {% if audio.creator == user %}
@@ -88,7 +88,7 @@
                 <ul class="list-unstyled">
                     {% for audio in sentence.nep_audio.all %}
                     <li>
-                        <audio src="{% url 'nepali_audio' audio.id %}" controls style="width:100%"></audio>
+                        <audio src="{{ audio.audio.url }}" controls style="width:100%"></audio>
                     </li>
                     <li>
                         {% if audio.creator == user %}

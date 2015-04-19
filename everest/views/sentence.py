@@ -87,13 +87,3 @@ def file_to_mp3(infile):
         ffmpeg_proc = Popen(args, stdout=PIPE, stdin=PIPE, stderr=devnull)
     output = ffmpeg_proc.communicate(infile.read())
     return ContentFile(output[0])
-
-
-def english_audio(request, audio):
-    audio = get_object_or_404(EnglishAudio, id=audio)
-    return HttpResponse(audio.audio, content_type='audio/' + SERVER_SIDE_ENCODING)
-
-
-def nepali_audio(request, audio):
-    audio = get_object_or_404(NepaliAudio, id=audio)
-    return HttpResponse(audio.audio, content_type='audio/' + SERVER_SIDE_ENCODING)
