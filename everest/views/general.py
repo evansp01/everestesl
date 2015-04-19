@@ -60,6 +60,9 @@ def view_lesson(request, lesson):
     context = {'lesson': lesson}
     return render(request, 'everest/lesson/lesson.html', context)
 
+def view_self(request):
+    return redirect('view_user', username=request.user.username)
+
 def view_user(request, username):
     user = get_object_or_404(User, username=username)
     context = {'profile': user.profile}
