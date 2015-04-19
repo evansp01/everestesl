@@ -1,24 +1,30 @@
 <table class="table table-hover">
-        {% for user in users %}
-            <tr>
-                <td style="width:30%">
-                    <a href="{% url 'view_user' user.username %}">
-                        {{ user.first_name|title }} {{ user.last_name|title }}&nbsp;
-                        ({{ user.username|lower }})
-                    </a>
-                </td>
-                <td>
-                    {{ user.profile.bio }}
-            </td>
-            <td>
-                {{ user.profile.user_type }}
-            </td>
-               </tr>
-        {% empty %}
-            <tr>
-                <td>
-                    No Users Found
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+    <tr class="info tableheading">
+        <td style="width:25%"> User name</td>
+        <td style="width:25%"> Nickname</td>
+        <td style="width:50%"> Bio</td>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td style="width:30%">
+            <a href="{% url 'view_user' user.username %}">
+                {{ user.first_name|title }} {{ user.last_name|title }}</a>
+        </td><td>
+        {{ user.username|lower }}
+        </td>
+        <td>
+            {{ user.profile.bio }}
+        </td>
+        <td>
+            {{ user.profile.user_type }}
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td>
+            No Users Found
+        </td>
+    </tr>
+
+    {% endfor %}
+</table>

@@ -1,6 +1,6 @@
 <table class="table table-hover">
     <tr class="info tableheading">
-        <td> English sentence</td>
+        <td style="width:50%"> English sentence</td>
         <td> Nepali translation</td>
         <td> English audio</td>
         <td> Nepali audio</td>
@@ -9,7 +9,7 @@
     </tr>
     {% for sentence in sentences %}
     <tr>
-        <td style="width:50%">
+        <td>
             <a href="{% url 'view_sentence' sentence.id %}">{{ sentence }}</a>
         </td>
         <td>
