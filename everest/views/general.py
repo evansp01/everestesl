@@ -27,8 +27,7 @@ def all_sentences(request):
 
 
 def all_users(request):
-    head = 'All Users'
-    context = {'users': User.objects.all(), 'head': head}
+    context = {'users': User.objects.all(), 'head': 'All Users'}
     return render(request, 'everest/lists/list_of_users.html', context)
 
 
@@ -67,32 +66,6 @@ def view_user(request, username):
     user = get_object_or_404(User, username=username)
     context = {'profile': user.profile}
     return render(request, 'everest/profile/profile.html', context)
-
-@login_required
-@transaction.atomic
-def manage_account(request):
-    context = {}
-    if request.method == 'GET':    # GET request: display form
-        context['form'] = ProfileForm()
-        return render(request, 'everest/profile/edit_profile.html', context)
-
-    form = ProfileForm(request.POST.copy())
-
-    if not form.is_valid():      # if form invalid, redisplay
-        context['form'] = form
-        return render(request, 'everest/profile/edit_profile.html', context)
-
-    else:    # valid form; make requested changes
-        request.user.first_name=form.cleaned_data['first_name']
-        request.user.last_name=form.cleaned_data['last_name']
-        request.user.email=form.cleaned_data['email']
-        request.user.profile.bio=form.cleaned_data['bio']
-    #    request.user.profile.user_type =form.cleaned_data['user_type']
-        request.user.save()
-        request.user.profile.save()
-        context['profile'] = request.user.profile
-        return render(request, 'everest/profile/profile.html', context)
-
 
 
 @transaction.atomic
