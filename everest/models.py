@@ -15,8 +15,10 @@ class Sentence(models.Model):
     def __unicode__(self):
         return self.english
 
+
 def picture_path(instance, filename):
     return 'userpic/{0}{1}{2}'.format(instance.username, uuid.uuid4(), filename)
+
 
 class UserProfile(models.Model):
     userkey = models.OneToOneField(User, related_name='profile')
@@ -54,15 +56,14 @@ def english_path(instance, filename):
 
 class NepaliAudio(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    creator = models.ForeignKey(User)
+    creator = models.ForeignKey(User, related_name='nep_recordings')
     sentence = models.ForeignKey(Sentence, related_name='nep_audio')
     audio = models.FileField(upload_to=nepali_path)
-    # filefiled
 
 
 class EnglishAudio(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    creator = models.ForeignKey(User)
+    creator = models.ForeignKey(User, related_name='eng_recordings')
     sentence = models.ForeignKey(Sentence, related_name='eng_audio')
     audio = models.FileField(upload_to=english_path)
 
