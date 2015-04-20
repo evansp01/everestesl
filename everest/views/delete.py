@@ -70,9 +70,10 @@ def del_sentence(request, sentence, lesson):
 def del_lesson(request, lesson):
     lesson = get_object_or_404(Lesson, id=lesson)
     if request.method == 'POST' and request.user == lesson.creator:
-        for sentence in lesson.sentences.all():
-            cleanup(sentence)
+        to_clean = list(lesson.sentences.all())
         lesson.delete()
+        for sentence in to_clean:
+            cleanup(sentence)
 
     context = {'lessons': Lesson.objects.all(), 'base_description': 'All Lessons'}
     return render(request, 'everest/lists/list_of_lessons.html', context)
