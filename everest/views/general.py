@@ -31,7 +31,16 @@ def view_self(request):
 
 def view_user(request, username):
     user = get_object_or_404(User, username=username)
-    context = {'profile': user.profile}
+    profile = user.profile
+    context = {'profile': profile}
+    if profile.user_type == "E":
+        context["lessons"] = profile.userkey.lessons.all
+        context["sentences"] = None
+    elif profile.user_type == "T":
+        context["lessons"] = None
+        s = set([translation.sentence for translation in user.translations.all()])
+        s = s.union(set([recording.sentence for recording in user.nep_recordings.all()]))
+        context["sentences"] = s
     return render(request, 'everest/profile/profile.html', context)
 
 

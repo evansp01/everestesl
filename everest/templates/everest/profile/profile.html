@@ -25,20 +25,23 @@
     </div>
 
     <div class="col-md-3 col-md-offset-1">
-                {% if profile.image %}
-                <img class="avatar img-circle" height="150px" width="150px"  alt="avatar" src="{{ user.profile.image.url }}"/>
-                {% else %}
-                <p class="subtletext">User has no image.</p>
-                {% endif %}
+        {% if profile.image %}
+        <img class="avatar img-circle" height="150px" width="150px"  alt="avatar" src="{{ user.profile.image.url }}"/>
+        {% else %}
+        <p class="subtletext">User has no image.</p>
+        {% endif %}
     </div>
 </div>
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <p class="subtitle">{{profile.userkey.first_name}} {{profile.userkey.last_name}}'s Lessons</p>
-        {% with lessons as profile.userkey.lessons %}
-        {% include "everest/lists/lesson_table.html" %}
-        {% endwith %}
+        {% if profile.user_type == "E" %}
+            <p class="subtitle">{{profile.userkey.first_name}} {{profile.userkey.last_name}}'s Lessons</p>
+            {% include "everest/lists/lesson_table.html" with lessons=lessons %}
+        {% elif profile.user_type == "T" %}
+            <p class="subtitle">{{profile.userkey.first_name}} {{profile.userkey.last_name}}'s Translations</p>
+            {% include "everest/lists/sentence_table.html" with sentences=sentences %}
+        {% endif %}
     </div>
 </div>
 
