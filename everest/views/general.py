@@ -70,3 +70,19 @@ def register(request):
                             password=request.POST['password1'])
     login(request, new_user)
     return redirect(reverse('manage_account'))
+
+
+# from django.core.mail import send_mail
+# from django.template.loader import render_to_string
+#
+#
+# msg_plain = render_to_string('templates/email.txt', {'some_params': some_params})
+# msg_html = render_to_string('templates/email.html', {'some_params': some_params})
+#
+# send_mail(
+#     'email title',
+#     msg_plain,
+#     'no-reply@example.com',
+#     [some@reciver.com, ],
+#     html_message=msg_html,
+# )
