@@ -4,7 +4,7 @@
 
 2. interleave mp3s when teacher creates mp3
 
-3. Ajaxify sentences.html lesson_edit.html (and others)
+3. Ajaxify sentences.html (and others)
 
 4. make index redirect to the user type's main page
 

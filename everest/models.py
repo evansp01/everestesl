@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 
 class Sentence(models.Model):
-    english = models.CharField(max_length=200)
+    english = models.CharField(max_length=200, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User)
 

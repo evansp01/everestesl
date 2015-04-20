@@ -40,12 +40,19 @@ def create_sentence(request, lesson):
     if request.method == 'POST':
         form = AddSentence(request.POST)
         if form.is_valid():
-            new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
-            new_sentence.save()
-            lesson.sentences.add(new_sentence)
-            lesson.save()
-        else:
-            context['errors'] = form.errors
+            sentence_text = form.cleaned_data['sentence']
+            existing = Sentence.objects.filter(english=sentence_text).all()
+            if existing:
+                if lesson.sentences.filter(english=existing[0]):
+                    context['error'] = 'This list already contains the sentence: '+sentence_text
+                else:
+                    lesson.sentences.add(existing[0])
+                    lesson.save()
+            else:
+                new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
+                new_sentence.save()
+                lesson.sentences.add(new_sentence)
+                lesson.save()
     return render(request, 'everest/lesson/sentence_table_del.html', context)
 
 
