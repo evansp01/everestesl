@@ -21,14 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "-sg%yaw#p3@lf(jm(*%*sds5e1!az8$od1g@l^ew79p%4n58dh"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -57,7 +49,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 )
 
 HAYSTACK_CONNECTIONS = {
-'default': {
+    'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
     },
@@ -115,15 +107,26 @@ STATICFILES_DIRS = (
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-#aws config
+# aws config
 AWS_STORAGE_BUCKET_NAME = 'everestesl'
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-#set up the media url
-MEDIA_ROOT = '/media/'
+# set up the media url
 S3_URL = 'http://s3.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
-MEDIA_URL = S3_URL+'/'
-
+MEDIA_ROOT = '/media/'
+MEDIA_URL = S3_URL + '/'
+# settings for ffmpeg
 FFMPEG_INSTALL = os.getenv('FFMPEG_INSTALL') or ''
+# settings for email
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+# django secret key
+SECRET_KEY = os.getenv("SECRET_KEY")
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+TEMPLATE_DEBUG = True

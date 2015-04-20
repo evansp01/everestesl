@@ -63,6 +63,10 @@ This is the registration form
 """
 
 
+class ResetForm(forms.Form):
+    username = forms.RegexField(regex=r'^[a-zA-Z0-9_]+$', max_length=20, label='Username')
+
+
 class RegisterForm(forms.Form):
     username = forms.RegexField(regex=r'^[a-zA-Z0-9_]+$', max_length=20, label='Username')
     first_name = forms.RegexField(regex=r'^[a-zA-Z_]+$', max_length=20, label='First name')

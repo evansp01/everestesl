@@ -1,0 +1,10 @@
+{% extends "everest/base.html" %}
+{% load static %}
+
+{% block title %}Your Password Was Reset{% endblock %}
+
+{% block content %}
+    <img class="profile-img" src="{% static 'everest/img/homepage.jpg' %}" alt="">
+    <h2 class="text-center"> Password Reset Sent </h2>
+    <p class="text-center"> A new password has been sent to {{ user.email }}. <p>
+{% endblock %}

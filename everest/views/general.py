@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import Http404, HttpResponse
 from django.core.urlresolvers import reverse
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 # Decorator to use built-in authentication system
 from django.contrib.auth.decorators import login_required
 
 # Used to create and manually log in a user
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.tokens import default_token_generator
 
 # Django transaction system so we can use @transaction.atomic
 from django.db import transaction
@@ -56,7 +60,7 @@ def register(request):
         last_name=form.cleaned_data['last_name'],
         email=form.cleaned_data['email'],
     )
-    # new_user.is_active = False
+    new_user.is_active = False
     new_user.save()
     profile = UserProfile.objects.create(
         userkey=new_user,
@@ -65,25 +69,86 @@ def register(request):
     )
     profile.save()
 
+    token = default_token_generator.make_token(new_user)
+    url = request.get_host() + reverse('confirm_account', args=(new_user.username, token))
+    context = {'user': new_user, 'url': url}
+    email_html = render_to_string('email/register.txt', context)
+    email_text = render_to_string('email/register.html', context)
+
+    send_mail(subject="Verify your email address",
+              html_message=email_html,
+              message=email_text,
+              from_email="everesteslwebmaster@gmail.com",
+              recipient_list=[new_user.email])
+    return render(request, 'everest/signin_register/confirm_sent.html', context)
+
+
+@transaction.atomic
+def confirm(request, username, token):
+    user = get_object_or_404(User, username=username)
+    if not user.is_active:
+        if not default_token_generator.check_token(user, token):
+            raise Http404("Incorrect token")
+        user.is_active = True
+        user.save()
+    return render(request, 'everest/signin_register/account_confirmed.html', {'user': user})
+
+
+def reset_form(request):
+    context = {}
+    if request.POST:
+        form = ResetForm(request.POST)
+        if form.is_valid():
+            users = User.objects.filter(username=form.cleaned_data['username'])
+            if users.all():
+                send_reset_email(request, users[0])
+            else:
+                context['error'] = 'Username does not exist'
+        else:
+            context['form'] = form
+    return render(request, 'everest/signin_register/reset_request.html', context)
+
+
+def send_reset_email(request, user):
+    token = default_token_generator.make_token(user)
+    url = request.get_host() + reverse('reset_password', args=(user.username, token))
+    context = {'user': user, 'url': url}
+    email_html = render_to_string('email/reset.txt', context)
+    email_text = render_to_string('email/reset.html', context)
+
+    send_mail(subject="Verify your email address",
+              html_message=email_html,
+              message=email_text,
+              from_email="everesteslwebmaster@gmail.com",
+              recipient_list=[user.email])
+
+
+@transaction.atomic
+def reset_password(request, username, token):
+    user = get_object_or_404(User, username=username)
+    if not default_token_generator.check_token(user, token):
+        raise Http404("Incorrect token")
+    random_pass = User.objects.make_random_password()
+    send_password_email(user, random_pass)
+    user.set_password(random_pass)
+    user.save()
+
+    #send the user an email
+    return render(request, 'everest/signin_register/reset_sent.html', {'user': user})
+
 
     # Logs in the new user and redirects to main page
-    new_user = authenticate(username=request.POST['username'],
-                            password=request.POST['password1'])
-    login(request, new_user)
-    return redirect(reverse('manage_account'))
+    # new_user = authenticate(username=request.POST['username'],
+    #                         password=request.POST['password1'])
+    # login(request, new_user)
 
+def send_password_email(user, password):
+    context = {'user': user, 'password': password}
+    email_html = render_to_string('email/password.txt', context)
+    email_text = render_to_string('email/password.html', context)
 
-# from django.core.mail import send_mail
-# from django.template.loader import render_to_string
-#
-#
-# msg_plain = render_to_string('templates/email.txt', {'some_params': some_params})
-# msg_html = render_to_string('templates/email.html', {'some_params': some_params})
-#
-# send_mail(
-#     'email title',
-#     msg_plain,
-#     'no-reply@example.com',
-#     [some@reciver.com, ],
-#     html_message=msg_html,
-# )
+    send_mail(subject="Verify your email address",
+              html_message=email_html,
+              message=email_text,
+              from_email="everesteslwebmaster@gmail.com",
+              recipient_list=[user.email])

@@ -1,11 +1,16 @@
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns('everest.views.general',
+                       url(r'^$', 'home', name='home'),
                        url(r'^lesson/(?P<lesson>[0-9]+)$', 'view_lesson', name='view_lesson'),
                        url(r'^profile/(?P<username>[a-zA-Z0-9_]+)$', 'view_user', name='view_user'),
                        url(r'^profile/$', 'view_self', name='view_self'),
+                       # Registration urls
                        url(r'^register$', 'register', name='register'),
-                       url(r'^$', 'home', name='home'),
+                       url(r'^confirm/(?P<username>[a-zA-Z0-9_]+)/(?P<token>.*)$', 'confirm', name='confirm_account'),
+                       url(r'^send-reset/(?P<username>[a-zA-Z0-9_]+)/(?P<token>.*)$', 'reset_password', name='reset_password'),
+                       url(r'^reset-password$', 'reset_form', name='reset_form'),
+
                        )
 
 urlpatterns += patterns('everest.views.teacher',
