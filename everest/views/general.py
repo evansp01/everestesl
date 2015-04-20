@@ -16,49 +16,16 @@ def home(request):
     return render(request, 'everest/index.html', {})
 
 
-def all_lessons(request):
-    context = {'lessons': Lesson.objects.all(), 'head': "All Lessons"}
-    return render(request, 'everest/lists/list_of_lessons.html', context)
-
-
-def all_sentences(request):
-    context = {'sentences': Sentence.objects.all(), 'head': "All Sentences"}
-    return render(request, 'everest/lists/list_of_sentences.html', context)
-
-
-def all_users(request):
-    context = {'users': User.objects.all(), 'head': 'All Users'}
-    return render(request, 'everest/lists/list_of_users.html', context)
-
-
-def find_lesson(request, userid):
-    user = get_object_or_404(User, id=userid)
-    head = "All " + user.username + "'s Lessons"
-    context = {'lessons': user.lessons.all(), 'head': head}
-    return render(request, 'everest/lists/list_of_lessons.html', context)
-
-
-@login_required
-def find_my_lessons(request):
-    return redirect('find_lesson', request.user.id)
-
-# TODO do we ever use this???
-def find_sentence(request, userid):
-    context = {'sentences': userid.sentences.all(), 'head': "All Sentences"}
-    return render(request, 'everest/lists/list_of_sentences.html', context)
-
-
-# def find_user(request, userid):
-# context = {'users' :
-# return render(request, 'everest/lists/list_of_users.html', context)
-
 def view_lesson(request, lesson):
     lesson = get_object_or_404(Lesson, id=lesson)
     context = {'lesson': lesson}
     return render(request, 'everest/lesson/lesson.html', context)
 
+
+@login_required
 def view_self(request):
     return redirect('view_user', username=request.user.username)
+
 
 def view_user(request, username):
     user = get_object_or_404(User, username=username)
