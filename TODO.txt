@@ -1,18 +1,25 @@
 1. fix basic functionality
-   - add profiles & pic upload
-   - ability to add sentence to different list
-   - change list-of-sentence and list-of-lesson header to need-translation, etc.
-   - should we require audio recording when a sentence is created?
-   - make user types a thing
+   - add profiles
+   - should we require audio recording when a sentence is created? (low priority because hard)
 
 2. interleave mp3s when teacher creates mp3
 
-3. Ajaxify sentences.html
+3. Ajaxify sentences.html lesson_edit.html (and others)
 
-4. decide about privileges/moderator
+4. make index redirect to the user type's main page
 
-5. display related sentences during sentence creation (TFIDF)
+5. Fix the user_table.html template
 
-6. remove deleted audio files from S3
+6. Email verification, and email password reset
 
-7. make index redirect to the user type's main page
+7. Make siginin and register page less ugly
+
+8. Make record page less ugly and have it give context as to what you should do
+
+9. Change the page header css to fix awkwardness
+
+10. decide about privileges/moderator
+
+11. display related sentences during sentence creation (TFIDF)
+
+12. remove deleted audio files from S3
