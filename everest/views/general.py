@@ -58,12 +58,13 @@ def register(request):
     )
     # new_user.is_active = False
     new_user.save()
-
-    UserProfile.objects.create(
+    profile = UserProfile.objects.create(
         userkey=new_user,
         bio='',
-        user_type='O'
+        user_type=form.cleaned_data['user_type'],
     )
+    profile.save()
+
 
     # Logs in the new user and redirects to main page
     new_user = authenticate(username=request.POST['username'],

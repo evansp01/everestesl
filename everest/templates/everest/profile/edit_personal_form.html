@@ -1,7 +1,17 @@
 <form class="form-horizontal" role="form" action="{% url 'change_personal' %}" method="post"> {% csrf_token %}
-    {{ form.non_field_errors }}
     <div class="form-group">
-        {{ form.first_name.errors }}
+        <div class="col-lg-2"></div>
+        <div class="col-md-8">
+            {{ form.non_field_errors }}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-2"></div>
+        <div class="col-md-8">
+            {{ form.first_name.errors }}
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-lg-2 control-label">First name:</label>
 
         <div class="col-lg-8">
@@ -9,7 +19,12 @@
         </div>
     </div>
     <div class="form-group">
-        {{ form.last_name.errors }}
+        <div class="col-lg-2"></div>
+        <div class="col-md-8">
+            {{ form.last_name.errors }}
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-lg-2 control-label">Last name:</label>
 
         <div class="col-lg-8">
@@ -17,7 +32,12 @@
         </div>
     </div>
     <div class="form-group">
-        {{ form.email.errors }}
+        <div class="col-lg-2"></div>
+        <div class="col-md-8">
+            {{ form.email.errors }}
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-lg-2 control-label">Email:</label>
 
         <div class="col-lg-8">
@@ -25,7 +45,12 @@
         </div>
     </div>
     <div class="form-group">
-        {{ form.user_type.errors }}
+        <div class="col-lg-2"></div>
+        <div class="col-md-8">
+            {{ form.user_type.errors }}
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-lg-2 control-label">Account Type:</label>
 
         <div class="col-lg-8">
@@ -45,7 +70,12 @@
         </div>
     </div>
     <div class="form-group">
-        {{ form.bio.errors }}
+        <div class="col-lg-2"></div>
+        <div class="col-md-8">
+            {{ form.bio.errors }}
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-lg-2 control-label">Bio:</label>
 
         <div class="col-lg-8">
