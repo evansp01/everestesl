@@ -12,14 +12,12 @@
 
 6. Email verification, and email password reset
 
-7. Make siginin and register page less ugly
+7. Make record page less ugly and have it give context as to what you should do
 
-8. Make record page less ugly and have it give context as to what you should do
+8. Change the page header css to fix awkwardness
 
-9. Change the page header css to fix awkwardness
+9. decide about privileges/moderator
 
-10. decide about privileges/moderator
+10. display related sentences during sentence creation (TFIDF)
 
-11. display related sentences during sentence creation (TFIDF)
-
-12. remove deleted audio files from S3
+11. remove deleted audio files from S3
