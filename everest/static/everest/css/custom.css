@@ -2,6 +2,10 @@ body {
     background-color: #fff;
 }
 
+.medimage {
+    max-width: 100%;
+}
+
 .title {
     background-color: #006dcc;
     color: #fff;

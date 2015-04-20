@@ -2,7 +2,6 @@ INTERFACE
 
 1. fix basic functionality
    - differentiate profiles
-   - fix profile not loading if there's no image (<img src="{{ user.profile.image.url }}" />)
 
 2. Make record page less ugly and have it give context as to what you should do
    - For english recording:

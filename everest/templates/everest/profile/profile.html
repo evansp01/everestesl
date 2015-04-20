@@ -26,7 +26,11 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-body">
-                <img src="{{ user.profile.image.url }}" />
+                {% if profile.image %}
+                <img class="medimage" src="{{ user.profile.image.url }}"/>
+                {% else %}
+                <p class="subtletext">User has no image.</p>
+                {% endif %}
             </div>
         </div>
     </div>
