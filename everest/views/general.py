@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -8,10 +8,8 @@ from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 
 # Used to create and manually log in a user
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.tokens import default_token_generator
 
-# Django transaction system so we can use @transaction.atomic
 from django.db import transaction
 from everest.forms import *
 
@@ -132,15 +130,8 @@ def reset_password(request, username, token):
     send_password_email(user, random_pass)
     user.set_password(random_pass)
     user.save()
-
-    #send the user an email
     return render(request, 'everest/signin_register/reset_sent.html', {'user': user})
 
-
-    # Logs in the new user and redirects to main page
-    # new_user = authenticate(username=request.POST['username'],
-    #                         password=request.POST['password1'])
-    # login(request, new_user)
 
 def send_password_email(user, password):
     context = {'user': user, 'password': password}
