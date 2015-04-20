@@ -12,3 +12,5 @@ setenv.sh
 webapps/whoosh_index*
 /english/*
 .idea/*
+
+everest/migrations/*
