@@ -24,11 +24,11 @@ class UserProfile(models.Model):
     userkey = models.OneToOneField(User, related_name='profile')
     bio = models.CharField(max_length=430, blank=True)
     image = models.ImageField(upload_to="pictures", blank=True, null=True)
-    ESLTEACHER = 'E'
+    ESL_TEACHER = 'E'
     TRANSLATOR = 'T'
     OTHER = 'O'
     USER_TYPES = (
-        (ESLTEACHER, 'ESL_Teacher'),
+        (ESL_TEACHER, 'ESL_Teacher'),
         (TRANSLATOR, 'Translator'),
         (OTHER, 'Other')
     )

@@ -8,16 +8,14 @@
 
 4. make index redirect to the user type's main page
 
-5. Fix the user_table.html template
+5. Email verification, and email password reset
 
-6. Email verification, and email password reset
+6. Make record page less ugly and have it give context as to what you should do
 
-7. Make record page less ugly and have it give context as to what you should do
+7. Change the page header css to fix awkwardness
 
-8. Change the page header css to fix awkwardness
+8. decide about privileges/moderator
 
-9. decide about privileges/moderator
+9. display related sentences during sentence creation (TFIDF)
 
-10. display related sentences during sentence creation (TFIDF)
-
-11. remove deleted audio files from S3
+10. remove deleted audio files from S3

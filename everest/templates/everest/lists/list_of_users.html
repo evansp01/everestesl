@@ -3,7 +3,7 @@
 {% block pageheader %}
     <div class="title">
         {% if query %}
-            {{ base_description }} matching {{ query }}
+            {{ base_description }} matching '{{ query }}'
         {% else %}
             {{ base_description }}
         {% endif %}
