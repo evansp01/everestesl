@@ -25,18 +25,17 @@
 <body>
 {% include "everest/nav.html" %}
 
-
+{% block pageheader %}
+{% endblock %}
 <!-- Page Content -->
 <div class="container-fluid">
     <div class="row">
-        {% block pageheader %}
-        {% endblock %}
-    <div class="padded">
-        {% block content %}
-        {% endblock %}
+        <div class="padded">
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
 </div>
-    </div>
 <!-- /.container -->
 <!-- jQuery -->
 <script src="{% static 'everest/js/jquery.js' %}"></script>
