@@ -80,7 +80,7 @@ def del_lesson(request, lesson):
 
 # returns True if deleted sentence
 def cleanup(sentence):
-    if sentence.tranlations.all() or sentence.eng_audio.all() or sentence.nep_audio.all():
+    if sentence.translations.all() or sentence.eng_audio.all() or sentence.nep_audio.all() or sentence.lessons.all():
         return False
     sentence.delete()
     return True
