@@ -9,7 +9,7 @@
     <form action="{% url 'create_lesson' %}" method="post"> {% csrf_token %}
         <div class="input-group">
             <span class="input-group-addon">Lesson Name</span>
-            <input type="text" class="form-control" name="title" maxlength="200" autofocus>
+            <input type="text" class="form-control" name="title" maxlength="200" required autofocus>
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">Create</button>
             </span>

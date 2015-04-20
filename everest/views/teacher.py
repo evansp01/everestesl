@@ -29,6 +29,14 @@ def edit_lesson(request, lesson):  # TODO: actually use permissions
     context = {'lesson': lesson}
     if request.user != lesson.creator:
         raise Http404("Access denied")
+    return render(request, 'everest/lesson/edit_lesson.html', context)
+
+
+def create_sentence(request, lesson):
+    lesson = get_object_or_404(Lesson, id=lesson)
+    context = {'lesson': lesson}
+    if request.user != lesson.creator:
+        raise Http404("Access denied")
     if request.method == 'POST':
         form = AddSentence(request.POST)
         if form.is_valid():
@@ -38,7 +46,7 @@ def edit_lesson(request, lesson):  # TODO: actually use permissions
             lesson.save()
         else:
             context['errors'] = form.errors
-    return render(request, 'everest/lesson/edit_lesson.html', context)
+    return render(request, 'everest/lesson/sentence_table_del.html', context)
 
 
 @login_required

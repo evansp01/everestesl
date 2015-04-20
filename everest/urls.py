@@ -11,6 +11,8 @@ urlpatterns = patterns('everest.views.general',
 urlpatterns += patterns('everest.views.teacher',
                         url(r'^teacher/create-lesson$', 'create_lesson', name='create_lesson'),
                         url(r'^teacher/edit-lesson/(?P<lesson>[0-9]+)$', 'edit_lesson', name='edit_lesson'),
+                        url(r'^ajax/teacher/create-sentence/(?P<lesson>[0-9]+)$', 'create_sentence',
+                            name='create_sentence'),
                         url(r'^teacher/add-sentence/(?P<sentence>[0-9]+)/(?P<lesson>[0-9]+)$', 'add_sentence',
                             name='add_sentence'),
                         )
@@ -35,7 +37,7 @@ urlpatterns += patterns('everest.views.delete',
                         url(r'^delete/translation/(?P<translation>[0-9]+)$', 'del_translation', name='del_translation'),
                         url(r'^delete/english-audio/(?P<audio>[0-9]+)$', 'del_englishaudio', name='del_englishaudio'),
                         url(r'^delete/nepali-audio/(?P<audio>[0-9]+)$', 'del_nepaliaudio', name='del_nepaliaudio'),
-                        url(r'^delete/sentence/(?P<sentence>[0-9]+)/(?P<lesson>[0-9]+)$', 'del_sentence',
+                        url(r'^ajax/delete/sentence/(?P<sentence>[0-9]+)/(?P<lesson>[0-9]+)$', 'del_sentence',
                             name='del_sentence'),
                         url(r'^delete-lesson/(?P<lesson>[0-9]+)$', 'del_lesson', name='del_lesson')
                         )

@@ -52,6 +52,10 @@ def del_nepaliaudio(request, audio):
     context = {'sentence': sentence}
     return render(request, 'everest/sentence/sentence.html', context)
 
+"""
+Edit Lesson View Deletions
+"""
+
 
 @login_required
 @transaction.atomic
@@ -60,9 +64,10 @@ def del_sentence(request, sentence, lesson):
     lesson = get_object_or_404(Lesson, id=lesson)
     if request.method == 'POST' and request.user == lesson.creator:
         lesson.sentences.remove(sentence)
+        lesson.save()
         cleanup(sentence)
     context = {'lesson': lesson}
-    return render(request, 'everest/lesson/edit_lesson.html', context)
+    return render(request, 'everest/lesson/sentence_table_del.html', context)
 
 
 @login_required
@@ -75,8 +80,7 @@ def del_lesson(request, lesson):
         for sentence in to_clean:
             cleanup(sentence)
 
-    context = {'lessons': Lesson.objects.all(), 'base_description': 'All Lessons'}
-    return render(request, 'everest/lists/list_of_lessons.html', context)
+    return redirect(reverse('search_my_lessons'))
 
 
 # returns True if deleted sentence
