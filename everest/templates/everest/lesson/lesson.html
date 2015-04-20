@@ -35,6 +35,11 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="subtitle">Lesson info:</div>
+                        {% if lesson.creator.profile.image %}
+                        <img id="user-picture" src="{{ lesson.creator.profile.image.url }}" class="avatar img-circle"
+                         height="100px" width="100px" alt="avatar">
+                        {% endif %}
+
                     <ul class="list-unstyled">
                         <li>Created by
                             <a href="{% url 'view_user' lesson.creator.username %}">{{ lesson.creator|lower }}.</a></li>
