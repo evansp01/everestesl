@@ -10,10 +10,6 @@ from everest.forms import *
 from django.contrib.auth.decorators import login_required
 
 
-def home(request):
-    return render(request, 'everest/index.html', {})
-
-
 @login_required
 @transaction.atomic
 def create_lesson(request):
@@ -46,6 +42,7 @@ def edit_lesson(request, lesson):  # TODO: actually use permissions
         elif form.is_bound:
             context['errors'] = form.errors
     return render(request, 'everest/lesson/edit_lesson.html', context)
+
 
 @login_required
 @transaction.atomic
