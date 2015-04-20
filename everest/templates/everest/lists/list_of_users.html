@@ -1,26 +1,27 @@
 {% extends "everest/base.html" %}
 
 {% block pageheader %}
-<div class="title">
-    {% if head %}
-        {{head}}
-    {% else %}
-        All Users
-    {% endif %}
-</div>{% endblock %}
+    <div class="title">
+        {% if query %}
+            {{ base_description }} matching {{ query }}
+        {% else %}
+            {{ base_description }}
+        {% endif %}
+    </div>
+{% endblock %}
 
 {% block content %}
 
-<form action="{% url 'search_users' %}" method="get">
-    <div class="input-group">
-        <input type="text" class="form-control" name="query" value="{{ query }}" autofocus>
+    <form action="{{ search_url }}" method="get">
+        <div class="input-group">
+            <input type="text" class="form-control" name="query" value="{{ query }}" autofocus>
 		  <span class="input-group-btn">
-		    <button class="btn btn-default" type="submit">Filter</button>
+		    <button class="btn btn-default" type="submit">Search</button>
 		  </span>
-    </div>
-</form>
+        </div>
+    </form>
 
-<div class="smallskip"></div>
+    <div class="smallskip"></div>
 
-{% include "everest/lists/user_table.html" %}
+    {% include "everest/lists/user_table.html" %}
 {% endblock %}
