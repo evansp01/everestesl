@@ -1,7 +1,7 @@
 INTERFACE
 
 1. fix basic functionality
-   - add profiles
+   - differentiate profiles
 
 2. Make record page less ugly and have it give context as to what you should do
    - For english recording:
@@ -14,15 +14,15 @@ INTERFACE
 3. Style the class "errorlist" so it looks less bad (there's a nice one in sentence we could use)
    - when you do {{errors}} it has class errorlist, maybe just make it red or something
 
-4. make index redirect to the user type's main page
+4. make index (and "Everest" in nav) redirect to the user type's main page
 
 5. Change the page header css to fix awkwardness (a little bit better)
 
 BACKEND
 
-1. interleave mp3s when teacher creates mp3 (can we just have a download lesson option? - it would be significantly easier)
+1. interleave mp3s when teacher creates mp3 (can we just have a download lesson option? - it would be significantly easier. What would this mean? Having them all as a playlist of separate mp3s? I think that's fine.)
 
-2. Ajaxify sentences.html (a bit complicated I think, should avoid reloading audio)
+2. Ajaxify sentences.html (a bit complicated I think, should avoid reloading audio -- I think only need to Ajaxify add translation and del everything.)
 
 3. Email verification, and email password reset (I started working on this, haven't done much yet though)
    - Templated html/text emails
@@ -30,16 +30,8 @@ BACKEND
    - Need to think about how password reset is done
       I was thinking you click a link, it sends an email, you click a link in the email, and then
       it sends you a temporary password. If you send more than one reset request, only the latest one is
-      valid (what do you think?)
+      valid (what do you think? -- sounds good)
 
 EXTRA
 
-1. decide about privileges/moderator (eh)
-
-2. display related sentences during sentence creation (TFIDF) (did a little?)
-
-3. remove deleted audio files from S3 (meh, who cares)
-
-4. should we require audio recording when a sentence is created? (low priority because hard)
-
-
+display related sentences during sentence creation (TFIDF) (did a little?)

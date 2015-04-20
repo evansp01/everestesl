@@ -19,23 +19,24 @@
                 {% else %}
                 <p class="subtletext">User has no bio.</p>
                 {% endif %}
+                <div class="smallskip"></div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <img src="{{ user.profile.image.url }}" />
-            </div>
-        </div>
+    <div class="col-md-3 col-md-offset-1">
+                {% if profile.image %}
+                <img class="avatar img-circle" height="150px" width="150px"  alt="avatar" src="{{ user.profile.image.url }}"/>
+                {% else %}
+                <p class="subtletext">User has no image.</p>
+                {% endif %}
     </div>
 </div>
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <p class="subtitle">{{profile.userkey}}'s Lessons</p>
-        {% with lessons as profile.user.lessons %}
+        <p class="subtitle">{{profile.userkey.first_name}} {{profile.userkey.last_name}}'s Lessons</p>
+        {% with lessons as profile.userkey.lessons %}
         {% include "everest/lists/lesson_table.html" %}
         {% endwith %}
     </div>

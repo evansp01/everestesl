@@ -28,7 +28,7 @@ class UserProfile(models.Model):
     TRANSLATOR = 'T'
     OTHER = 'O'
     USER_TYPES = (
-        (ESL_TEACHER, 'ESL_Teacher'),
+        (ESL_TEACHER, 'ESL teacher'),
         (TRANSLATOR, 'Translator'),
         (OTHER, 'Other')
     )
