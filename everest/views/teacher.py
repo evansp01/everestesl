@@ -1,13 +1,10 @@
-from django.shortcuts import render, get_object_or_404
-# Decorator to use built-in authentication system
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.urlresolvers import reverse
 from django.http import Http404
-
-# Used to create and manually log in a user
-
-# Django transaction system so we can use @transaction.atomic
 from django.db import transaction
-from everest.forms import *
 from django.contrib.auth.decorators import login_required
+
+from everest.forms import *
 
 
 @login_required
@@ -19,7 +16,7 @@ def create_lesson(request):
         if form.is_valid():
             new_lesson = Lesson(title=form.cleaned_data['title'], creator=request.user)
             new_lesson.save()
-            return edit_lesson(request, new_lesson.id)
+            return redirect(reverse('edit_lesson', kwargs={'lesson': new_lesson.id}))
         else:
             context['errors'] = form.errors
     return render(request, 'everest/lesson/create_lesson.html', context)
@@ -39,7 +36,7 @@ def edit_lesson(request, lesson):  # TODO: actually use permissions
             new_sentence.save()
             lesson.sentences.add(new_sentence)
             lesson.save()
-        elif form.is_bound:
+        else:
             context['errors'] = form.errors
     return render(request, 'everest/lesson/edit_lesson.html', context)
 
@@ -51,7 +48,6 @@ def add_sentence(request, sentence, lesson):
     lesson = get_object_or_404(Lesson, id=lesson)
     if request.user != lesson.creator:
         raise Http404("Access denied")
-    else:
-        lesson.sentences.add(sentence)
-        lesson.save()
-        return render(request, 'everest/lesson/edit_lesson.html', {'lesson': lesson})
+    lesson.sentences.add(sentence)
+    lesson.save()
+    return render(request, 'everest/lesson/edit_lesson.html', {'lesson': lesson})
