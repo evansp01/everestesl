@@ -8,11 +8,11 @@
 {% block content %}
     <form action="{% url 'create_lesson' %}" method="post"> {% csrf_token %}
         <div class="input-group">
-            <span class="input-group-addon">Name your lesson</span>
+            <span class="input-group-addon">Lesson Name</span>
             <input type="text" class="form-control" name="title" maxlength="200" autofocus>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">Submit</button>
-      </span>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Create</button>
+            </span>
         </div>
     </form>
 {% endblock %}

@@ -3,37 +3,36 @@
 {% block title %}Everest Lesson {% endblock %}
 
 {% block pageheader %}
-<div class="title">
-    {{ lesson }}
-    <form class="button-form" action="{% url 'del_lesson' lesson.id %}" method="post">
-        <input class="btn btn-danger btn-sm padleft" type="submit" value="Delete lesson">
-        {% csrf_token %}
-    </form>
-</div>
+    <div class="title">
+        {{ lesson }}
+        <form class="button-form" action="{% url 'del_lesson' lesson.id %}" method="post">
+            <input class="btn btn-danger btn-sm padleft" type="submit" value="Delete lesson">
+            {% csrf_token %}
+        </form>
+    </div>
 {% endblock %}
 
 {% block content %}
-<div class="panel panel-default">
-    <div class="panel-body">
-        {% include "everest/lists/sentence_table_del.html" with sentences=lesson.sentences.all %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {% include "everest/lists/sentence_table_del.html" with sentences=lesson.sentences.all %}
 
 
-
-        <form action="{% url 'edit_lesson' lesson.id %}" method="post"> {% csrf_token %}
-            <div class="input-group">
-                <span class="input-group-addon">Add sentence</span>
-                <input type="text" class="form-control" name="sentence" maxlength="200" autofocus>
+            <form action="{% url 'edit_lesson' lesson.id %}" method="post"> {% csrf_token %}
+                <div class="input-group">
+                    <span class="input-group-addon">Add sentence</span>
+                    <input type="text" class="form-control" name="sentence" maxlength="200" autofocus>
 		  <span class="input-group-btn">
 		    <button class="btn btn-default" type="submit" value="{{ lesson.id }}">Submit</button>
 		  </span>
-            </div>
-        </form>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-<p>
-    <button type="button" class="btn btn-primary" aria-label="Create audio lesson">
-        <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
-        <b>Create this audio lesson!</b>
-    </button>
-</p>
+    <p>
+        <button type="button" class="btn btn-primary" aria-label="Create audio lesson">
+            <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+            <b>Create this audio lesson!</b>
+        </button>
+    </p>
 {% endblock %}
