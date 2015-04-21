@@ -1,3 +1,9 @@
+import os
+from os.path import join
+import uuid
+import zipfile
+import shutil
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse
@@ -5,12 +11,6 @@ from django.db import transaction
 from django.contrib.auth.decorators import login_required
 
 from everest.forms import *
-import os
-from os.path import join
-import uuid
-import zipfile
-import shutil
-
 
 
 def zipdir(path, zipf):
@@ -26,18 +26,18 @@ def download_lesson(request, lesson):
     lesson_dir = join(tmp_dir, 'lesson')
     os.mkdir(lesson_dir)
     for i, sentence in enumerate(lesson.sentences.all()):
-        sent_dir = join(lesson_dir, 'sentence_{}'.format(i+1))
+        sent_dir = join(lesson_dir, 'sentence_{}'.format(i + 1))
         os.mkdir(sent_dir)
         with open(join(sent_dir, 'english.txt'), "w") as english:
             english.write(sentence.english)
         for j, translation in enumerate(sentence.translations.all()):
-            with open(join(sent_dir, 'translation_{}.txt'.format(j+1)), "w") as trans:
+            with open(join(sent_dir, 'translation_{}.txt'.format(j + 1)), "w") as trans:
                 trans.write(translation.nepali)
         for j, audio in enumerate(sentence.eng_audio.all()):
-            with open(join(sent_dir, 'translation_{}.mp3'.format(j+1)), "wb") as eng:
+            with open(join(sent_dir, 'translation_{}.mp3'.format(j + 1)), "wb") as eng:
                 eng.write(audio.audio.file.read())
         for j, audio in enumerate(sentence.nep_audio.all()):
-            with open(join(sent_dir, 'translation_{}.mp3'.format(j+1)), "wb") as nep:
+            with open(join(sent_dir, 'translation_{}.mp3'.format(j + 1)), "wb") as nep:
                 nep.write(audio.audio.file.read())
     tmp_dir2 = join('/tmp', str(uuid.uuid4()))
     os.mkdir(tmp_dir2)
@@ -57,8 +57,6 @@ def download_lesson(request, lesson):
     response = HttpResponse(zipcontent, content_type='application/zip')
     response['Content-Disposition'] = 'attachment; filename=lesson.zip'
     return response
-
-
 
 
 @login_required
@@ -101,7 +99,7 @@ def create_sentence(request, lesson):
             if existing:
                 print "incorrectly identified as existing"
                 if lesson.sentences.filter(english=existing[0]):
-                    context['error'] = 'This list already contains the sentence: '+sentence_text
+                    context['error'] = 'This list already contains the sentence: ' + sentence_text
                 else:
                     existing[0].lessons.add(lesson)
                     existing[0].save()

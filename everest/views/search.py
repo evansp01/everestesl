@@ -28,7 +28,8 @@ def search_needs_translation(request):
     context = {'base_description': 'Sentences Needing Translation'}
     if add_query_to_context(request, context):
         clean_query = cleaned_query(context['query'])
-        sqs = SearchQuerySet().models(Sentence).filter(Q(translations__isnull=True, content=clean_query) | Q(nep_audio__isnull=True, content=clean_query))
+        sqs = SearchQuerySet().models(Sentence).filter(
+            Q(translations__isnull=True, content=clean_query) | Q(nep_audio__isnull=True, content=clean_query))
         context['sentences'] = query_unique(sqs)
     else:
         context['sentences'] = Sentence.objects.filter(Q(translations__isnull=True) | Q(nep_audio__isnull=True))

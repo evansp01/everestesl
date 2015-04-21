@@ -9,9 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>
-    {% block title %}
-        Everest - Learn English!
-    {% endblock %}
+        {% block title %}
+            Everest - Learn English!
+        {% endblock %}
     </title>
     <link rel="shortcut icon" type="image/png" href="{% static 'everest/img/everest-icon.png' %}"/>
     <!-- Bootstrap Core CSS -->
@@ -29,20 +29,20 @@
 <body>
 {% include "everest/nav.html" %}
 
-    <!-- Page Content -->
+<!-- Page Content -->
 <div class="container-fluid">
     <div class="row">
         <div class="padded">
 
             <div class="title">
-            {% block pageheader %}
-            {% endblock %}
-        </div>
+                {% block pageheader %}
+                {% endblock %}
+            </div>
 
-        <div class="slight-inset">
-            {% block content %}
-            {% endblock %}
-        </div>
+            <div class="slight-inset">
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
     </div>
 </div>

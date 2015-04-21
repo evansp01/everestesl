@@ -8,17 +8,17 @@
 {% block content %}
 
     {% if request.user.profile.user_type = 'E' %}
-    <form action="{% url 'create_lesson' %}" method="post"> {% csrf_token %}
-        <div class="input-group">
-            <span class="input-group-addon">Lesson Name</span>
-            <input type="text" class="form-control" name="title" maxlength="200" required autofocus>
+        <form action="{% url 'create_lesson' %}" method="post"> {% csrf_token %}
+            <div class="input-group">
+                <span class="input-group-addon">Lesson Name</span>
+                <input type="text" class="form-control" name="title" maxlength="200" required autofocus>
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">Create</button>
             </span>
-        </div>
-    </form>
+            </div>
+        </form>
     {% else %}
-    <p>You must be registered as an ESL teacher to create lessons.</p>
+        <p>You must be registered as an ESL teacher to create lessons.</p>
     {% endif %}
 
 {% endblock %}

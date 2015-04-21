@@ -6,30 +6,33 @@
         <td> Contains</td>
     </tr>
     {% for lesson in lessons %}
-    <tr>
-        <td class="vert-align">
-            <a href="{% url 'view_lesson' lesson.id %}">{{ lesson|title }}</a>
-        </td>
+        <tr>
+            <td class="vert-align">
+                <a href="{% url 'view_lesson' lesson.id %}">{{ lesson|title }}</a>
+            </td>
 
-        <td class="vert-align">
-            {% if user.profile.image %}
-            <a href="{% url 'view_user' lesson.creator.username %}"><img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
-                 height="40px" width="40px" alt="avatar"></a>
-            {% endif %}
-            <a href="{% url 'view_user' lesson.creator.username %}">{{ lesson.creator.profile.userkey.first_name | capfirst }} {{lesson.creator.profile.userkey.last_name | capfirst }}</a>
-        </td>
-        <td class="vert-align">
-            {{ lesson.created|date:"SHORT_DATE_FORMAT" }}
-        </td>
-        <td class="vert-align">
-            {{ lesson.sentences.count }} sentence{{ lesson.sentences.count|pluralize }}
-        </td>
-    </tr>
+            <td class="vert-align">
+                {% if user.profile.image %}
+                    <a href="{% url 'view_user' lesson.creator.username %}"><img id="user-picture"
+                                                                                 src="{{ user.profile.image.url }}"
+                                                                                 class="avatar img-circle"
+                                                                                 height="40px" width="40px"
+                                                                                 alt="avatar"></a>
+                {% endif %}
+                <a href="{% url 'view_user' lesson.creator.username %}">{{ lesson.creator.profile.userkey.first_name | capfirst }} {{ lesson.creator.profile.userkey.last_name | capfirst }}</a>
+            </td>
+            <td class="vert-align">
+                {{ lesson.created|date:"SHORT_DATE_FORMAT" }}
+            </td>
+            <td class="vert-align">
+                {{ lesson.sentences.count }} sentence{{ lesson.sentences.count|pluralize }}
+            </td>
+        </tr>
     {% empty %}
-    <tr>
-        <td>
-            <p class="subtletext">No lessons found.</p>
-        </td>
-    </tr>
+        <tr>
+            <td>
+                <p class="subtletext">No lessons found.</p>
+            </td>
+        </tr>
     {% endfor %}
 </table>

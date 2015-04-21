@@ -52,6 +52,7 @@ def del_nepaliaudio(request, audio):
     context = {'sentence': sentence}
     return render(request, 'everest/sentence/sentence.html', context)
 
+
 """
 Edit Lesson View Deletions
 """

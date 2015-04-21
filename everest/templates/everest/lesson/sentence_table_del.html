@@ -58,9 +58,9 @@
 </table>
 <form action="{% url 'create_sentence' lesson.id %}" method="post"> {% csrf_token %}
     {% if error %}
-    <ul class="errorlist">
-        <li> {{ error }}</li>
-    </ul>
+        <ul class="errorlist">
+            <li> {{ error }}</li>
+        </ul>
     {% endif %}
     {{ errors }}
     <div class="input-group">

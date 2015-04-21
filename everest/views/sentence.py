@@ -1,5 +1,6 @@
 from subprocess import Popen, PIPE
 import json
+import os
 
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
@@ -7,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.core.files.base import ContentFile
 from django.conf import settings
-import os
 
 from everest.forms import *
 

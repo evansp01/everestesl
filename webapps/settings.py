@@ -124,9 +124,9 @@ EMAIL_USE_TLS = True
 # django secret key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATE_DEBUG = True
-# search engine pls pls pls
+DEBUG = False
+TEMPLATE_DEBUG = False
+# search engine
 from urlparse import urlparse
 
 if LOCAL != 'running_local':
