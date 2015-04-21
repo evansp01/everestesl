@@ -2,7 +2,7 @@
 
 {% block title %} {{profile.userkey | capfirst }}'s Profile {% endblock %}
 {% block pageheader %}
-    {{ profile.userkey.first_name | capfirst }} {{profile.userkey.last_name | capfirst }} ({{profile.userkey}}), {{ user.profile.get_user_type_display }}
+    {{ profile.userkey.first_name | capfirst }} {{profile.userkey.last_name | capfirst }} ({{profile.userkey}}), {{ profile.get_user_type_display }}
 {% endblock %}
 
 {% block content %}
