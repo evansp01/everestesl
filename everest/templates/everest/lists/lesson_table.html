@@ -12,9 +12,9 @@
             </td>
 
             <td class="vert-align">
-                {% if user.profile.image %}
+                {% if lesson.creator.profile.image %}
                     <a href="{% url 'view_user' lesson.creator.username %}"><img id="user-picture"
-                                                                                 src="{{ user.profile.image.url }}"
+                                                                                 src="{{ lesson.creator.profile.image.url }}"
                                                                                  class="avatar img-circle"
                                                                                  height="40px" width="40px"
                                                                                  alt="avatar"></a>
