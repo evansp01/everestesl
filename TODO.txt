@@ -1,21 +1,20 @@
 INTERFACE
 
-2. Make record page less ugly and have it give context as to what you should do
-   - For english recording:
-       Give English sentence and specify that you are recording in english
-   - For nepali recording
-       Give English sentence, all nepali translations and specify that recording in nepali
-   - For all
-       Give generic message about allowing microphone and troubleshooting and such
+Monday:
 
-3. Style the class "errorlist" so it looks less bad (there's a nice one in sentence we could use)
+2. make index (and "Everest" in nav) redirect to the user type's main page
+
+Tuesday:
+
+1. Style the class "errorlist" so it looks less bad (there's a nice one in sentence we could use)
    - when you do {{errors}} it has class errorlist, maybe just make it red or something
 
-4. make index (and "Everest" in nav) redirect to the user type's main page
+2. Improve login error messages
 
-5. Change the page header css to fix awkwardness (a little bit better)
+3. JSify recording directions
 
-6. Make emails less bad
+4. Delint, retest everything, check whether fns all have correct loginrequired/transaction
+
 
 BACKEND
 
