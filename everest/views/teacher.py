@@ -48,6 +48,9 @@ def download_lesson(request, lesson):
     zipcontent = open(zipname, "rb").read()
     try:
         shutil.rmtree(tmp_dir)
+    except:
+        pass
+    try:
         shutil.rmtree(tmp_dir2)
     except:
         pass
