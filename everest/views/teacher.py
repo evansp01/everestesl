@@ -105,7 +105,7 @@ def create_sentence(request, lesson):
                     lesson.sentences.add(existing[0])
                     lesson.save()
             else:
-                new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
+                new_sentence = Sentence.objects.create(english=form.cleaned_data['sentence'], creator=request.user)
                 new_sentence.save()
                 lesson.sentences.add(new_sentence)
                 lesson.save()
