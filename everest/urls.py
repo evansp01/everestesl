@@ -20,6 +20,7 @@ urlpatterns += patterns('everest.views.teacher',
                             name='create_sentence'),
                         url(r'^teacher/add-sentence/(?P<sentence>[0-9]+)/(?P<lesson>[0-9]+)$', 'add_sentence',
                             name='add_sentence'),
+                        url(r'download/lesson/(?P<lesson>[0-9]+)$', 'download_lesson', name='download_lesson')
                         )
 
 urlpatterns += patterns('everest.views.profile',

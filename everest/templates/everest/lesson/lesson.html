@@ -26,7 +26,9 @@
             <p class="smallskip">
                 <button type="button" class="btn btn-primary" aria-label="Download">
                     <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                    <b>Download this audio lesson!</b>
+                    <b>
+                    <a href="{% url 'download_lesson' lesson.id %}" download>Download this audio lesson!</a>
+                    </b>
                 </button>
             </p>
         </div>
