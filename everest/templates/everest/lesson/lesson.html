@@ -22,12 +22,10 @@
                 </div>
             </div>
             <p class="smallskip">
-                <button type="button" class="btn btn-primary" aria-label="Download">
-                    <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                    <b>
-                    <a href="{% url 'download_lesson' lesson.id %}" download>Download this audio lesson!</a>
-                    </b>
-                </button>
+                    <a aria-label="Download" class="btn btn-primary" href="{% url 'download_lesson' lesson.id %}" download>
+                        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                        Download this audio lesson!
+                    </a>
             </p>
         </div>
 
