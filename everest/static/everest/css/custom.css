@@ -47,15 +47,6 @@ body {
     font-style: italic;
 }
 
-.emphasis {
-    color: #555;
-    font-size: 1.4em;
-    font-style: italic;
-    font-weight: 200;
-    display: block;
-    margin-bottom: 5%
-}
-
 .button-form {
     display: inline;
 }
