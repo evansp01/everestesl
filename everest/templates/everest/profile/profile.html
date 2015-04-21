@@ -1,8 +1,8 @@
 {% extends "everest/base.html" %}
 
-{% block title %} {{profile.userkey | capfirst}}'s Profile {% endblock %}
+{% block title %} {{profile.userkey | capfirst }}'s Profile {% endblock %}
 {% block pageheader %}
-    {{profile.userkey.first_name}} {{profile.userkey.last_name}} <i>({{profile.userkey}})</i>
+    {{ profile.userkey.first_name | capfirst }} {{profile.userkey.last_name | capfirst }} <i>({{profile.userkey}})</i>
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
                 {% if profile.bio %}
                 {{profile.bio}}
                 {% else %}
-                <p class="subtletext">User has no bio.</p>
+                <p class="subtletext">{{ profile.userkey.first_name | capfirst }} {{profile.userkey.last_name | capfirst }} has no bio.</p>
                 {% endif %}
                 <div class="smallskip"></div>
             </div>
@@ -26,12 +26,12 @@
         {% if profile.image %}
         <img id="user-picture" src="{{ request.user.profile.image.url }}" class="avatar img-circle"
                          height="150px" width="150px" alt="avatar">
-        <p class="subtletext">{{profile.userkey.first_name}} {{profile.userkey.last_name}} ({{profile.userkey}}),
+        <p class="subtletext">{{ profile.userkey.first_name | capfirst }} {{profile.userkey.last_name | capfirst }} ({{profile.userkey}}),
         {{ user.profile.get_user_type_display }}</p>
         {% else %}
         <img id="user-picture" src="http://placehold.it/150x150" class="avatar img-circle" height="150px"
                          width="150px" alt="avatar">
-        <p class="subtletext">User has no picture.</p>
+        <p class="subtletext">{{ profile.userkey.first_name | capfirst }} {{profile.userkey.last_name | capfirst }} has no picture.</p>
                 {% endif %}
     </div>
 </div>
@@ -39,10 +39,10 @@
 <div class="panel panel-default">
     <div class="panel-body">
         {% if profile.user_type == "E" %}
-            <p class="subtitle">{{profile.userkey.first_name}} {{profile.userkey.last_name}}'s Lessons</p>
+            <p class="subtitle">{{ profile.userkey.first_name | capfirst }} {{ profile.userkey.last_name | capfirst }}'s Lessons</p>
             {% include "everest/lists/lesson_table.html" with lessons=lessons %}
         {% elif profile.user_type == "T" %}
-            <p class="subtitle">{{profile.userkey.first_name}} {{profile.userkey.last_name}}'s Translations</p>
+            <p class="subtitle">{{ profile.userkey.first_name | capfirst }} {{ profile.userkey.last_name | capfirst }}'s Translations</p>
             {% include "everest/lists/sentence_table.html" with sentences=sentences %}
         {% endif %}
     </div>
