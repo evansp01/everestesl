@@ -13,4 +13,3 @@ setenv_heroku.txt
 webapps/whoosh_index*
 /english/*
 .idea/*
-everest/migrations/*
