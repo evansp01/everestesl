@@ -16,7 +16,7 @@
             <a href="{% url 'view_user' lesson.creator.username %}"><img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
                  height="40px" width="40px" alt="avatar"></a>
             {% endif %}
-            <a href="{% url 'view_user' lesson.creator.username %}">{{ profile.userkey.first_name | capfirst }} {{profile.userkey.last_name | capfirst }}</a>
+            <a href="{% url 'view_user' lesson.creator.username %}">{{ lesson.creator.profile.userkey.first_name | capfirst }} {{lesson.creator.profile.userkey.last_name | capfirst }}</a>
         </td>
         <td class="vert-align">
             {{ lesson.created|date:"SHORT_DATE_FORMAT" }}
