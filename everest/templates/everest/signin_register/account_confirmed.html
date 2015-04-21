@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block title %}Registration Complete!{% endblock %}
+
 {% block pageheader %}
-    <div class="title"> Registration Complete! </div>
+    <div class="title"> Registration complete! </div>
 {% endblock %}
+
 {% block content %}
-    <p class="text-center"> Congratulations, {{ user.first_name }}! Your registration is complete!</p>
-    <p class="text-center"><a href="{% url 'login_page' %}">Click here to log in.</a></p>
+    <p> Congratulations, {{ user.first_name }}! Your registration is complete!</p>
+    <p><a href="{% url 'login_page' %}">Click here to log in.</a></p>
 {% endblock %}

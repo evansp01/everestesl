@@ -1,14 +1,14 @@
 Dear {{user.first_name|capfirst}},
-
+<br/><br/>
 A password reset has been requested for your account on Everest, the
 ESL website for Pittsburgh's Bhutanese community.
-
+<br/><br/>
 To reset your password, please go to:
-
+<br/>
 {{ url }}
-
+<br/><br/>
 If you didn't request a password reset, you can safely ignore this message.
-
+<br/><br/>
 Warm Regards,
-
+<br/><br/>
 The Everest Team

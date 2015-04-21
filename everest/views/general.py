@@ -109,6 +109,7 @@ def reset_form(request):
             users = User.objects.filter(username=form.cleaned_data['username'])
             if users.all():
                 send_reset_email(request, users[0])
+                context['requestor'] = users[0]
                 return render(request, 'everest/signin_register/reset_sent.html', context)
             else:
                 context['error'] = 'Username does not exist'
@@ -140,7 +141,7 @@ def reset_password(request, username, token):
     send_password_email(user, random_pass)
     user.set_password(random_pass)
     user.save()
-    return render(request, 'everest/signin_register/reset_sent.html', {'user': user})
+    return render(request, 'everest/signin_register/password_sent.html', {'requestor': user})
 
 
 def send_password_email(user, password):

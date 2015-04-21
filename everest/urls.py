@@ -10,7 +10,6 @@ urlpatterns = patterns('everest.views.general',
                        url(r'^confirm/(?P<username>[a-zA-Z0-9_]+)/(?P<token>.*)$', 'confirm', name='confirm_account'),
                        url(r'^send-reset/(?P<username>[a-zA-Z0-9_]+)/(?P<token>.*)$', 'reset_password', name='reset_password'),
                        url(r'^reset-password$', 'reset_form', name='reset_form'),
-
                        )
 
 urlpatterns += patterns('everest.views.teacher',

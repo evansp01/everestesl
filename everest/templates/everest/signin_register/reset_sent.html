@@ -1,10 +1,12 @@
 {% extends "everest/base.html" %}
 {% load static %}
 
-{% block title %}Your Password Was Reset{% endblock %}
+{% block title %}Password Reset Sent{% endblock %}
+
 {% block pageheader %}
-    <div class="title">Password Reset Sent</div>
+    <div class="title">Password reset sent</div>
 {% endblock %}
+
 {% block content %}
-    <p class="text-center"> A new password has been sent to {{ user.email }}. <p>
+    <p>Directions for resetting your password have been sent to {{ requestor.email }}. Please check your email now. Thanks!</p>
 {% endblock %}
