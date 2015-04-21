@@ -1,6 +1,6 @@
 INTERFACE
 
-1. JSify recording directions
+1. JSify recording directions?
 
 2. Delint, retest everything, check whether fns all have correct loginrequired/transaction
 
