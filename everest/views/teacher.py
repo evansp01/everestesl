@@ -103,25 +103,16 @@ def create_sentence(request, lesson):
                 if lesson.sentences.filter(english=existing[0]):
                     context['error'] = 'This list already contains the sentence: '+sentence_text
                 else:
-                    print "trying to add for no reason"
-                    lesson.sentences.add(existing[0])
-                    print "what the heck"
-                    lesson.save()
+                    existing[0].lessons.add(lesson)
+                    existing[0].save()
             else:
-                print "want to create sentence"
                 new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
-                print "created object"
                 new_sentence.save()
-                print "saved object"
-                print lesson.pk, lesson.id
-                print "adding to relative"
-                print new_sentence.pk, new_sentence.id
                 new_sentence.lessons.add(lesson)
                 new_sentence.save()
+                # NEVER DO THIS
                 # lesson.sentences.add(new_sentence)
-
                 # lesson.save()
-                print "save sentence"
     return render(request, 'everest/lesson/sentence_table_del.html', context)
 
 
