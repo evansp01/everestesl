@@ -17,21 +17,21 @@ SERVER_SIDE_ENCODING = 'mp3'
 
 
 def view_sentence(request, sentence):
-    sentence = get_object_or_404(Sentence, id=sentence)
+    sentence = get_object_or_404(Sentence, pk=sentence)
     context = {'sentence': sentence}
     return render(request, 'everest/sentence/sentence.html', context)
 
 
 @login_required
 def record_english(request, sentence):
-    sentence = get_object_or_404(Sentence, id=sentence)
+    sentence = get_object_or_404(Sentence, pk=sentence)
     context = {'sentence': sentence, 'language': 'english'}
     return render(request, 'everest/sentence/record.html', context)
 
 
 @login_required
 def record_nepali(request, sentence):
-    sentence = get_object_or_404(Sentence, id=sentence)
+    sentence = get_object_or_404(Sentence, pk=sentence)
     context = {'sentence': sentence, 'language': 'nepali'}
     return render(request, 'everest/sentence/record.html', context)
 
@@ -39,7 +39,7 @@ def record_nepali(request, sentence):
 @login_required
 @transaction.atomic
 def submit_translation(request, sentence):
-    sentence = get_object_or_404(Sentence, id=sentence)
+    sentence = get_object_or_404(Sentence, pk=sentence)
     context = {'sentence': sentence}
     if request.method == 'POST':
         form = NepaliTranslation(request.POST)
@@ -56,7 +56,7 @@ def submit_translation(request, sentence):
 @login_required
 @transaction.atomic
 def upload_audio(request, sentence):
-    sentence = get_object_or_404(Sentence, id=sentence)
+    sentence = get_object_or_404(Sentence, pk=sentence)
     if request.method != 'POST':
         raise Http404("Method not supported on this url")
     form = AudioForm(request.POST, request.FILES)

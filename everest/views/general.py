@@ -29,7 +29,7 @@ def home(request):
 
 
 def view_lesson(request, lesson):
-    lesson = get_object_or_404(Lesson, id=lesson)
+    lesson = get_object_or_404(Lesson, pk=lesson)
     context = {'lesson': lesson}
     return render(request, 'everest/lesson/lesson.html', context)
 

@@ -20,7 +20,7 @@ def zipdir(path, zipf):
 
 
 def download_lesson(request, lesson):
-    lesson = get_object_or_404(Lesson, id=lesson)
+    lesson = get_object_or_404(Lesson, pk=lesson)
     tmp_dir = join('/tmp', str(uuid.uuid4()))
     os.mkdir(tmp_dir)
     lesson_dir = join(tmp_dir, 'lesson')
@@ -79,7 +79,7 @@ def create_lesson(request):
 @login_required
 @transaction.atomic
 def edit_lesson(request, lesson):  # TODO: actually use permissions
-    lesson = get_object_or_404(Lesson, id=lesson)
+    lesson = get_object_or_404(Lesson, pk=lesson)
     context = {'lesson': lesson}
     if request.user != lesson.creator:
         raise Http404("Access denied")
@@ -89,7 +89,7 @@ def edit_lesson(request, lesson):  # TODO: actually use permissions
 @login_required
 @transaction.atomic
 def create_sentence(request, lesson):
-    lesson = get_object_or_404(Lesson, id=lesson)
+    lesson = get_object_or_404(Lesson, pk=lesson)
     context = {'lesson': lesson}
     if request.user != lesson.creator:
         raise Http404("Access denied")
@@ -115,8 +115,8 @@ def create_sentence(request, lesson):
 @login_required
 @transaction.atomic
 def add_sentence(request, sentence, lesson):
-    sentence = get_object_or_404(Sentence, id=sentence)
-    lesson = get_object_or_404(Lesson, id=lesson)
+    sentence = get_object_or_404(Sentence, pk=sentence)
+    lesson = get_object_or_404(Lesson, pk=lesson)
     if request.user != lesson.creator:
         raise Http404("Access denied")
     lesson.sentences.add(sentence)

@@ -10,7 +10,7 @@ from everest.forms import *
 @transaction.atomic
 def del_translation(request, translation):
     was_deleted = False
-    translation = get_object_or_404(Translation, id=translation)
+    translation = get_object_or_404(Translation, pk=translation)
     sentence = translation.sentence
     if request.method == 'POST' and request.user == translation.creator:
         translation.delete()
@@ -25,7 +25,7 @@ def del_translation(request, translation):
 @transaction.atomic
 def del_englishaudio(request, audio):
     was_deleted = False
-    audio = get_object_or_404(EnglishAudio, id=audio)
+    audio = get_object_or_404(EnglishAudio, pk=audio)
     sentence = audio.sentence
     if request.method == 'POST' and request.user == audio.creator:
         audio.delete()
@@ -41,7 +41,7 @@ def del_englishaudio(request, audio):
 @transaction.atomic
 def del_nepaliaudio(request, audio):
     was_deleted = False
-    audio = get_object_or_404(NepaliAudio, id=audio)
+    audio = get_object_or_404(NepaliAudio, pk=audio)
     sentence = audio.sentence
     if request.method == 'POST' and request.user == audio.creator:
         audio.delete()
@@ -60,8 +60,8 @@ Edit Lesson View Deletions
 @login_required
 @transaction.atomic
 def del_sentence(request, sentence, lesson):
-    sentence = get_object_or_404(Sentence, id=sentence)
-    lesson = get_object_or_404(Lesson, id=lesson)
+    sentence = get_object_or_404(Sentence, pk=sentence)
+    lesson = get_object_or_404(Lesson, pk=lesson)
     if request.method == 'POST' and request.user == lesson.creator:
         lesson.sentences.remove(sentence)
         lesson.save()
@@ -73,7 +73,7 @@ def del_sentence(request, sentence, lesson):
 @login_required
 @transaction.atomic
 def del_lesson(request, lesson):
-    lesson = get_object_or_404(Lesson, id=lesson)
+    lesson = get_object_or_404(Lesson, pk=lesson)
     if request.method == 'POST' and request.user == lesson.creator:
         to_clean = list(lesson.sentences.all())
         lesson.delete()
