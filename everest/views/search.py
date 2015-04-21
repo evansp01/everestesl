@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from haystack.query import SearchQuerySet
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from everest.forms import *
 
@@ -27,23 +28,11 @@ def search_needs_translation(request):
     context = {'base_description': 'Sentences Needing Translation'}
     if add_query_to_context(request, context):
         clean_query = cleaned_query(context['query'])
-        sqs = SearchQuerySet().models(Sentence).filter(translations__isnull=True, content=clean_query)
+        sqs = SearchQuerySet().models(Sentence).filter(Q(translations__isnull=True, content=clean_query) | Q(nep_audio__isnull=True, content=clean_query))
         context['sentences'] = query_unique(sqs)
     else:
-        context['sentences'] = Sentence.objects.filter(translations__isnull=True)
+        context['sentences'] = Sentence.objects.filter(Q(translations__isnull=True) | Q(nep_audio__isnull=True))
     context['search_url'] = reverse('search_needs_translation')
-    return render(request, "everest/lists/list_of_sentences.html", context)
-
-
-def search_needs_nepaudio(request):
-    context = {'base_description': 'Sentences Needing Nepali Audio'}
-    if add_query_to_context(request, context):
-        clean_query = cleaned_query(context['query'])
-        sqs = SearchQuerySet().models(Sentence).filter(nep_audio__isnull=True, content=clean_query)
-        context['sentences'] = query_unique(sqs)
-    else:
-        context['sentences'] = Sentence.objects.filter(nep_audio__isnull=True)
-    context['search_url'] = reverse('search_needs_nepaudio')
     return render(request, "everest/lists/list_of_sentences.html", context)
 
 

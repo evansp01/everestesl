@@ -9,8 +9,8 @@ staticfiles
 *.swp
 setenv_heroku.sh
 setenv.sh
+setenv_heroku.txt
 webapps/whoosh_index*
 /english/*
 .idea/*
-
 everest/migrations/*

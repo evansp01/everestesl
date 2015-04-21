@@ -13,9 +13,19 @@ from django.contrib.auth.tokens import default_token_generator
 from django.db import transaction
 from everest.forms import *
 
-
+# "home" is his/her lessons for an ESL teacher, sentences needing translations for
+# a translator, and all available lessons for anyone else
 def home(request):
-    return render(request, 'everest/index.html', {})
+    if request.user.is_authenticated():
+        usertype = request.user.profile.user_type
+        if usertype == "E":
+            return redirect('search_my_lessons')
+        elif usertype == "T":
+            return redirect('search_needs_translation')
+        else:
+            return redirect('search_lessons')
+    else:
+        return render(request, 'everest/index.html', {})
 
 
 def view_lesson(request, lesson):

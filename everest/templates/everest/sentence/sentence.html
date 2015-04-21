@@ -120,6 +120,7 @@
                     {% endfor %}
                 </ul>
 
+                {% if request.user.profile.user_type = 'E' %}
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                         Add to your lesson!
@@ -128,9 +129,12 @@
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                         {% for lesson in user.lessons.all %}
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'add_sentence' sentence.id lesson.id %}">{{lesson}}</a></li>
+                        {% empty %}
+                        <p class="subtletext">You must create a lesson before you add a sentence to it.</p>
                         {% endfor %}
                     </ul>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>

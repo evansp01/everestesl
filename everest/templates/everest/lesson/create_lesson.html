@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block content %}
+
+    {% if request.user.usertype = 'E' %}
     <form action="{% url 'create_lesson' %}" method="post"> {% csrf_token %}
         <div class="input-group">
             <span class="input-group-addon">Lesson Name</span>
@@ -15,4 +17,8 @@
             </span>
         </div>
     </form>
+    {% else %}
+    <p>You must be registered as an ESL teacher to create lessons.</p>
+    {% endif %}
+
 {% endblock %}

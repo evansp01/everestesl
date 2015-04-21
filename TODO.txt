@@ -1,28 +1,12 @@
 INTERFACE
 
-2. Make record page less ugly and have it give context as to what you should do
-   - For english recording:
-       Give English sentence and specify that you are recording in english
-   - For nepali recording
-       Give English sentence, all nepali translations and specify that recording in nepali
-   - For all
-       Give generic message about allowing microphone and troubleshooting and such
+1. JSify recording directions
 
-3. Style the class "errorlist" so it looks less bad (there's a nice one in sentence we could use)
-   - when you do {{errors}} it has class errorlist, maybe just make it red or something
+2. Delint, retest everything, check whether fns all have correct loginrequired/transaction
 
-4. make index (and "Everest" in nav) redirect to the user type's main page
-
-5. Change the page header css to fix awkwardness (a little bit better)
-
-6. Make emails less bad
 
 BACKEND
 
 1. interleave mp3s when teacher creates mp3 (can we just have a download lesson option? - it would be significantly easier. What would this mean? Having them all as a playlist of separate mp3s? I think that's fine.)
 
 2. Ajaxify sentences.html (a bit complicated I think, should avoid reloading audio -- I think only need to Ajaxify add translation and del everything.)
-
-EXTRA
-
-display related sentences during sentence creation (TFIDF) (did a little?)

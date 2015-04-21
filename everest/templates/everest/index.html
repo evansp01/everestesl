@@ -1,7 +1,36 @@
 {% extends "everest/base.html" %}
+{% load staticfiles %}
+
 {% block pageheader %}
-    Learn English with Everest!
+Learn English with Everest!
 {% endblock %}
 
 {% block content %}
+<p class="subtitle" align="center">Welcome to Everest, the ESL website for Pittsburgh's Bhutanese community!</p>
+
+<div class="row">
+    <div class="col-md-3 col-md-offset-3">
+        <a href="{% url 'search_lessons' %}">
+            <div class="panel panel-default">
+                <div class="panel-body" align="center">
+
+                    <img src="{% static 'everest/img/tape.gif' %}" />
+
+
+                </div>
+
+            </div>
+            <p align="center">Find a lesson.</a></p>
+    </div>
+    <div class="col-md-3">
+        <a href="{% url 'search_users' %}">
+            <div class="panel panel-default">
+                <div class="panel-body" align="center">
+                    <img src="{% static 'everest/img/teacher.gif' %}" />
+                </div>
+            </div>
+            <p align="center">Find your teacher.</a></p>
+    </div>
+</div>
+
 {% endblock %}

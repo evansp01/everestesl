@@ -1,33 +1,116 @@
+<div class="subtitlenogap">ESL Teachers</div>
 <table class="table table-hover">
     <tr class="info tableheading">
-        <td style="width:20%"> Name</td>
+        <td style="width:10%"></td>
+        <td style="width:15%"> Name</td>
         <td style="width:15%"> Username</td>
-        <td style="width:15%"> User type</td>
-        <td style="width:50%"> Bio</td>
+        <td style="width:60%"> Bio</td>
     </tr>
     {% for user in users %}
+    {% if user.profile.user_type == 'E' %}
         <tr>
-            <td style="width:30%">
+            <td class="vert-align">
+                {% if user.profile.image %}
+                <img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
+                         height="60px" width="60px" alt="avatar">
+                {% endif %}
+            </td>
+            <td class="vert-align">
                 <a href="{% url 'view_user' user.username %}">
                     {{ user.first_name|title }} {{ user.last_name|title }}</a>
             </td>
-            <td>
+            <td class="vert-align">
                 {{ user.username|lower }}
             </td>
-            <td>
-                {{ user.profile.get_user_type_display }}
-            </td>
-            <td>
+            <td class="vert-align">
                 {{ user.profile.bio }}
             </td>
 
         </tr>
+    {% endif %}
     {% empty %}
         <tr>
             <td>
-                <p class="subtletext">No users found.</p>
+                <p class="subtletext">No teachers found.</p>
             </td>
         </tr>
+    {% endfor %}
+</table>
 
+<div class="subtitlenogap">Translators</div>
+<table class="table table-hover">
+    <tr class="info tableheading">
+        <td style="width:10%"></td>
+        <td style="width:15%"> Name</td>
+        <td style="width:15%"> Username</td>
+        <td style="width:60%"> Bio</td>
+    </tr>
+    {% for user in users %}
+    {% if user.profile.user_type == 'T' %}
+        <tr>
+            <td class="vert-align">
+                {% if user.profile.image %}
+                <img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
+                         height="60px" width="60px" alt="avatar">
+                {% endif %}
+            </td>
+            <td class="vert-align">
+                <a href="{% url 'view_user' user.username %}">
+                    {{ user.first_name|title }} {{ user.last_name|title }}</a>
+            </td>
+            <td class="vert-align">
+                {{ user.username|lower }}
+            </td>
+            <td class="vert-align">
+                {{ user.profile.bio }}
+            </td>
+
+        </tr>
+    {% endif %}
+    {% empty %}
+        <tr>
+            <td>
+                <p class="subtletext">No translators found.</p>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<div class="subtitlenogap">Other Users</div>
+<table class="table table-hover">
+    <tr class="info tableheading">
+        <td style="width:10%"></td>
+        <td style="width:15%"> Name</td>
+        <td style="width:15%"> Username</td>
+        <td style="width:60%"> Bio</td>
+    </tr>
+    {% for user in users %}
+    {% if user.profile.user_type == 'O' %}
+        <tr>
+            <td class="vert-align">
+                {% if user.profile.image %}
+                <img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
+                         height="60px" width="60px" alt="avatar">
+                {% endif %}
+            </td>
+            <td class="vert-align">
+                <a href="{% url 'view_user' user.username %}">
+                    {{ user.first_name|title }} {{ user.last_name|title }}</a>
+            </td>
+            <td class="vert-align">
+                {{ user.username|lower }}
+            </td>
+            <td class="vert-align">
+                {{ user.profile.bio }}
+            </td>
+
+        </tr>
+    {% endif %}
+    {% empty %}
+        <tr>
+            <td>
+                <p class="subtletext">No translators found.</p>
+            </td>
+        </tr>
     {% endfor %}
 </table>
