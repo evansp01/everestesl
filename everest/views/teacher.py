@@ -99,16 +99,24 @@ def create_sentence(request, lesson):
             sentence_text = form.cleaned_data['sentence']
             existing = Sentence.objects.filter(english=sentence_text).all()
             if existing:
+                print "incorrectly identified as existing"
                 if lesson.sentences.filter(english=existing[0]):
                     context['error'] = 'This list already contains the sentence: '+sentence_text
                 else:
+                    print "trying to add for no reason"
                     lesson.sentences.add(existing[0])
+                    print "what the heck"
                     lesson.save()
             else:
+                print "want to create sentence"
                 new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
+                print "created object"
                 new_sentence.save()
+                print "saved object"
                 lesson.sentences.add(new_sentence)
+                print "adding to relative"
                 lesson.save()
+                print "save lesson"
     return render(request, 'everest/lesson/sentence_table_del.html', context)
 
 
