@@ -1,18 +1,8 @@
 INTERFACE
 
-1. Style the class "errorlist" so it looks less bad (there's a nice one in sentence we could use)
-   - when you do {{errors}} it has class errorlist, maybe just make it red or something.
-   - improve login error messages (yes, capitalization counts)
+1. JSify recording directions
 
-2. Make a "needing ANY Nepali work" page to direct translators to.
-
-3. Put userpics in user list
-
-4. JSify recording directions
-
-5. Make lesson creation and "Add to your lesson" only show up for teachers
-
-6. Delint, retest everything, check whether fns all have correct loginrequired/transaction
+2. Delint, retest everything, check whether fns all have correct loginrequired/transaction
 
 
 BACKEND

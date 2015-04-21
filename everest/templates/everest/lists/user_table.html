@@ -9,20 +9,20 @@
     {% for user in users %}
     {% if user.profile.user_type == 'E' %}
         <tr>
-            <td>
+            <td class="vert-align">
                 {% if user.profile.image %}
                 <img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
                          height="60px" width="60px" alt="avatar">
                 {% endif %}
             </td>
-            <td>
+            <td class="vert-align">
                 <a href="{% url 'view_user' user.username %}">
                     {{ user.first_name|title }} {{ user.last_name|title }}</a>
             </td>
-            <td>
+            <td class="vert-align">
                 {{ user.username|lower }}
             </td>
-            <td>
+            <td class="vert-align">
                 {{ user.profile.bio }}
             </td>
 
@@ -48,20 +48,59 @@
     {% for user in users %}
     {% if user.profile.user_type == 'T' %}
         <tr>
-            <td>
+            <td class="vert-align">
                 {% if user.profile.image %}
                 <img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
                          height="60px" width="60px" alt="avatar">
                 {% endif %}
             </td>
-            <td>
+            <td class="vert-align">
                 <a href="{% url 'view_user' user.username %}">
                     {{ user.first_name|title }} {{ user.last_name|title }}</a>
             </td>
-            <td>
+            <td class="vert-align">
                 {{ user.username|lower }}
             </td>
+            <td class="vert-align">
+                {{ user.profile.bio }}
+            </td>
+
+        </tr>
+    {% endif %}
+    {% empty %}
+        <tr>
             <td>
+                <p class="subtletext">No translators found.</p>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<div class="subtitlenogap">Other Users</div>
+<table class="table table-hover">
+    <tr class="info tableheading">
+        <td style="width:10%"></td>
+        <td style="width:15%"> Name</td>
+        <td style="width:15%"> Username</td>
+        <td style="width:60%"> Bio</td>
+    </tr>
+    {% for user in users %}
+    {% if user.profile.user_type == 'O' %}
+        <tr>
+            <td class="vert-align">
+                {% if user.profile.image %}
+                <img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
+                         height="60px" width="60px" alt="avatar">
+                {% endif %}
+            </td>
+            <td class="vert-align">
+                <a href="{% url 'view_user' user.username %}">
+                    {{ user.first_name|title }} {{ user.last_name|title }}</a>
+            </td>
+            <td class="vert-align">
+                {{ user.username|lower }}
+            </td>
+            <td class="vert-align">
                 {{ user.profile.bio }}
             </td>
 

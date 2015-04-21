@@ -47,6 +47,14 @@ body {
     font-style: italic;
 }
 
+.table tbody>tr>td.vert-align{
+    vertical-align: middle;
+}
+
+.errorlist {
+    color: #F00;
+}
+
 .button-form {
     display: inline;
 }
