@@ -123,6 +123,8 @@ def add_sentence(request, sentence, lesson):
     lesson = get_object_or_404(Lesson, pk=lesson)
     if request.user != lesson.creator:
         raise Http404("Access denied")
-    lesson.sentences.add(sentence)
-    lesson.save()
+    sentence.lessons.add(lesson)
+    sentence.save()
+    # lesson.sentences.add(sentence)
+    # lesson.save()
     return render(request, 'everest/lesson/edit_lesson.html', {'lesson': lesson})
