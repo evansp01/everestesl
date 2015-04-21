@@ -27,7 +27,7 @@
 
         <div class="col-md-3 col-md-offset-1">
             {% if profile.image %}
-                <img id="user-picture" src="{{ request.user.profile.image.url }}" class="avatar img-circle"
+                <img id="user-picture" src="{{ profile.image.url }}" class="avatar img-circle"
                      height="150px" width="150px" alt="avatar">
                 <p class="subtletext">{{ profile.userkey.first_name | capfirst }} {{ profile.userkey.last_name | capfirst }}
                     ({{ profile.userkey }})</p>
