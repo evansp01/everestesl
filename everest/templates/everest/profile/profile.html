@@ -2,10 +2,11 @@
 
 {% block title %} {{profile.userkey | capfirst }}'s Profile {% endblock %}
 {% block pageheader %}
-    {{ profile.userkey.first_name | capfirst }} {{profile.userkey.last_name | capfirst }} <i>({{profile.userkey}})</i>
+    {{ profile.userkey.first_name | capfirst }} {{profile.userkey.last_name | capfirst }} ({{profile.userkey}}), {{ user.profile.get_user_type_display }}
 {% endblock %}
 
 {% block content %}
+
 
 <div class="row">
     <div class="col-md-8">
@@ -25,9 +26,8 @@
     <div class="col-md-3 col-md-offset-1">
         {% if profile.image %}
         <img id="user-picture" src="{{ request.user.profile.image.url }}" class="avatar img-circle"
-                         height="150px" width="150px" alt="avatar">
-        <p class="subtletext">{{ profile.userkey.first_name | capfirst }} {{profile.userkey.last_name | capfirst }} ({{profile.userkey}}),
-        {{ user.profile.get_user_type_display }}</p>
+                         height="150px" width="150px" alt="avatar" >
+        <p class="subtletext">{{ profile.userkey.first_name | capfirst }} {{profile.userkey.last_name | capfirst }} ({{profile.userkey}})</p>
         {% else %}
         <img id="user-picture" src="http://placehold.it/150x150" class="avatar img-circle" height="150px"
                          width="150px" alt="avatar">
