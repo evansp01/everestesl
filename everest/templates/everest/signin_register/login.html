@@ -3,71 +3,72 @@
 
 {% block title %}Log in to Everest{% endblock %}
 {% block pageheader %}
-    <div class="title">Log in to Everest</div> {% endblock %}
+Log in to Everest
+{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-7 col-md-offset-2">
-                <div class="account-wall">
-                    <form class="form-horizontal" role="form" action="{% url 'login_page' %}"
-                          method="post"> {% csrf_token %}
-                        <div class="form-group">
-                            <div class="col-lg-3"></div>
-                            <div class="col-md-8">
-                                {{ form.non_field_errors }}
-                            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-7 col-md-offset-2">
+            <div class="account-wall">
+                <form class="form-horizontal" role="form" action="{% url 'login_page' %}"
+                      method="post"> {% csrf_token %}
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-md-8">
+                            {{ form.non_field_errors }}
                         </div>
-                        <div class="form-group">
-                            <div class="col-lg-3"></div>
-                            <div class="col-md-8">
-                                {{ form.username.errors }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-
-                            <label class="col-lg-3 control-label">Username:</label>
-
-                            <div class="col-lg-8">
-                                <input class="form-control" name="username" type="text"
-                                       value="{{ form.username.value|default_if_none:"" }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-lg-3"></div>
-                            <div class="col-md-8">
-                                {{ form.password.errors }}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-lg-3 control-label">Password:</label>
-
-                            <div class="col-md-8">
-                                <input class="form-control" name="password" type="password" value="">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label"></label>
-
-                            <div class="col-md-8">
-                                <input type="submit" class="btn btn-primary form-control pull-right" value="Sign in">
-                            </div>
-                        </div>
-                    </form>
-                    <div class="col-lg-3"></div>
-                    <div class="col-md-8">
-                        <p class="text-center">
-                            <a href="{% url 'register' %}">Need an Account?</a> <br>
-                            <a href="{% url 'reset_form' %}">Forgot Your Password?</a>
-                        </p>
                     </div>
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-md-8">
+                            {{ form.username.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+
+                        <label class="col-lg-3 control-label">Username:</label>
+
+                        <div class="col-lg-8">
+                            <input class="form-control" name="username" type="text"
+                                   value="{{ form.username.value|default_if_none:"" }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-md-8">
+                            {{ form.password.errors }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-3 control-label">Password:</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control" name="password" type="password" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"></label>
+
+                        <div class="col-md-8">
+                            <input type="submit" class="btn btn-primary form-control pull-right" value="Sign in">
+                        </div>
+                    </div>
+                </form>
+                <div class="col-lg-3"></div>
+                <div class="col-md-8">
+                    <p class="text-center">
+                        <a href="{% url 'register' %}">Need an Account?</a> <br>
+                        <a href="{% url 'reset_form' %}">Forgot Your Password?</a>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
