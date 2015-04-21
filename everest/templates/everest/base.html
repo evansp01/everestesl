@@ -8,7 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Everest - Learn English!</title>
+    <title>
+    {% block title %}
+        Everest - Learn English!
+    {% endblock %}
+    </title>
     <link rel="shortcut icon" type="image/png" href="{% static 'everest/img/everest-icon.png' %}"/>
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'everest/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
@@ -25,9 +29,12 @@
 <body>
 {% include "everest/nav.html" %}
 
+<div class="title">
 {% block pageheader %}
 {% endblock %}
-<!-- Page Content -->
+</div>
+
+    <!-- Page Content -->
 <div class="container-fluid">
     <div class="row">
         <div class="padded">

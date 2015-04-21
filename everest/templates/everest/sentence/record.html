@@ -1,20 +1,49 @@
 {% extends "everest/base.html" %}
 
+{% block title %} Record{% endblock %}
+
 {% block pageheader %}
-<div class="title">
-    {% if language == 'english' %}
-    {{ sentence }}
-    {% else %}
-    <ul>
-        {% for trans in sentence.translations.all %}
-        <li>{{ trans }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-</div>
+Recording in {{language | capfirst}}
 {% endblock %}
 
 {% block content %}
+
+
+{% if language == 'english' %}
+    <div class="subtitlenogap">
+        Please record this sentence in English:
+    </div>
+    <blockquote>
+        {{ sentence }}
+    </blockquote>
+
+{% elif sentence.translations.count == 1 %}
+    <div class="subtitlenogap">
+        Please record this sentence in Nepali:
+    </div>
+    <blockquote>
+        {{sentence.translations.all.0}}
+    </blockquote>
+
+{% else %}
+    <div class="subtitlenogap">
+        Please record <b>one</b> of these sentences in Nepali:
+    </div>
+    {% for translation in sentence.translations.all %}
+    <blockquote>
+        {{ translation }}
+    </blockquote>
+    {% endfor %}
+
+{% endif %}
+
+<div class="tableheading">Directions:</div>
+<ul>
+    <li>After pressing "record," you will need to give the browser permission to record.</li>
+    <li>After you upload your recording, please be patient and wait until you see "Upload Success!"</li>
+</ul>
+<br/>
+
 <button class="btn btn-primary" id="button1">Record</button>
 <button class="btn btn-default" id="button2">Stop Recording</button>
 <p class="subtletext" id="progress">Not recording.</p>

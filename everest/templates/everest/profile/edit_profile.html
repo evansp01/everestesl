@@ -2,13 +2,14 @@
 
 {% block title %}Manage Account{% endblock %}
 
+{% block pageheader %} Manage Account {% endblock %}
+
 {% block content %}
-    <h1>Edit Profile</h1>
-    <hr>
     <div class="row">
         <!-- left column -->
         <div class="col-md-3">
             <div class="text-center">
+                <p class="subtitle">Change profile picture</p>
                 {% if request.user.profile.image %}
                     <img id="user-picture" src="{{ request.user.profile.image.url }}" class="avatar img-circle"
                          height="150px" width="150px" alt="avatar">
@@ -16,30 +17,26 @@
                     <img id="user-picture" src="http://placehold.it/150x150" class="avatar img-circle" height="150px"
                          width="150px" alt="avatar">
                 {% endif %}
-                <h6>Upload a different photo...</h6>
-
+                <div class="smallskip"></div>
                 <form id="picture-form" class="form-horizontal" role="form" action="{% url 'change_picture' %}"
                       method="post"> {% csrf_token %}
                     <div id="picture-errors"></div>
                     <input type="file" id="picture-input" name="image" accept="image/*" class="form-control">
-                    <input type="submit" class="btn" value="Upload Photo">
+                    <input type="submit" class="btn" value="Upload file">
                 </form>
             </div>
         </div>
 
         <!-- edit form column -->
         <div class="col-md-9 personal-info">
-            <h3>Personal info</h3>
-            <br>
+            <p class="subtitle">Personal info</p>
 
             <div id="personal-form">
                 {% include 'everest/profile/edit_personal_form.html' %}
             </div>
-            <br>
-            <br>
+            <div class="smallskip"></div>
 
-            <h3>Change Password</h3>
-            <br>
+            <p class="subtitle">Change password</h3>
 
             <div id="password-form">
                 {% include 'everest/profile/edit_password_form.html' %}

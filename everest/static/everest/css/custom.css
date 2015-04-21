@@ -25,7 +25,15 @@ body {
     font-style: italic;
     font-weight: 200;
     display: block;
-    margin-bottom: 5%
+    margin-bottom: 5%;
+}
+
+.subtitlenogap {
+    color: #555;
+    font-size: 1.4em;
+    font-style: italic;
+    font-weight: 200;
+    display: block;
 }
 
 .subtletext{
@@ -37,6 +45,15 @@ body {
 .tableheading {
     color: #555;
     font-style: italic;
+}
+
+.emphasis {
+    color: #555;
+    font-size: 1.4em;
+    font-style: italic;
+    font-weight: 200;
+    display: block;
+    margin-bottom: 5%
 }
 
 .button-form {

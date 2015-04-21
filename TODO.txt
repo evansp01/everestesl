@@ -1,8 +1,5 @@
 INTERFACE
 
-1. fix basic functionality
-   - differentiate profiles
-
 2. Make record page less ugly and have it give context as to what you should do
    - For english recording:
        Give English sentence and specify that you are recording in english

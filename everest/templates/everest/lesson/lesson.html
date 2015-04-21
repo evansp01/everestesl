@@ -3,7 +3,6 @@
 {% block title %}Everest Lesson {% endblock %}
 
 {% block pageheader %}
-    <div class="title">
         {{ lesson }}
         {% if lesson.creator == user %}
             <a class="btn btn-default btn-sm padleft" href="{% url 'edit_lesson' lesson.id %}" aria-label="Edit">
@@ -11,7 +10,6 @@
                 Edit
             </a>
         {% endif %}
-    </div>
 {% endblock %}
 
 {% block content %}

@@ -1,13 +1,11 @@
 {% extends "everest/base.html" %}
 
 {% block pageheader %}
-    <div class="title">
         {% if query %}
             {{ base_description }} matching '{{ query }}'
         {% else %}
             {{ base_description }}
         {% endif %}
-    </div>
 {% endblock %}
 
 {% block content %}
