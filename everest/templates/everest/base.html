@@ -29,17 +29,20 @@
 <body>
 {% include "everest/nav.html" %}
 
-<div class="title">
-{% block pageheader %}
-{% endblock %}
-</div>
-
     <!-- Page Content -->
 <div class="container-fluid">
     <div class="row">
         <div class="padded">
+
+            <div class="title">
+            {% block pageheader %}
+            {% endblock %}
+        </div>
+
+        <div class="slight-inset">
             {% block content %}
             {% endblock %}
+        </div>
         </div>
     </div>
 </div>
