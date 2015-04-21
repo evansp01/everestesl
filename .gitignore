@@ -10,6 +10,7 @@ staticfiles
 setenv_heroku.sh
 setenv.sh
 setenv_heroku.txt
+setenv.txt
 webapps/whoosh_index*
 /english/*
 .idea/*
