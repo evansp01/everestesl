@@ -91,7 +91,7 @@ if 'NAME' not in DATABASES['default']:
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['aqueous-river-8897.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['localhost', 'everest-english.herokuapp.com']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
