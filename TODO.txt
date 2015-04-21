@@ -8,13 +8,11 @@ INTERFACE
 
 3. Put userpics in user list
 
-4. Make simplified front page for unauthenticated users
+4. JSify recording directions
 
-5. JSify recording directions
+5. Make lesson creation and "Add to your lesson" only show up for teachers
 
-6. Make lesson creation and "Add to your lesson" only show up for teachers
-
-7. Delint, retest everything, check whether fns all have correct loginrequired/transaction
+6. Delint, retest everything, check whether fns all have correct loginrequired/transaction
 
 
 BACKEND
