@@ -113,10 +113,15 @@ def create_sentence(request, lesson):
                 print "created object"
                 new_sentence.save()
                 print "saved object"
-                lesson.sentences.add(new_sentence)
+                print lesson.pk, lesson.id
                 print "adding to relative"
-                lesson.save()
-                print "save lesson"
+                print new_sentence.pk, new_sentence.id
+                new_sentence.lessons.add(lesson)
+                new_sentence.save()
+                # lesson.sentences.add(new_sentence)
+
+                # lesson.save()
+                print "save sentence"
     return render(request, 'everest/lesson/sentence_table_del.html', context)
 
 
