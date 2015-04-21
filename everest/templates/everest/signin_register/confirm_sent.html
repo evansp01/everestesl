@@ -2,10 +2,11 @@
 {% load static %}
 
 {% block title %}Please Confirm Your Account{% endblock %}
-
+{% block pageheader %}
+    <div class="title"> Confirmation Sent! </div>
+{% endblock %}
 {% block content %}
     <img class="profile-img" src="{% static 'everest/img/homepage.jpg' %}" alt="">
-    <h2 class="text-center"> Confirmation Sent </h2>
-    <p class="text-center"> A confirmation email has been sent to {{ user.email }}. Open the email and click the link to
-        complete registration. <p>
+    <p class="text-center">A confirmation email has been sent to {{ user.email }}. Please open the email and click the link to
+        complete your registration. <p>
 {% endblock %}

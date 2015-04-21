@@ -109,6 +109,7 @@ def reset_form(request):
             users = User.objects.filter(username=form.cleaned_data['username'])
             if users.all():
                 send_reset_email(request, users[0])
+                return render(request, 'everest/signin_register/reset_sent.html', context)
             else:
                 context['error'] = 'Username does not exist'
         else:
@@ -123,7 +124,7 @@ def send_reset_email(request, user):
     email_html = render_to_string('email/reset.txt', context)
     email_text = render_to_string('email/reset.html', context)
 
-    send_mail(subject="Verify your email address",
+    send_mail(subject="Information regarding your Everest account",
               html_message=email_html,
               message=email_text,
               from_email="everesteslwebmaster@gmail.com",
@@ -147,7 +148,7 @@ def send_password_email(user, password):
     email_html = render_to_string('email/password.txt', context)
     email_text = render_to_string('email/password.html', context)
 
-    send_mail(subject="Verify your email address",
+    send_mail(subject="Information regarding your Everest account",
               html_message=email_html,
               message=email_text,
               from_email="everesteslwebmaster@gmail.com",

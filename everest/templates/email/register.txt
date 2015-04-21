@@ -1,13 +1,13 @@
-Dear {{user.first_name|capfirst}}
+Dear {{user.first_name|capfirst}},
 
-Congratulations! Your application to The Social Network has been accepted.
+Congratulations! You are now registered on Everest, the ESL website
+for Pittsburgh's Bhutanese community.
 Please copy and paste the following line into your address bar:
 
 {{ url }}
 
-If this request was not made by you, it is probably the end of the world,
-and we encourage you to panic!
+If this request was not made by you, you can simply disregard this email.
 
 Warm Regards,
 
-The Team
+The Everest Team

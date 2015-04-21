@@ -3,25 +3,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Example document</title>
+        <title>Welcome to Everest!</title>
     </head>
     <body>
 
     <p>Dear {{ user.first_name|capfirst }},</p>
 
-    <p>Congratulations! Your application to The Social Network has been accepted.
-    Please click <a href="{{ url }}">here</a> to verify your email address.</p>
+    <p>Congratulations! You are now registered on Everest, the ESL website
+            for Pittsburgh's Bhutanese community.</p>
 
+    <p>Please click <a href="{{ url }}">here</a> to verify your email address.</p>
     <p>If that didn't work, copy and paste the following line into your address bar:</p>
 
-    <p>"{{ url }}"</p>
+    <p>{{ url }}</p>
 
-    <p>If this request was not made by you, it is probably the end of the world,
-    and we encourage you to panic!</p>
+    <p>If this request was not made by you, you can simply disregard this email.</p>
 
-    <p>Warm Regards,</p>
+    <p>Warm regards,</p>
 
-    <p>The Team</p>
+    <p>The Everest Team</p>
 
     </body>
 </html>
