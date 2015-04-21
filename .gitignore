@@ -7,10 +7,7 @@ staticfiles
 *.sqlite3
 *.pdf
 *.swp
-setenv_heroku.sh
-setenv.sh
-setenv_heroku.txt
-setenv.txt
+*seten*
 webapps/whoosh_index*
 /english/*
 .idea/*
