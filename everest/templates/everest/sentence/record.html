@@ -10,31 +10,39 @@ Recording in {{language | capfirst}}
 
 
 {% if language == 'english' %}
-    <div class="subtitlenogap">
-        Please record this sentence in English:
-    </div>
-    <blockquote>
-        {{ sentence }}
-    </blockquote>
-
-{% elif sentence.translations.count == 1 %}
-    <div class="subtitlenogap">
-        Please record this sentence in Nepali:
-    </div>
-    <blockquote>
-        {{sentence.translations.all.0}}
-    </blockquote>
+<div class="subtitlenogap">
+    Please record this sentence in English:
+</div>
+<blockquote>
+    {{ sentence }}
+</blockquote>
 
 {% else %}
-    <div class="subtitlenogap">
-        Please record <b>one</b> of these sentences in Nepali:
-    </div>
-    {% for translation in sentence.translations.all %}
-    <blockquote>
-        {{ translation }}
-    </blockquote>
-    {% endfor %}
+<div class="subtitlenogap">
+    Please record this sentence in Nepali:
+</div>
+<blockquote>
+    {{ sentence }}
+</blockquote>
 
+{% if sentence.translations.count == 1 %}
+<div class="subtitlenogap">
+    Its user-provided translation is:
+</div>
+<blockquote>
+    {{sentence.translations.all.0}}
+</blockquote>
+
+{% elif sentence.translations.count > 1 %}
+<div class="subtitlenogap">
+    Its user-provided translations are:
+</div>
+{% for translation in sentence.translations.all %}
+<blockquote>
+    {{ translation }}
+</blockquote>
+{% endfor %}
+{% endif %}
 {% endif %}
 
 <div class="tableheading">Directions:</div>

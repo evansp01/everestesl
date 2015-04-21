@@ -78,7 +78,7 @@ def create_lesson(request):
 
 @login_required
 @transaction.atomic
-def edit_lesson(request, lesson):  # TODO: actually use permissions
+def edit_lesson(request, lesson):
     lesson = get_object_or_404(Lesson, pk=lesson)
     context = {'lesson': lesson}
     if request.user != lesson.creator:
