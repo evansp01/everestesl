@@ -11,8 +11,10 @@
     <tr>
         <td class="vert-align">
             {% if user.profile.image %}
-            <a href="{% url 'view_user' user.username %}"><img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
-                 height="60px" width="60px" alt="avatar"></a>
+            <a href="{% url 'view_user' user.username %}">
+                <img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
+                     height="60px" width="60px" alt="avatar">
+            </a>
             {% endif %}
         </td>
         <td class="vert-align">
@@ -52,8 +54,9 @@
         <td class="vert-align">
             {% if user.profile.image %}
             <a href="{% url 'view_user' user.username %}">
-            <img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
-                 height="60px" width="60px" alt="avatar"></a>
+                <img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
+                     height="60px" width="60px" alt="avatar">
+            </a>
             {% endif %}
         </td>
         <td class="vert-align">
@@ -92,8 +95,8 @@
         <td class="vert-align">
             {% if user.profile.image %}
             <a href="{% url 'view_user' user.username %}">
-            <img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
-                 height="60px" width="60px" alt="avatar"></a>
+                <img id="user-picture" src="{{ user.profile.image.url }}" class="avatar img-circle"
+                     height="60px" width="60px" alt="avatar"></a>
             {% endif %}
         </td>
         <td class="vert-align">
