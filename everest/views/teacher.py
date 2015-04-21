@@ -20,7 +20,7 @@ def zipdir(path, zipf):
 
 
 def download_lesson(request, lesson):
-    lesson = get_object_or_404(Lesson, id=lesson)
+    lesson = get_object_or_404(Lesson, pk=lesson)
     tmp_dir = join('/tmp', str(uuid.uuid4()))
     os.mkdir(tmp_dir)
     lesson_dir = join(tmp_dir, 'lesson')
@@ -79,7 +79,7 @@ def create_lesson(request):
 @login_required
 @transaction.atomic
 def edit_lesson(request, lesson):
-    lesson = get_object_or_404(Lesson, id=lesson)
+    lesson = get_object_or_404(Lesson, pk=lesson)
     context = {'lesson': lesson}
     if request.user != lesson.creator:
         raise Http404("Access denied")
@@ -89,7 +89,7 @@ def edit_lesson(request, lesson):
 @login_required
 @transaction.atomic
 def create_sentence(request, lesson):
-    lesson = get_object_or_404(Lesson, id=lesson)
+    lesson = get_object_or_404(Lesson, pk=lesson)
     context = {'lesson': lesson}
     if request.user != lesson.creator:
         raise Http404("Access denied")
@@ -99,24 +99,32 @@ def create_sentence(request, lesson):
             sentence_text = form.cleaned_data['sentence']
             existing = Sentence.objects.filter(english=sentence_text).all()
             if existing:
+                print "incorrectly identified as existing"
                 if lesson.sentences.filter(english=existing[0]):
                     context['error'] = 'This list already contains the sentence: '+sentence_text
                 else:
+                    print "trying to add for no reason"
                     lesson.sentences.add(existing[0])
+                    print "what the heck"
                     lesson.save()
             else:
+                print "want to create sentence"
                 new_sentence = Sentence(english=form.cleaned_data['sentence'], creator=request.user)
+                print "created object"
                 new_sentence.save()
+                print "saved object"
                 lesson.sentences.add(new_sentence)
+                print "adding to relative"
                 lesson.save()
+                print "save lesson"
     return render(request, 'everest/lesson/sentence_table_del.html', context)
 
 
 @login_required
 @transaction.atomic
 def add_sentence(request, sentence, lesson):
-    sentence = get_object_or_404(Sentence, id=sentence)
-    lesson = get_object_or_404(Lesson, id=lesson)
+    sentence = get_object_or_404(Sentence, pk=sentence)
+    lesson = get_object_or_404(Lesson, pk=lesson)
     if request.user != lesson.creator:
         raise Http404("Access denied")
     lesson.sentences.add(sentence)
