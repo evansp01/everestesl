@@ -1,6 +1,6 @@
 {% extends "everest/base.html" %}
 
-{% block title %} Profile: {{profile.userkey}} {% endblock %}
+{% block title %} {{profile.userkey | capfirst}}'s Profile {% endblock %}
 {% block pageheader %}
     {{profile.userkey.first_name}} {{profile.userkey.last_name}} <i>({{profile.userkey}})</i>
 {% endblock %}
