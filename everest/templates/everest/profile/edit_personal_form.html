@@ -1,0 +1,93 @@
+<form class="form-horizontal" role="form" action="{% url 'change_personal' %}" method="post"> {% csrf_token %}
+    <div class="form-group">
+        <div class="col-lg-2"></div>
+        <div class="col-md-8">
+            {{ form.non_field_errors }}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-2"></div>
+        <div class="col-md-8">
+            {{ form.first_name.errors }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">First name:</label>
+
+        <div class="col-lg-8">
+            <input class="form-control" name="first_name" type="text" value="{{ request.user.first_name }}">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-2"></div>
+        <div class="col-md-8">
+            {{ form.last_name.errors }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Last name:</label>
+
+        <div class="col-lg-8">
+            <input class="form-control" name="last_name" type="text" value="{{ request.user.last_name }}">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-2"></div>
+        <div class="col-md-8">
+            {{ form.email.errors }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Email:</label>
+
+        <div class="col-lg-8">
+            <input class="form-control" name="email" type="text" value="{{ request.user.email }}">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-2"></div>
+        <div class="col-md-8">
+            {{ form.user_type.errors }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Account Type:</label>
+
+        <div class="col-lg-8">
+            <div class="ui-select">
+                <select name="user_type" class="form-control">
+                    <option value="E" {% if request.user.profile.user_type == "E" %}selected="selected"{% endif %}>ESL
+                        Teacher
+                    </option>
+                    <option value="T" {% if request.user.profile.user_type == "T" %}selected="selected"{% endif %}>
+                        Translator
+                    </option>
+                    <option value="O" {% if request.user.profile.user_type == "O" %}selected="selected"{% endif %}>
+                        Other
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-2"></div>
+        <div class="col-md-8">
+            {{ form.bio.errors }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Bio:</label>
+
+        <div class="col-lg-8">
+            <textarea class="form-control" type="textarea" name="bio" rows="2">{{ request.user.profile.bio }}</textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label"></label>
+
+        <div class="col-md-8">
+            <input type="submit" class="btn btn-primary" value="Save Changes">
+        </div>
+    </div>
+</form>

@@ -1,0 +1,249 @@
+{% extends "everest/base.html" %}
+
+{% block title %} Record{% endblock %}
+
+{% block pageheader %}
+    Recording in {{ language | capfirst }}
+{% endblock %}
+
+{% block content %}
+
+
+    {% if language == 'english' %}
+        <div class="subtitlenogap">
+            Please record this sentence in English:
+        </div>
+        <blockquote>
+            {{ sentence }}
+        </blockquote>
+
+    {% else %}
+        <div class="subtitlenogap">
+            Please record this sentence in Nepali:
+        </div>
+        <blockquote>
+            {{ sentence }}
+        </blockquote>
+
+        {% if sentence.translations.count == 1 %}
+            <div class="subtitlenogap">
+                Its user-provided translation is:
+            </div>
+            <blockquote>
+                {{ sentence.translations.all.0 }}
+            </blockquote>
+
+        {% elif sentence.translations.count > 1 %}
+            <div class="subtitlenogap">
+                Its user-provided translations are:
+            </div>
+            {% for translation in sentence.translations.all %}
+                <blockquote>
+                    {{ translation }}
+                </blockquote>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+
+    <div class="tableheading">Directions:</div>
+    <ul>
+        <li>After pressing "record," you will need to give the browser permission to record.</li>
+        <li>After you upload your recording, please be patient and wait until you see "Upload Success!"</li>
+    </ul>
+    <br/>
+
+    <button class="btn btn-primary" id="button1">Record</button>
+    <button class="btn btn-default" id="button2">Stop Recording</button>
+    <p class="subtletext" id="progress">Not recording.</p>
+    <br>
+    <audio id="audio" controls hidden></audio>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        function getByID(id) {
+            return document.getElementById(id);
+        }
+        var button1 = getByID('button1');
+        var button2 = getByID('button2');
+        var audio = getByID('audio');
+    </script>
+
+
+    <script>
+
+        var noCurrentRecording = function () {
+            button1.innerHTML = "Record";
+            button1.disabled = false;
+            button2.innerHTML = "Stop Recording";
+            button2.disabled = true;
+            button1.onclick = startMyRecording;
+            button2.onclick = stopMyRecording;
+            audio.muted = true;
+            audio.hidden = true;
+            $("#progress").text("Not recording.");
+        };
+
+        var currentlyRecording = function () {
+            button1.innerHTML = "Recording...";
+            button1.disabled = true;
+            button2.innerHTML = "Stop Recording";
+            button2.disabled = false;
+            button1.onclick = startMyRecording;
+            button2.onclick = stopMyRecording;
+            audio.muted = true;
+            audio.hidden = true;
+
+        };
+
+        var audioNotUploaded = function () {
+            button1.innerHTML = "Upload Recording";
+            button1.disabled = false;
+            button2.innerHTML = "Clear Recording";
+            button2.disabled = false;
+            button1.onclick = uploadCurrent;
+            button2.onclick = noCurrentRecording;
+            audio.muted = false;
+            audio.hidden = false;
+            $("#progress").text("");
+        };
+
+        var currentlyUploading = function () {
+            button1.innerHTML = "Uploading...";
+            button1.disabled = true;
+            button2.innerHTML = "Clear Recording";
+            button2.disabled = true;
+            button1.onclick = uploadCurrent;
+            button2.onclick = noCurrentRecording;
+            audio.muted = false;
+            audio.hidden = false;
+            $("#progress").text("");
+        };
+
+        var audioUploadSuccess = function () {
+            button1.innerHTML = "Upload Success!";
+            button1.disabled = true;
+            button2.innerHTML = "Return to Sentence";
+            button2.disabled = false;
+            button1.onclick = uploadCurrent;
+            button2.onclick = function () {
+                console.log("Successfully uploaded audio!");
+                window.location.replace("{% url 'view_sentence' sentence.id %}");
+            };
+            audio.muted = true;
+            audio.hidden = true;
+            $("#progress").text("");
+
+        };
+
+        var audioUploadFailed = function () {
+            button1.innerHTML = "Upload Failed";
+            button1.disabled = true;
+            button2.innerHTML = "Try again";
+            button2.disabled = false;
+            button1.onclick = uploadCurrent;
+            button2.onclick = noCurrentRecording();
+            audio.muted = true;
+            audio.hidden = true;
+            $("#progress").text("Not recording.");
+
+        }
+
+    </script>
+
+    <script>
+        //{% csrf_token %}
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                    // Only send the token to relative URLs i.e. locally.
+                    xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+                }
+            }
+        });
+        var intervalId,
+                audioStream,
+                recorder;
+
+        var monitor = function () {
+            var recordingLength = 0;
+            const MAX_LENGTH = 10;
+
+            return function () {
+                if (recordingLength < MAX_LENGTH) {
+                    recordingLength += 1;
+                    var text_string = '' + recordingLength + '/' + MAX_LENGTH;
+                    $("#progress").text(text_string);
+                } else {
+                    stopMyRecording();
+                }
+            }
+        };
+
+        var uploadCurrent = function () {
+            if (recorder) {
+                currentlyUploading();
+                var data = new FormData();
+                data.append('language', "{{language}}");
+                data.append('audio', recorder.blob);
+                console.log(recorder.blob);
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'submit_recording' sentence.id %}",
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function () {
+                        audioUploadSuccess();
+                    },
+                    error: function () {
+                        audioUploadFailed();
+                    }
+                });
+            }
+        };
+
+        var startMyRecording = function () {
+            if (!audioStream) {
+                navigator.getUserMedia(
+                        {audio: true, video: false},
+                        function (stream) {
+                            if (window.IsChrome) {
+                                stream = new window.MediaStream(stream.getAudioTracks());
+                            }
+                            audioStream = stream;
+
+                            // "audio" is a default type
+                            recorder = window.RecordRTC(stream, {
+                                type: 'audio'
+                            });
+                            recorder.startRecording();
+                        },
+                        function () {
+                        }
+                );
+            } else {
+                // audio.src = URL.createObjectURL(audioStream);
+                if (recorder) {
+                    recorder.startRecording();
+                }
+            }
+            intervalId = setInterval(monitor(), 1000);
+            currentlyRecording();
+        };
+
+        var stopMyRecording = function () {
+            audio.src = '';
+            clearInterval(intervalId);
+            if (recorder) {
+                recorder.stopRecording(function (url) {
+                    audio.src = url;
+                    audioNotUploaded();
+                });
+            }
+        };
+        noCurrentRecording();
+    </script>
+    <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+{% endblock %}

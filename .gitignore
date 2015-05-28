@@ -1,2 +1,13 @@
-wireframes/*
+venv
+env
 *~
+*#*
+*.pyc
+staticfiles
+*.sqlite3
+*.pdf
+*.swp
+*seten*
+webapps/whoosh_index*
+/english/*
+.idea/*

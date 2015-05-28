@@ -1,0 +1,14 @@
+Dear {{user.first_name|capfirst}},
+<br/><br/>
+Congratulations! You are now registered on Everest, the ESL website
+for Pittsburgh's Bhutanese community.
+<br/><br/>
+Please copy and paste the following URL into your address bar:
+<br/><br/>
+{{ url }}
+<br/><br/>
+If this request was not made by you, you can simply disregard this email.
+<br/><br/>
+Warm Regards,
+<br/><br/>
+The Everest Team

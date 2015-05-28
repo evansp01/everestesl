@@ -1,0 +1,13 @@
+{% extends "everest/base.html" %}
+{% load static %}
+
+{% block title %}Confirmation Sent{% endblock %}
+{% block pageheader %}
+    Confirmation Sent!
+{% endblock %}
+
+{% block content %}
+    <p>Thanks for signing up for Everest!</p>
+    <p>A confirmation email has been sent to {{ user.email }}.</p>
+    <p>Please open the email and click the link to complete your registration. </p>
+{% endblock %}

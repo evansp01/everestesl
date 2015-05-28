@@ -1,0 +1,12 @@
+INTERFACE
+
+1. JSify recording directions?
+
+2. Delint, retest everything, check whether fns all have correct loginrequired/transaction
+
+
+BACKEND
+
+1. interleave mp3s when teacher creates mp3 (can we just have a download lesson option? - it would be significantly easier. What would this mean? Having them all as a playlist of separate mp3s? I think that's fine.)
+
+2. Ajaxify sentences.html (a bit complicated I think, should avoid reloading audio -- I think only need to Ajaxify add translation and del everything.)

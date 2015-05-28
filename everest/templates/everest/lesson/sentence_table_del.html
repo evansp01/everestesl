@@ -1,0 +1,73 @@
+<table class="table table-hover">
+    <tr class="info tableheading">
+        <td> English sentence</td>
+        <td> Nepali translation</td>
+        <td> English audio</td>
+        <td> Nepali audio</td>
+        <td> Included in</td>
+        <td> Created on</td>
+        <td> Delete</td>
+
+    </tr>
+    {% for sentence in lesson.sentences.all %}
+        <tr>
+            <td style="width:50%">
+                <a href="{% url 'view_sentence' sentence.id %}">{{ sentence }}</a>
+            </td>
+            <td>
+                {% if sentence.translations.count > 0 %}
+                    <span class="glyphicon glyphicon-ok" aria-label="Yes"></span>
+                {% else %}
+                    <span class="glyphicon glyphicon-remove" aria-label="No"></span>
+                {% endif %}
+            </td>
+            <td>
+                {% if sentence.eng_audio.count > 0 %}
+                    <span class="glyphicon glyphicon-ok" aria-label="Yes"></span>
+                {% else %}
+                    <span class="glyphicon glyphicon-remove" aria-label="No"></span>
+                {% endif %}
+            </td>
+            <td>
+                {% if sentence.nep_audio.count > 0 %}
+                    <span class="glyphicon glyphicon-ok" aria-label="Yes"></span>
+                {% else %}
+                    <span class="glyphicon glyphicon-remove" aria-label="No"></span>
+                {% endif %}
+            </td>
+            <td>
+                {{ sentence.lessons.count }} lesson{{ sentence.lessons.count|pluralize }}
+            </td>
+            <td>
+                {{ sentence.created|date:"SHORT_DATE_FORMAT" }}
+            </td>
+            <td>
+                <form action="{% url 'del_sentence' sentence.id lesson.id %}" method="post">
+                    {% csrf_token %}
+                    <input class="btn btn-danger btn-xs" type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td>
+                <p class="subtletext">No sentences found.</p>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+<form action="{% url 'create_sentence' lesson.id %}" method="post"> {% csrf_token %}
+    {% if error %}
+        <ul class="errorlist">
+            <li> {{ error }}</li>
+        </ul>
+    {% endif %}
+    {{ errors }}
+    <div class="input-group">
+        <span class="input-group-addon">New sentence</span>
+        <input type="text" class="form-control" name="sentence" maxlength="200" required autofocus>
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Add</button>
+        </span>
+    </div>
+</form>

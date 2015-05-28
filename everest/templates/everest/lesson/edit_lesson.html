@@ -1,0 +1,42 @@
+{% extends "everest/base.html" %}
+
+{% block title %}Everest Lesson {% endblock %}
+
+{% block pageheader %}
+    {{ lesson }}
+    <form class="button-form" action="{% url 'del_lesson' lesson.id %}" method="post">
+        <input class="btn btn-danger btn-sm padleft" type="submit" value="Delete lesson">
+        {% csrf_token %}
+    </form>
+{% endblock %}
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div id="form-redirect">
+                <div id="sentence-table">
+                    {% include "everest/lesson/sentence_table_del.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $("#form-redirect").on("submit", "form", function (e) {
+            var thisForm = $(this);
+            $.ajax({
+                type: "POST",
+                url: thisForm.attr('action'),
+                data: thisForm.serialize(),
+                success: function (response) {
+                    $("#sentence-table").html(response);
+                }
+            });
+            e.preventDefault();
+            return false;
+        });
+    </script>
+
+{% endblock %}

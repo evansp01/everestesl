@@ -1,0 +1,156 @@
+{% extends "everest/base.html" %}
+{% load static %}
+
+{% block title %}Register for Everest{% endblock %}
+{% block pageheader %}
+    Register for Everest! {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-6 col-md-7 col-md-offset-2">
+            <div class="account-wall">
+                <form class="form-horizontal" role="form" action="{% url 'register' %}" method="post"> {% csrf_token %}
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-md-8">
+                            {{ form.non_field_errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-md-8">
+                            {{ form.username.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label class="col-lg-3 control-label">Username:</label>
+
+                        <div class="col-lg-8">
+                            <input class="form-control" name="username" type="text"
+                                   value="{{ form.username.value|default_if_none:"" }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-md-8">
+                            {{ form.first_name.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">First name:</label>
+
+                        <div class="col-lg-8">
+                            <input class="form-control" name="first_name" type="text"
+                                   value="{{ form.first_name.value|default_if_none:"" }}">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-md-8">
+                            {{ form.last_name.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Last name:</label>
+
+                        <div class="col-lg-8">
+                            <input class="form-control" name="last_name" type="text"
+                                   value="{{ form.last_name.value|default_if_none:"" }}">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-md-8">
+                            {{ form.email.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Email:</label>
+
+                        <div class="col-lg-8">
+                            <input class="form-control" name="email" type="text"
+                                   value="{{ form.email.value|default_if_none:"" }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-md-8">
+                            {{ form.user_type.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label class="col-lg-3 control-label">Account Type:</label>
+
+                        <div class="col-lg-8">
+                            <div class="ui-select">
+                                <select name="user_type" class="form-control">
+                                    <option value="E"
+                                            {% if form.user_type.value == "E" %}selected="selected"{% endif %}>
+                                        ESL
+                                        Teacher
+                                    </option>
+                                    <option value="T"
+                                            {% if form.user_type.value == "T" %}selected="selected"{% endif %}>
+                                        Translator
+                                    </option>
+                                    <option value="O"
+                                            {% if form.user_type.value == "O" %}selected="selected"{% endif %}>
+                                        Other
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-md-8">
+                            {{ form.password1.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Password:</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control" name="password1" type="password" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-md-8">
+                            {{ form.password2.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Confirm Password:</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control" name="password2" type="password" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"></label>
+
+                        <div class="col-md-8">
+                            <input type="submit" class="btn btn-primary form-control" value="Register">
+                        </div>
+                    </div>
+                </form>
+                <div class="col-lg-3"></div>
+                <div class="col-md-8">
+                    <p class="text-center">
+                        <a href="{% url 'login_page' %}">Have an Account?</a> <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

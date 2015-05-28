@@ -1,0 +1,28 @@
+{% extends "everest/base.html" %}
+
+{% block title %} Everest Lessons {% endblock %}
+{% block pageheader %}
+    {% if query %}
+        {{ base_description }} matching '{{ query }}'
+    {% else %}
+        {{ base_description }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <form action="{{ search_url }}" method="get">
+        <div class="input-group">
+            <input type="text" class="form-control" name="query" value="{{ query }}" autofocus>
+		  <span class="input-group-btn">
+		    <button class="btn btn-default" type="submit">Search</button>
+		  </span>
+        </div>
+    </form>
+
+    <div class="smallskip"></div>
+
+    {% include "everest/lists/lesson_table.html" %}
+
+
+{% endblock %}

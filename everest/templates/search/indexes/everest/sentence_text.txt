@@ -1,0 +1,4 @@
+{{ object.english }}
+{% for translation in object.translations.all %}
+    {{translation.nepali}}
+{% endfor %}
